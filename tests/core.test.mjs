@@ -1,0 +1,13 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {profiles,jobs} from '../dist/data.mjs';
+import {rankJobs,initialState,storageKey,updateLead,escapeHtml,safeUrl,eligibility} from '../dist/core.mjs';
+test('three separate profile states and storage keys',()=>{assert.equal(profiles.length,3);assert.equal(new Set(profiles.map(p=>storageKey(p.id))).size,3);const a=initialState(profiles[0]);const b=initialState(profiles[1]);a.leads.x={stage:'Saved'};assert.deepEqual(b.leads,{});});
+test('profile skill focus changes first recommendation',()=>{const a=rankJobs(jobs,profiles[0]);const m=rankJobs(jobs,profiles[1]);const j=rankJobs(jobs,profiles[2]);assert.notEqual(a[0].id,j[0].id);assert.ok(m[0].reasons.length);});
+test('saving one record does not imply application or referral',()=>{const s=updateLead(initialState(profiles[0]),'test',{stage:'Saved',type:'job'});assert.equal(s.leads.test.stage,'Saved');assert.equal(s.leads.test.referral,undefined);});
+test('unknown job availability remains unknown',()=>{assert.ok(jobs.every(j=>j.status==='Needs recheck'));});
+test('Anduril graduation mismatch is visible for summer 2027 graduate',()=>{assert.match(eligibility(jobs.find(j=>j.id==='anduril-finance-data-2027'),profiles[0]),/graduation/i);});
+test('unsafe urls and edited text cannot become markup',()=>{assert.equal(safeUrl('javascript:alert(1)'),'');assert.equal(safeUrl('https://example.com'),'https://example.com/');assert.equal(escapeHtml('<img>'),'&lt;img&gt;');});
+test('Anduril checks both graduation bounds and inclusive dates',()=>{const job=jobs.find(j=>j.id==='anduril-finance-data-2027');for(const graduation of ['2027-11','2028-07','2029-06']){const p={...profiles[1],graduation};assert.match(eligibility(job,p),/mismatch/i);assert.ok(rankJobs([job],p)[0].score<0);}for(const graduation of ['2027-12','2028-06'])assert.doesNotMatch(eligibility(job,{...profiles[1],graduation}),/mismatch/i);});
+test('all cited evidence is visible with assessment references first',async()=>{const {selectEvidence}=await import('../dist/core.mjs');const all=[{id:'old'},{id:'new'}];assert.deepEqual(selectEvidence(all,['new','old']),[{id:'new'},{id:'old'}]);});
+test('success wording retains a session-only warning after persistence fails',async()=>{const {storageNotice}=await import('../dist/core.mjs');assert.match(storageNotice('Profile saved',false),/Session only/);assert.equal(storageNotice('Profile saved',true),'Profile saved');});

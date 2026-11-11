@@ -1,0 +1,2011 @@
+{
+  "cycle": "C05",
+  "asOf": "2026-11-10",
+  "sourceWorkbook": "",
+  "syncMode": "Published workbook snapshot; refreshed by research cycles, not live cell mirroring.",
+  "contentHash": "633a7ffb337e25dca2af737561a2784c1285624a2ffec7182d82f46a38ca0e0f",
+  "companies": {
+    "Experian": {
+      "cycle": "C05",
+      "asOf": "2026-11-10",
+      "assessment": "The Costa Mesa fintech marketing role draws on finance campaign experience, but asks for ten years. The former partner internship has expired.",
+      "action": "Show one financial campaign with acquisition cost and segment response. Ask whether a less senior vertical-marketing or partner insights role owns those measures.",
+      "status": "Evidence: C05-E01 C05-E02. Prior forecast retained; no new scored trial. Historical context, checked in earlier cycles: C04-E01, C04-E02, C02-E13, C02-E14, C02-E15, C02-E34, C02-E35.",
+      "bull": "The Costa Mesa hybrid Fintech senior marketing manager description calls for integrated campaigns, segmentation, performance measurement and at least ten years’ related experience. The employer ATS displays an interest control.",
+      "bullLimits": "",
+      "bullFalsifier": "",
+      "bear": "Costa Mesa AI/ML partner internship explicitly expired and required a fall 2026 return to school.",
+      "bearLimits": "",
+      "bearFalsifier": "",
+      "audit": "Partner operations describes a past skills profile. Its fall date cannot be copied into a 2027 eligibility rule. Previously verified on 5 November: The Costa Mesa AI/ML Partner Summer Intern page now explicitly labels the vacancy expired.",
+      "handling": "",
+      "forecast": {
+        "id": "C05-H1 | Experian",
+        "text": "by 31 December 2026, Experian will continue interviews or extend at least one offer for its North American summer-2027 early-career intake. Confirm through dated employer or candidate evidence; outcome may remain unobservable publicly. Separately monitor genuinely new analytics/product adverts after recording the existing jobs.",
+        "deadline": "2026-12-31",
+        "activation": "",
+        "test": "",
+        "outcome": "10 November review of C04-H1 | Experian. Original criteria and start of tracking retained. No new trial or scored win."
+      },
+      "evidence": [
+        "C05-E01",
+        "C05-E02",
+        "C04-E01",
+        "C04-E02",
+        "C02-E13",
+        "C02-E14",
+        "C02-E15",
+        "C02-E34",
+        "C02-E35"
+      ],
+      "basedOn": ""
+    },
+    "PIMCO": {
+      "cycle": "C05",
+      "asOf": "2026-11-10",
+      "assessment": "PIMCO Prep gives you a way to meet the firm. The summer analyst timetable is designed for people returning to study.",
+      "action": "Ask which client analytics full-time roles accept August graduates and when recruiting begins. Prepare a segmentation example using investor objectives.",
+      "status": "Evidence: C05-E03 C05-E04. Prior forecast retained; no new scored trial. Historical context, checked in earlier cycles: C04-E03, C04-E04, C02-E16, C02-E17, C02-E18, C02-E36, C02-E37, C02-E38.",
+      "bull": "The PIMCO Prep page still lists April 2027 sessions with registration coming soon. Its student programme is an information route ahead of internship recruiting.",
+      "bullLimits": "",
+      "bullFalsifier": "",
+      "bear": "The summer analyst programme is for undergraduate and master’s candidates in their penultimate year.",
+      "bearLimits": "",
+      "bearFalsifier": "",
+      "audit": "For an August 2027 finisher, summer 2027 does not naturally precede another year of study. Previously verified on 5 November: Summer Analyst guidance targets undergraduates and master's students in their second-to-last year.",
+      "handling": "",
+      "forecast": {
+        "id": "C05-H2 | PIMCO",
+        "text": "PIMCO will advertise at least one new US summer-2028 analyst internship by 31 December 2027. Require an employer job listing first published after review date and explicitly identifying 2028 intake; verify Newport Beach separately. This extrapolates a continuing programme, not proof of expansion or a forecast of an offer to this user.",
+        "deadline": "2027-12-31",
+        "activation": "",
+        "test": "",
+        "outcome": "10 November review of C04-H2 | PIMCO. Original criteria and start of tracking retained. No new trial or scored win."
+      },
+      "evidence": [
+        "C05-E03",
+        "C05-E04",
+        "C04-E03",
+        "C04-E04",
+        "C02-E16",
+        "C02-E17",
+        "C02-E18",
+        "C02-E36",
+        "C02-E37",
+        "C02-E38"
+      ],
+      "basedOn": ""
+    },
+    "Citadel": {
+      "cycle": "C05",
+      "asOf": "2026-11-10",
+      "assessment": "The published datathon categories leave no verified route for an August 2027 MSBA student.",
+      "action": "Ask whether any alternative competitions accept master’s students. Practise reproducing a statistical result on a held-out sample.",
+      "status": "Evidence: C05-E05 C05-E06. Prior forecast retained; no new scored trial. Historical context, checked in earlier cycles: C04-E05, C04-E06, C02-E19, C02-E20, C02-E39, C02-E40.",
+      "bull": "The official North America datathon lists a US/Canada undergraduate graduation window of December 2027 to June 2029. A separate PhD category exists.",
+      "bullLimits": "",
+      "bullFalsifier": "",
+      "bear": "The US Women’s and Invitational Datathons specify undergraduates graduating December 2027–June 2029. The separate doctoral event requires enrolment in a PhD.",
+      "bearLimits": "",
+      "bearFalsifier": "",
+      "audit": "The advertised groups do not match an August 2027 MSBA. Participation also requires selection. Previously verified on 5 November: The US datathon student category lists undergraduates graduating December 2027 to June 2029. A separate category covers PhD candidates.",
+      "handling": "",
+      "forecast": {
+        "id": "C05-H3 | Citadel",
+        "text": "at least one eligible participant in Citadel's February-2027 Women's Datathon receives a competition-linked interview invitation by 30 April 2027. Evidence supports a pathway, not the conversion rate.",
+        "deadline": "2027-04-30",
+        "activation": "",
+        "test": "",
+        "outcome": "10 November review of C04-H3 | Citadel. Original criteria and start of tracking retained. No new trial or scored win."
+      },
+      "evidence": [
+        "C05-E05",
+        "C05-E06",
+        "C04-E05",
+        "C04-E06",
+        "C02-E19",
+        "C02-E20",
+        "C02-E39",
+        "C02-E40"
+      ],
+      "basedOn": ""
+    },
+    "Rivian": {
+      "cycle": "C05",
+      "asOf": "2026-11-10",
+      "assessment": "Use the Irvine marketing analytics description to assess your experience in customer journeys. Current availability could not be verified.",
+      "action": "Build a funnel measurement plan accounting for a long purchase cycle. Ask which teams own attribution and incrementality.",
+      "status": "Evidence: C05-E07 C05-E08. Prior forecast retained; no new scored trial. Historical context, checked in earlier cycles: C04-E07, C04-E08, C02-E03, C02-E04, C02-E05, C02-E27, C02-E28, C02-E29, C02-E30.",
+      "bull": "The employer-indexed Lead Analyst, Marketing Analytics advert 31991 names Irvine and El Segundo, six-plus years in marketing science or growth analytics and high-consideration customer journeys.",
+      "bullLimits": "",
+      "bullFalsifier": "",
+      "bear": "The earlier cycle documented a January–August co-op and a December 2027-or-later graduation requirement.",
+      "bearLimits": "",
+      "bearFalsifier": "",
+      "audit": "Access denial cannot distinguish closed from active. An engineering co-op is weak evidence for local customer analytics intake. C02's indexed description specified January–August and a December 2027 or later graduation window.",
+      "handling": "",
+      "forecast": {
+        "id": "C05-H4 | Rivian",
+        "text": "Outside Orange County: at least one additional Atlanta commercial, administrative or facilities vacancy will be published after we start comparing new jobs with the existing list and by 31 December 2027. No defensible OC-specific forecast established by these sources.",
+        "deadline": "2027-12-31",
+        "activation": "",
+        "test": "",
+        "outcome": "10 November review of C04-H4 | Rivian. Original criteria and start of tracking retained. No new trial or scored win."
+      },
+      "evidence": [
+        "C05-E07",
+        "C05-E08",
+        "C04-E07",
+        "C04-E08",
+        "C02-E03",
+        "C02-E04",
+        "C02-E05",
+        "C02-E27",
+        "C02-E28",
+        "C02-E29",
+        "C02-E30"
+      ],
+      "basedOn": ""
+    },
+    "Harbinger": {
+      "cycle": "C05",
+      "asOf": "2026-11-10",
+      "assessment": "Dealer marketing is a tangible Garden Grove route if you can show five years of relevant channel work.",
+      "action": "Quantify one partner start of tracking from campaign spend to sales leads. Ask what comparable non-automotive channel work is accepted.",
+      "status": "Evidence: C05-E09 C05-E10. Prior forecast retained; no new scored trial. Historical context, checked in earlier cycles: C04-E09, C04-E10, C04-E11, C02-E06, C02-E07, C02-E08, C02-E09, C02-E31, C02-E32.",
+      "bull": "Garden Grove dealer marketing role 5194170007 directly displays an application form and asks for five years in dealer, retail, channel, field or trade marketing. Plans link dealer groups and national campaigns.",
+      "bullLimits": "",
+      "bullFalsifier": "",
+      "bear": "Garden Grove dealer marketing role 5194170007 displays an application form and requires five or more years of dealer, retail, channel, field or trade marketing.",
+      "bearLimits": "",
+      "bearFalsifier": "",
+      "audit": "Funding and a job advert do not demonstrate a new analyst team. General financial communications may not satisfy channel experience. Previously verified on 5 November: The Garden Grove marketing intern link 5246809007 redirects to a general board with error=true.",
+      "handling": "",
+      "forecast": {
+        "id": "C05-H5 | Harbinger",
+        "text": "a genuinely new Garden Grove marketing, sales-operations or business-systems vacancy will appear after we start comparing new jobs with the existing list and by 31 December 2027. Do not count current manager advert or reposts; eligibility scored separately.",
+        "deadline": "2027-12-31",
+        "activation": "",
+        "test": "",
+        "outcome": "10 November review of C04-H5 | Harbinger. Original criteria and start of tracking retained. No new trial or scored win."
+      },
+      "evidence": [
+        "C05-E09",
+        "C05-E10",
+        "C04-E09",
+        "C04-E10",
+        "C04-E11",
+        "C02-E06",
+        "C02-E07",
+        "C02-E08",
+        "C02-E09",
+        "C02-E31",
+        "C02-E32"
+      ],
+      "basedOn": ""
+    },
+    "ITT Cannon": {
+      "cycle": "C05",
+      "asOf": "2026-11-10",
+      "assessment": "The segment leadership change gives you a reason to ask who owns pricing decisions in Irvine. Local analyst recruitment remains unconfirmed.",
+      "action": "Model the impact of price, mix and volume on margin. Ask how much local analysts own quote conversion against segment-level objectives.",
+      "status": "Evidence: C05-E11 C05-E12. Prior forecast retained; no new scored trial. Historical context, checked in earlier cycles: C04-E12, C04-E13, C02-E10, C02-E11, C02-E12, C02-E33.",
+      "bull": "ITT reported a $55 million year-on-year increase in Connect & Control Technologies revenue, citing pricing and wins across several areas, and named Davide Barbon to lead the segment.",
+      "bullLimits": "",
+      "bullFalsifier": "",
+      "bear": "",
+      "bearLimits": "",
+      "bearFalsifier": "",
+      "audit": "Its historical skills can inform preparation, but the removal does not identify an appointment, staff numbers or transfer. Earlier context: the 6 July 2026 acquisition announcement does not establish local analyst staff numbers.",
+      "handling": "",
+      "forecast": {
+        "id": "C05-H6 | ITT Cannon",
+        "text": "Draft weak possibility to watch: at least one new ITT Cannon Irvine sales/business-analytics or supply-chain job listing appears after we start comparing new jobs with the existing list by 31 December 2027. Require employer/entity/location confirmation and proven post-review date publication.",
+        "deadline": "2027-12-31",
+        "activation": "",
+        "test": "",
+        "outcome": "10 November review of C04-H6 | ITT Cannon. Original criteria and start of tracking retained. No new trial or scored win."
+      },
+      "evidence": [
+        "C05-E11",
+        "C05-E12",
+        "C04-E12",
+        "C04-E13",
+        "C02-E10",
+        "C02-E11",
+        "C02-E12",
+        "C02-E33"
+      ],
+      "basedOn": ""
+    },
+    "UCI / Habitat OC": {
+      "cycle": "C05",
+      "asOf": "2026-11-10",
+      "assessment": "The November housing event gives you a prototype to discuss with practitioners. A follow-on project still needs separate evidence.",
+      "action": "Ask the partner which site-screening decision to validate and what information may be shared.",
+      "status": "Evidence: C05-E13 C05-E14. Prior forecast retained; no new scored trial. Historical context, checked in earlier cycles: C04-E14, C04-E15, C02-E21, C02-E22, C02-E23, C02-E24.",
+      "bull": "UCI lists a 7 November affordable homeownership AI hackathon at Merage, open to UCI students across majors and involving industry professionals. That scheduled date has passed.",
+      "bullLimits": "",
+      "bullFalsifier": "",
+      "bear": "UCI advertised a single affordable-homeownership hackathon on 7 November at the Merage Auditorium. Its advertised date has passed.",
+      "bearLimits": "",
+      "bearFalsifier": "",
+      "audit": "Access to a past build event is not evidence of a paid role or a commissioned pilot. Previously verified on 5 November: UCI advertises a free 7 November Merage hackathon for students across majors with industry professionals, prizes and Claude credits.",
+      "handling": "",
+      "forecast": {
+        "id": "C05-H7 | UCI / Habitat OC programme",
+        "text": "Exploratory non-hiring possibility to watch: by 31 March 2027 at least one participant team receives a documented follow-on project discussion with an organiser or housing partner.",
+        "deadline": "2027-03-31",
+        "activation": "",
+        "test": "",
+        "outcome": "10 November review of C04-H7 | UCI / Habitat OC programme. Original criteria and start of tracking retained. No new trial or scored win."
+      },
+      "evidence": [
+        "C05-E13",
+        "C05-E14",
+        "C04-E14",
+        "C04-E15",
+        "C02-E21",
+        "C02-E22",
+        "C02-E23",
+        "C02-E24"
+      ],
+      "basedOn": ""
+    },
+    "Anduril": {
+      "cycle": "C05",
+      "asOf": "2026-11-10",
+      "assessment": "The operations internship has both a return-to-study requirement and an export-control condition. Check each separately before investing time.",
+      "action": "Use a dashboard to explain a supply bottleneck. Ask permanent operations teams about start dates and exact authorisation requirements.",
+      "status": "Evidence: C05-E15 C05-E16. Prior forecast retained; no new scored trial. Historical context, checked in earlier cycles: C04-E16, C04-E17, C04-E18, C02-E01, C02-E02, C02-E25, C02-E26.",
+      "bull": "The 2027 Business Operations Intern advert displays an application form and requires a further academic quarter or semester after the internship, plus twelve weeks on site. The US-person condition remains role-specific.",
+      "bullLimits": "",
+      "bullFalsifier": "",
+      "bear": "The Costa Mesa business operations internship requires a further academic quarter or semester after the internship and US-person status for export-controlled access.",
+      "bearLimits": "",
+      "bearFalsifier": "",
+      "audit": "Both gates apply to this job listing. A full-time role could have different criteria, and campus expansion does not establish eligibility. Previously verified on 5 November: Business Operations Intern 5271826007 shows Apply. It requires US-person status, 12 weeks in person and at least one further academic quarter or semester after summer 2027.",
+      "handling": "",
+      "forecast": {
+        "id": "C05-H8 | Anduril",
+        "text": "after we record the existing jobs, at least one genuinely new Southern California operations/supply-chain/facilities advert explicitly linked to Long Beach will appear by 31 December 2027.",
+        "deadline": "2027-12-31",
+        "activation": "",
+        "test": "",
+        "outcome": "10 November review of C04-H8 | Anduril. Original criteria and start of tracking retained. No new trial or scored win."
+      },
+      "evidence": [
+        "C05-E15",
+        "C05-E16",
+        "C04-E16",
+        "C04-E17",
+        "C04-E18",
+        "C02-E01",
+        "C02-E02",
+        "C02-E25",
+        "C02-E26"
+      ],
+      "basedOn": ""
+    },
+    "Edwards Lifesciences": {
+      "cycle": "C05",
+      "asOf": "2026-11-10",
+      "assessment": "The Irvine upstream product role requires substantial experience. Ask whether regulated-industry work outside medical devices counts.",
+      "action": "Show how market interviews change product priorities. Ask whether regulated finance marketing counts towards the relevant experience threshold.",
+      "status": "Evidence: C05-E17 C05-E18. Prior forecast retained; no new scored trial. Historical context, checked in earlier cycles: C04-E19, C04-E20, C03-E01, C03-E02, C03-E03, C03-E04, C03-E05, C03-E06, C03-E07, C03-E08, C03-E09, C03-E10.",
+      "bull": "Irvine upstream product manager 49655 displays Apply Now. The employer specifies eight years with a bachelor’s or six with a master’s, subject to equivalency.",
+      "bullLimits": "",
+      "bullFalsifier": "",
+      "bear": "",
+      "bearLimits": "",
+      "bearFalsifier": "",
+      "audit": "This establishes the tracked application page is unavailable. It cannot distinguish a fill from withdrawal or a new job ID. Previously verified on 5 November: Official Irvine TMTT Analyst Data Analytics URL 51135 returned 404.",
+      "handling": "",
+      "forecast": {
+        "id": "C05-H9 | Edwards Lifesciences",
+        "text": "by 31 December 2027, identify at least one genuinely new Orange County vacancy in Clinical data analytics, Supply-chain forecasting, Clinical operations BI that matches the candidate’s documented experience, degree and availability. Jobs already found in this review will not count as new openings.",
+        "deadline": "2027-12-31",
+        "activation": "",
+        "test": "",
+        "outcome": "10 November review of C04-H9 | Edwards Lifesciences. Original criteria and start of tracking retained. No new trial or scored win."
+      },
+      "evidence": [
+        "C05-E17",
+        "C05-E18",
+        "C04-E19",
+        "C04-E20",
+        "C03-E01",
+        "C03-E02",
+        "C03-E03",
+        "C03-E04",
+        "C03-E05",
+        "C03-E06",
+        "C03-E07",
+        "C03-E08",
+        "C03-E09",
+        "C03-E10"
+      ],
+      "basedOn": ""
+    },
+    "AbbVie / Allergan Aesthetics": {
+      "cycle": "C05",
+      "asOf": "2026-11-10",
+      "assessment": "The Irvine research manager role specifically asks for pharmaceutical experience alongside five years in insights.",
+      "action": "Demonstrate a research question, method, finding and commercial decision. Ask which adjacent roles accept regulated-industry experience.",
+      "status": "Evidence: C05-E19 C05-E20. Prior forecast retained; no new scored trial. Historical context, checked in earlier cycles: C04-E21, C04-E22, C03-E11, C03-E12, C03-E13, C03-E14, C03-E15, C03-E16, C03-E17, C03-E18, C03-E19, C03-E20.",
+      "bull": "Irvine Eye Care analytics and market research manager R00152333 displays Apply and specifies five or more years in commercial insights and analytics, including prior pharmaceutical experience.",
+      "bullLimits": "",
+      "bullFalsifier": "",
+      "bear": "AbbVie lists an Irvine eye-care research manager needing at least five years in commercial insights and analytics, including pharmaceutical experience.",
+      "bearLimits": "",
+      "bearFalsifier": "",
+      "audit": "This is an eye-care role, not proof of Allergan Aesthetics hiring. Finance marketing provides adjacent skills but no documented pharmaceutical experience. Previously verified on 5 November: Irvine Eye Care role R00152333 displays Apply and requires five or more years in commercial insights/analytics including pharmaceutical experience.",
+      "handling": "",
+      "forecast": {
+        "id": "C05-H10 | AbbVie / Allergan Aesthetics",
+        "text": "by 31 December 2027, identify at least one genuinely new Orange County vacancy in Marketing business intelligence, Commercial insights, Statistical programming that matches the candidate’s documented experience, degree and availability. Jobs already found in this review will not count as new openings.",
+        "deadline": "2027-12-31",
+        "activation": "",
+        "test": "",
+        "outcome": "10 November review of C04-H10 | AbbVie / Allergan Aesthetics. Original criteria and start of tracking retained. No new trial or scored win."
+      },
+      "evidence": [
+        "C05-E19",
+        "C05-E20",
+        "C04-E21",
+        "C04-E22",
+        "C03-E11",
+        "C03-E12",
+        "C03-E13",
+        "C03-E14",
+        "C03-E15",
+        "C03-E16",
+        "C03-E17",
+        "C03-E18",
+        "C03-E19",
+        "C03-E20"
+      ],
+      "basedOn": ""
+    },
+    "Ingram Micro": {
+      "cycle": "C05",
+      "asOf": "2026-11-10",
+      "assessment": "The technical graduate rotation requires graduation by July 2027. The separate internship programme has broader degree eligibility.",
+      "action": "Ask about Irvine business operations or commercial analytics internship departments and the required summer availability. Use a sales or inventory dashboard as a work sample.",
+      "status": "Evidence: C05-E21 C05-E22. Prior forecast retained; no new scored trial. Historical context, checked in earlier cycles: C04-E23, C04-E24, C03-E21, C03-E22, C03-E23, C03-E24, C03-E25, C03-E26.",
+      "bull": "The employer gives March as the internship application month and April for fresh-grad rotation applications. Its 2027 rotation requires graduation by July 2027, a technical bachelor’s and at least a 3.0 GPA; internships accept current or recently graduated students with department-specific exceptions.",
+      "bullLimits": "",
+      "bullFalsifier": "",
+      "bear": "The technical Fresh Grad rotation specifies a technical bachelor’s, GPA of at least 3.0, and graduation by July 2027. The programme starts in July.",
+      "bearLimits": "",
+      "bearFalsifier": "",
+      "audit": "August MSBA completion and a prior business bachelor’s are mismatches for this rotation. The general internship FAQ uses different eligibility rules. Previously verified on 5 November: The official US early-career page directs users to an email list for notification when 2027 applications open. The graduate technology rotation includes SAP, platform engineering and AI/data science.",
+      "handling": "",
+      "forecast": {
+        "id": "C05-H11 | Ingram Micro",
+        "text": "by 31 December 2027, identify at least one genuinely new Orange County vacancy in Reporting and analytics, Supply-chain analytics, Applied AI internship that matches the candidate’s documented experience, degree and availability. Jobs already found in this review will not count as new openings.",
+        "deadline": "2027-12-31",
+        "activation": "",
+        "test": "",
+        "outcome": "10 November review of C04-H11 | Ingram Micro. Original criteria and start of tracking retained. No new trial or scored win."
+      },
+      "evidence": [
+        "C05-E21",
+        "C05-E22",
+        "C04-E23",
+        "C04-E24",
+        "C03-E21",
+        "C03-E22",
+        "C03-E23",
+        "C03-E24",
+        "C03-E25",
+        "C03-E26"
+      ],
+      "basedOn": ""
+    },
+    "Taco Bell": {
+      "cycle": "C05",
+      "asOf": "2026-11-10",
+      "assessment": "The digital marketing analytics role asks for seven years in analytics and five in SQL. A retention experiment would demonstrate a relevant skill.",
+      "action": "Prepare a customer-level SQL retention student group and indicate where campaign decisions follow. Ask who maintains loyalty programme experiments.",
+      "status": "Evidence: C05-E23 C05-E24. Prior forecast retained; no new scored trial. Historical context, checked in earlier cycles: C04-E25, C04-E26, C03-E27, C03-E28, C03-E29, C03-E30, C03-E31, C03-E32, C03-E33, C03-E34, C03-E35, C03-E36.",
+      "bull": "The Irvine Digital Marketing Analytics associate manager advert displays Apply Now, seven or more years in analytics and a minimum of five years in SQL.",
+      "bullLimits": "",
+      "bullFalsifier": "",
+      "bear": "The Irvine Associate Manager, Digital Marketing Analytics listing specifies 7+ years in analytics and at least five years of SQL.",
+      "bearLimits": "",
+      "bearFalsifier": "",
+      "audit": "The title understates the seniority. Experience leading content and campaign teams cannot be assumed to count as SQL tenure. Previously verified on 5 November: The Irvine AIDM Analytics vacancy displays Apply Now. It asks for at least seven years of analytics experience and five years of SQL.",
+      "handling": "",
+      "forecast": {
+        "id": "C05-H12 | Taco Bell",
+        "text": "by 31 December 2027, identify at least one genuinely new Orange County vacancy in Digital customer analytics, Development data operations, Marketing/product finance that matches the candidate’s documented experience, degree and availability. Jobs already found in this review will not count as new openings.",
+        "deadline": "2027-12-31",
+        "activation": "",
+        "test": "",
+        "outcome": "10 November review of C04-H12 | Taco Bell. Original criteria and start of tracking retained. No new trial or scored win."
+      },
+      "evidence": [
+        "C05-E23",
+        "C05-E24",
+        "C04-E25",
+        "C04-E26",
+        "C03-E27",
+        "C03-E28",
+        "C03-E29",
+        "C03-E30",
+        "C03-E31",
+        "C03-E32",
+        "C03-E33",
+        "C03-E34",
+        "C03-E35",
+        "C03-E36"
+      ],
+      "basedOn": ""
+    },
+    "Pacific Life": {
+      "cycle": "C05",
+      "asOf": "2026-11-10",
+      "assessment": "The data engineering internship is filled. Availability of the separate marketing analytics listing could not be verified.",
+      "action": "Compare financial education campaign reach with policyholder acquisition or retention. Ask whether marketing execution and analytical experience are counted separately.",
+      "status": "Evidence: C05-E25 C05-E26. Prior forecast retained; no new scored trial. Historical context, checked in earlier cycles: C04-E27, C04-E28, C03-E37, C03-E38, C03-E39, C03-E40, C03-E41, C03-E42, C03-E43.",
+      "bull": "The indexed Newport Beach Marketing Analytics Senior Analyst R16354 describes six or more years of relevant experience. The direct employer page returned no readable text.",
+      "bullLimits": "",
+      "bullFalsifier": "",
+      "bear": "Pacific Life explicitly marks its Newport Beach Summer 2027 Data Engineering Internship filled.",
+      "bearLimits": "",
+      "bearFalsifier": "",
+      "audit": "A local data engineering vacancy cannot demonstrate recruitment in commercial marketing analytics. Previously verified on 5 November: The employer's Newport Beach R17828 Summer 2027 Data Engineering Internship page explicitly says filled.",
+      "handling": "",
+      "forecast": {
+        "id": "C05-H13 | Pacific Life",
+        "text": "by 31 December 2027, identify at least one genuinely new Orange County vacancy in Data engineering internship, Policyholder behavior data analysis, Predictive/customer analytics that matches the candidate’s documented experience, degree and availability. Jobs already found in this review will not count as new openings.",
+        "deadline": "2027-12-31",
+        "activation": "",
+        "test": "",
+        "outcome": "10 November review of C04-H13 | Pacific Life. Original criteria and start of tracking retained. No new trial or scored win."
+      },
+      "evidence": [
+        "C05-E25",
+        "C05-E26",
+        "C04-E27",
+        "C04-E28",
+        "C03-E37",
+        "C03-E38",
+        "C03-E39",
+        "C03-E40",
+        "C03-E41",
+        "C03-E42",
+        "C03-E43"
+      ],
+      "basedOn": ""
+    },
+    "Capital Group": {
+      "cycle": "C05",
+      "asOf": "2026-11-10",
+      "assessment": "The autumn recruiting window makes permanent client and investment operations roles worth checking individually.",
+      "action": "Ask for a full-time job listing and its start date and sponsorship wording. Use a client reporting example from financial services.",
+      "status": "Evidence: C05-E27 C05-E28. Prior forecast retained; no new scored trial. Historical context, checked in earlier cycles: C04-E29, C04-E30, C03-E44, C03-E45, C03-E46, C03-E47, C03-E48, C03-E49, C03-E50.",
+      "bull": "The employer’s student FAQ says most internship and full-time recruiting takes place in autumn for the following year, subject to variation by role and location. It offers rotations and direct placement.",
+      "bullLimits": "",
+      "bullFalsifier": "",
+      "bear": "Capital Group states most summer roles target students with one year of study remaining. Full-time pathways often accept final-year and recent graduates. Qualifications vary by job listing.",
+      "bearLimits": "",
+      "bearFalsifier": "",
+      "audit": "A broad programme description cannot supersede the narrower graduation and future-sponsorship exclusions recorded for historical JR7384. Previously verified on 5 November: The current student hub describes a full-time two-year rotation and cautions that some roles have sponsorship limits. Specific Irvine JR7384 yielded no readable direct body on recheck.",
+      "handling": "",
+      "forecast": {
+        "id": "C05-H14 | Capital Group",
+        "text": "by 31 December 2027, identify at least one genuinely new Orange County vacancy in Data & Technology rotations, BI/reporting, Data strategy that matches the candidate’s documented experience, degree and availability. Jobs already found in this review will not count as new openings.",
+        "deadline": "2027-12-31",
+        "activation": "",
+        "test": "",
+        "outcome": "10 November review of C04-H14 | Capital Group. Original criteria and start of tracking retained. No new trial or scored win."
+      },
+      "evidence": [
+        "C05-E27",
+        "C05-E28",
+        "C04-E29",
+        "C04-E30",
+        "C03-E44",
+        "C03-E45",
+        "C03-E46",
+        "C03-E47",
+        "C03-E48",
+        "C03-E49",
+        "C03-E50"
+      ],
+      "basedOn": ""
+    },
+    "Hyundai Motor America": {
+      "cycle": "C05",
+      "asOf": "2026-11-10",
+      "assessment": "Voice-of-customer analytics is a local function, though the advertised manager requires eight years of analytics and three leading teams.",
+      "action": "Prepare a customer feedback model with quantified prediction errors. Ask which analysts build the inputs used by this manager.",
+      "status": "Evidence: C05-E29 C05-E30. Prior forecast retained; no new scored trial. Historical context, checked in earlier cycles: C04-E31, C04-E32, C04-E33, C03-E51, C03-E52, C03-E53, C03-E54, C03-E55, C03-E56.",
+      "bull": "The Fountain Valley voice-of-customer advanced analytics management advert 3753 displays Apply and describes statistical modelling, trend analysis and time-series forecasts. The requirements include eight years in analytics and three leading teams.",
+      "bullLimits": "",
+      "bullFalsifier": "",
+      "bear": "Hyundai continues to mark the Fountain Valley Assistant Manager, Pricing Analytics position filled.",
+      "bearLimits": "",
+      "bearFalsifier": "",
+      "audit": "A senior manager posting in the same function cannot reopen the earlier role or establish demand for entry-level staff. Previously verified on 5 November: The exact Fountain Valley pricing job 2841 now explicitly says filled, after C03 documented an Apply control on 1 November.",
+      "handling": "",
+      "forecast": {
+        "id": "C05-H15 | Hyundai Motor America",
+        "text": "by 31 December 2027, identify at least one genuinely new Orange County vacancy in Pricing analytics, Sales/aftersales analytics, Safety and quality analytics that matches the candidate’s documented experience, degree and availability. Jobs already found in this review will not count as new openings.",
+        "deadline": "2027-12-31",
+        "activation": "",
+        "test": "",
+        "outcome": "10 November review of C04-H15 | Hyundai Motor America. Original criteria and start of tracking retained. No new trial or scored win."
+      },
+      "evidence": [
+        "C05-E29",
+        "C05-E30",
+        "C04-E31",
+        "C04-E32",
+        "C04-E33",
+        "C03-E51",
+        "C03-E52",
+        "C03-E53",
+        "C03-E54",
+        "C03-E55",
+        "C03-E56"
+      ],
+      "basedOn": ""
+    },
+    "Disney / Disneyland Resort": {
+      "cycle": "C05",
+      "asOf": "2026-11-10",
+      "assessment": "The Anaheim digital analytics manager role asks for five years in analytics, four using Adobe or Google Analytics and two leading teams.",
+      "action": "Map a visitor journey from acquisition through purchase, including metric definitions. Ask whether individual contributors support the same team and what Adobe Analytics depth is expected.",
+      "status": "Evidence: C05-E31 C05-E32. Prior forecast retained; no new scored trial. Historical context, checked in earlier cycles: C04-E34, C04-E35, C03-E57, C03-E58, C03-E59, C03-E60, C03-E61, C03-E62, C03-E63, C03-E64, C03-E65, C03-E66, C03-E67, C03-E68, C03-E69.",
+      "bull": "Anaheim Disney Experiences req 10163266, posted 30 October, displays Apply Now. It calls for five years of analytics, four using Adobe or Google Analytics and two leading teams.",
+      "bullLimits": "",
+      "bullFalsifier": "",
+      "bear": "",
+      "bearLimits": "",
+      "bearFalsifier": "",
+      "audit": "Its old description remains a reference for resort finance. A removed URL does not establish hiring or relocate a Burbank entertainment opening to Anaheim. Previously verified on 5 November: The official Anaheim Spring 2027 Finance Intern URL 10162487 returned 404 on recheck. Earlier evidence recorded an October application deadline.",
+      "handling": "",
+      "forecast": {
+        "id": "C05-H16 | Disney / Disneyland Resort",
+        "text": "by 31 December 2027, identify at least one genuinely new Orange County vacancy in Revenue planning/forecasting, Pricing/yield analytics, BI and operational data analysis that matches the candidate’s documented experience, degree and availability. Jobs already found in this review will not count as new openings.",
+        "deadline": "2027-12-31",
+        "activation": "",
+        "test": "",
+        "outcome": "10 November review of C04-H16 | Disney / Disneyland Resort. Original criteria and start of tracking retained. No new trial or scored win."
+      },
+      "evidence": [
+        "C05-E31",
+        "C05-E32",
+        "C04-E34",
+        "C04-E35",
+        "C03-E57",
+        "C03-E58",
+        "C03-E59",
+        "C03-E60",
+        "C03-E61",
+        "C03-E62",
+        "C03-E63",
+        "C03-E64",
+        "C03-E65",
+        "C03-E66",
+        "C03-E67",
+        "C03-E68",
+        "C03-E69"
+      ],
+      "basedOn": ""
+    }
+  },
+  "evidence": [
+    {
+      "id": "C02-E01",
+      "published": "2026-01-26",
+      "observed": "2026-11-01",
+      "fact": "Anduril: California announces $1bn campus and approximately 5,500 expected direct jobs; mid-2027 opening expectation.",
+      "limitation": "Announced site employment is not confirmed net-new student hiring.",
+      "url": "https://business.ca.gov/governor-newsom-highlights-anduril-industries-1-billion-expansion-in-southern-california/"
+    },
+    {
+      "id": "C02-E02",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Anduril: Director Warehouse Operations role includes opening Long Beach campus and hiring leaders; 12+ years and U.S. Person status required.",
+      "limitation": "",
+      "url": "https://job-boards.greenhouse.io/andurilindustries/jobs/5258897007"
+    },
+    {
+      "id": "C02-E03",
+      "published": "2026-08-06",
+      "observed": "2026-11-01",
+      "fact": "Rivian: Company reports office opened 4 August; capacity 300 and plan to grow to over 500 people, with administrative, facilities and commercial duties.",
+      "limitation": "Growth timeline not fixed to 2027; Georgia, not Orange County.",
+      "url": "https://rivian.com/stories/atlanta-georgia-east-coast-headquarters-opening"
+    },
+    {
+      "id": "C02-E04",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Rivian: Accessible official post says 100+ employees on site and links to Atlanta jobs.",
+      "limitation": "Relative date and public comment speculation should not establish timeline or OC relocation.",
+      "url": "https://www.linkedin.com/posts/rivian_atlanta-georgia-rivian-activity-7493320577634496512-2_oh"
+    },
+    {
+      "id": "C02-E05",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Rivian: Official search result describes Irvine Spring 2027 Technical Programme Management co-op, Jan–Aug; graduation Dec 2027–2029 and no visa sponsorship wording.",
+      "limitation": "Full page 403; not fully verified live vacancy. Expected Aug 2027 graduation appears misaligned; verify directly.",
+      "url": "https://careers.rivian.com/careers-home/jobs/33671"
+    },
+    {
+      "id": "C02-E06",
+      "published": "2026-09-30",
+      "observed": "2026-11-01",
+      "fact": "Harbinger: Harbinger announces 2,000 trucks ordered by FedEx, over $300m, planned delivery by end 2027.",
+      "limitation": "Header 30 Sep; body 1 Oct 2026. Customer order not job commitment; release also says approximately 18 months. Additional review: Header says 30 Sep while body dateline says 1 Oct 2026; preserve discrepancy. Order is not delivered revenue or a commitment to junior hiring.",
+      "url": "https://harbingermotors.com/newsroom/fedex-orders-2000-harbinger-electric-trucks/"
+    },
+    {
+      "id": "C02-E07",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Harbinger: Accessible Dealer Marketing Manager advert in Garden Grove covers network campaigns, CRM, leads and ROI; 5+ years and approximately 35% travel.",
+      "limitation": "Sponsorship question is not proof sponsorship is available.",
+      "url": "https://job-boards.greenhouse.io/harbingermotors/jobs/5194170007"
+    },
+    {
+      "id": "C02-E08",
+      "published": "2023-09-20",
+      "observed": "2026-11-01",
+      "fact": "Harbinger: Body reports $60m Series A and plan to double workforce to 120 over next year at Garden Grove HQ.",
+      "limitation": "Title/body mismatch: body is funding announcement. Workforce goal not verified achievement.",
+      "url": "https://harbingermotors.com/newsroom/medium-duty-ev-manufacturer-harbinger-greatly-expands-its-footprint-with-new-headquarters-in-garden-grove/"
+    },
+    {
+      "id": "C02-E09",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Harbinger: Opening old Marketing Intern URL now redirects to company job board with error=true; current board does not list marketing internship.",
+      "limitation": "Remove live-opportunity claim; not evidence of a hire or permanent programme cancellation. Additional review: Observed 1 Nov 2026. Cannot conclusively declare filled/closed; corporate careers listing conflicts and recruiter confirmation is needed.",
+      "url": "https://job-boards.greenhouse.io/harbingermotors/jobs/5246809007"
+    },
+    {
+      "id": "C02-E10",
+      "published": "2026-07-06",
+      "observed": "2026-11-01",
+      "fact": "ITT Cannon: ITT completed $31m Aerospace Contacts purchase; supplier explicitly linked to ITT Cannon and CCT supply-chain resilience.",
+      "limitation": "Completion supersedes earlier agreement-only account. No job creation or Irvine staffing promise. Additional review: Release describes supply-chain resilience; no quantified Irvine student hiring commitment. Do not attribute unrelated ITT divisions' expansion to Cannon.",
+      "url": "https://investors.itt.com/news-releases/news-release-details/itt-completes-acquisition-aerospace-contacts-llc"
+    },
+    {
+      "id": "C02-E11",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "ITT Cannon: Historical official search index identifies Irvine Business Analyst; current direct access returns 410 Gone.",
+      "limitation": "Not active vacancy. Search snippet alone insufficient for current role details. Closure or replacement not confirmed.",
+      "url": "https://careersenus-itt-inc.icims.com/jobs/16663/business-analyst/job?in_iframe=1"
+    },
+    {
+      "id": "C02-E12",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "ITT Cannon: Public search index shows Anthony Annunziata reshare of Kassandra Ibarra hiring Business Analyst in Irvine.",
+      "limitation": "Direct profile fetch 999; relative '1y' cannot be converted to exact date; not a verified current hiring post.",
+      "url": "https://www.linkedin.com/in/aannunziata3"
+    },
+    {
+      "id": "C02-E13",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Experian: Employer describes September postings, October–November interviews/offers and a December filling target for the following summer. Programmes include internships and graduate rotations in data analytics/product management.",
+      "limitation": "Current undated programme guidance, not a five-year observed hiring series or guarantee for each role. No individual offer conversion rate. Additional review: General intended calendar; not a dated vacancy inventory or proof each year's timetable is met.",
+      "url": "https://www.experian.com/careers/early-careers/north-america"
+    },
+    {
+      "id": "C02-E14",
+      "published": "2026-02-23",
+      "observed": "2026-11-01",
+      "fact": "Experian: Experian announced acquisition of AtData, adding email identity intelligence to its data, analytics and decisioning capabilities; announcement is datelined Costa Mesa.",
+      "limitation": "Strategic integration signal. Costa Mesa dateline does not establish where additional employees will be hired or whether staff numbers rises.",
+      "url": "https://www.experianplc.com/newsroom/press-releases/2026/experian-fortifies-identity-and-fraud-capabilities-with-acquisit"
+    },
+    {
+      "id": "C02-E15",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Experian: Employer-hosted AI/ML Partner Summer Intern describes partner analytics/AI workflow work and Costa Mesa hybrid location; page explicitly says vacancy expired.",
+      "limitation": "Historical role-design evidence only. Fresh search crawl does not mean open role; do not recommend applying or count as future hiring success.",
+      "url": "https://jobs.experian.com/job/ai-ml-partner-summer-intern-hybrid-and-paid-in-costa-mesa-united-states-jid-3782"
+    },
+    {
+      "id": "C02-E16",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "PIMCO: Summer Analyst programme targets undergraduate and master's candidates in their second-to-last year; investment-professional track includes MBA, PhD and experienced master's candidates in their second-to-last year.",
+      "limitation": "Generic programme guidance; no guarantee for a particular location, year or applicant. August 2027 graduation may not match 2027 internship criteria. Additional review: General programme criteria; individual job listing terms control.",
+      "url": "https://www.pimco.com/us/en/about-us/careers/students/internships"
+    },
+    {
+      "id": "C02-E17",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "PIMCO: Official page lists April 2027 Prep sessions and explains that Prep introduces future internship pathways, is intended for second-year university students, and is not an application or assessment.",
+      "limitation": "It does not establish interviews, job openings or hiring outcomes.",
+      "url": "https://www.pimco.com/us/en/about-us/careers/students/pimco-prep"
+    },
+    {
+      "id": "C02-E18",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "PIMCO: Official PIMCO post advertised 11 April 2023 Prep for undergraduate sophomores and a preview of summer-2024 internships, with 19 March 2023 applications deadline.",
+      "limitation": "Only relative publication age shown; exact source date unknown, event date explicit. Company post, not employee reshare. Shows earlier programme instance, not all intervening years.",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7042842297692012544/"
+    },
+    {
+      "id": "C02-E19",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Citadel: Citadel advertises interview eligibility among datathon prizes. Upcoming Women's Datathon is in Miami in early February 2027, deadline 11 January. Stated US eligibility is undergraduate, with graduation December 2027–June 2029.",
+      "limitation": "Eligibility to interview is not an actual invitation or offer. This is not a general MSBA event and not local to OC. Programme details must be rechecked. Additional review: Interview eligibility is not a guaranteed invitation or offer; no general master's eligibility established.",
+      "url": "https://www.citadel.com/careers/programs-and-events/datathons/"
+    },
+    {
+      "id": "C02-E20",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Citadel: New York Sector Data Scientist 2027 internship covers testing investment theses using multiple datasets. Skills include Python, SQL and Excel; listed degree criterion says pursuing a bachelor's.",
+      "limitation": "Current vacancy, no date published shown. Not proof of OC hiring or master's eligibility. Existing role cannot become a future forecast win.",
+      "url": "https://www.citadel.com/careers/details/sector-data-scientist-2027-intern-us/"
+    },
+    {
+      "id": "C02-E21",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "UCI / Habitat OC programme: UCI announces 7 November hackathon for students across majors, with industry professionals and developers. Event page lists Merage Auditorium.",
+      "limitation": "Future event date is not date published. No recruiting promise. Room conflicts with organiser page. Additional review: Event date is not date published. No formal recruiting promise on the reviewed page.",
+      "url": "https://merage.uci.edu/events/2026/11/AI-Hackathon-110726.html"
+    },
+    {
+      "id": "C02-E22",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "UCI / Habitat OC programme: Organiser frames hackathon around Habitat OC's goal of 100 affordable homes and lists Eric Li Classroom, SB1 1128; registration requires approval.",
+      "limitation": "Same event as UCI listing, not an independent opportunity. No paid job or internship commitment. Confirm room with host. Additional review: Same underlying event as UCI page, not independent demand signal. Room conflicts with UCI listing; no paid role or interview promise.",
+      "url": "https://luma.com/uci-impact-lab"
+    },
+    {
+      "id": "C02-E23",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "UCI / Habitat OC programme: Habitat OC describes construction with homeowners and volunteers, a 100-home pipeline goal over three years and a forthcoming Costa Mesa project.",
+      "limitation": "Undated rolling page; goal is not all projects funded or incremental paid hiring. Do not mix with Orange County, North Carolina affiliate.",
+      "url": "https://habitatoc.org/our-homes/"
+    },
+    {
+      "id": "C02-E24",
+      "published": "2026-10-23",
+      "observed": "2026-11-01",
+      "fact": "UCI / Habitat OC programme: Habitat OC reports $330,000 raised at 19 September 2026 gala and six completed Santa Ana homes. date published is corroborated by its official home/blog listing.",
+      "limitation": "Fundraising and delivery evidence, not a staffing budget or student recruitment announcement.",
+      "url": "https://habitatoc.org/keys-to-100-raises-330000-for-affordable-homeownership-in-orange-county/"
+    },
+    {
+      "id": "C02-E25",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Anduril: 2027 Business Operations Intern requires relevant degree study, return to study for at least one quarter or semester after internship, U.S. Person status and 12 weeks in person.",
+      "limitation": "August 2027 completion could conflict with return-to-school requirement; verify rather than assume.",
+      "url": "https://job-boards.greenhouse.io/andurilindustries/jobs/5271826007"
+    },
+    {
+      "id": "C02-E26",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Anduril: Logistics Engineer is presently Costa Mesa, requires Secret clearance eligibility, and anticipates being based in Long Beach in late 2027.",
+      "limitation": "Location transition of an existing job ID is not proof of additional staff numbers; specialist position is not a generic student analytics role.",
+      "url": "https://job-boards.greenhouse.io/andurilindustries/jobs/5159510007"
+    },
+    {
+      "id": "C02-E27",
+      "published": "2026-06-16",
+      "observed": "2026-11-01",
+      "fact": "Rivian: Reuters reports company-confirmed reductions of less than 2% of staff, affecting service/customer functions including sales and marketing.",
+      "limitation": "Company statement reported by Reuters, not a comprehensive local staff numbers series; a cut does not establish no open jobs.",
+      "url": "https://www.reuters.com/business/autos-transportation/rivian-lays-off-hundreds-workers-wsj-reports-2026-06-16/"
+    },
+    {
+      "id": "C02-E28",
+      "published": "2026-10-29",
+      "observed": "2026-11-01",
+      "fact": "Rivian: Q3 2026 company presentation reports automotive gross loss of $80m, R2 ramp costs and priorities of profitability and operational efficiency.",
+      "limitation": "Period is Q3 2026; exact date published not established in opened page. Corporate finances do not quantify OC student vacancies.",
+      "url": "https://www.sec.gov/Archives/edgar/data/1874178/000187417826000065/ex-9923q26rivianearnings.htm"
+    },
+    {
+      "id": "C02-E29",
+      "published": "2026-06-16",
+      "observed": "2026-11-01",
+      "fact": "Rivian: Accessible comments include self-reported unexpected job loss and service-operations impact; replies also discuss rehire options.",
+      "limitation": "Self-identified employees are unverified; not a representative sentiment sample. Read visible replies; not all collapsed branches accessible.",
+      "url": "https://www.reddit.com/r/Rivian/comments/1u7pgwg/more_layoffs/"
+    },
+    {
+      "id": "C02-E30",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Rivian: Opened nested reply branch: one commenter reports seeing rehiring; another says they were laid off in 2022 and rehired weeks later.",
+      "limitation": "Same thread, not independent corroboration. Relative dates vary across rendered pages; do not infer a numeric rehire rate.",
+      "url": "https://www.reddit.com/r/Rivian/comments/1u7pgwg/comment/os2h2yd/"
+    },
+    {
+      "id": "C02-E31",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Harbinger: Corporate careers page still lists Intern, Marketing in Garden Grove.",
+      "limitation": "Conflicts with application endpoint. A listing alone does not establish live availability or a new forecast win.",
+      "url": "https://harbingermotors.com/careers/"
+    },
+    {
+      "id": "C02-E32",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Harbinger: Three visible reviews include Jul 13 2026 accounts praising learning/ownership while reporting long hours, changing priorities and communication issues; Aug 19 review is positive.",
+      "limitation": "Only visible 3 of 22 reviews read; anonymous/self-selected, no company-wide prevalence or causal hiring inference. Aggregate rating not used as forecast.",
+      "url": "https://www.glassdoor.com/Reviews/Harbinger-Motors-Reviews-E9572641.htm"
+    },
+    {
+      "id": "C02-E33",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "ITT Cannon: Two visible reviews: Jun 18 2025 anonymous Irvine review claims rapid hiring; Dec 31 2024 Nogales manufacturing review describes learning benefits and demanding work.",
+      "limitation": "Indeed fallback, not Glassdoor/Reddit. Two self-selected anecdotes from different locations; Nogales complaint should not be generalised to Irvine and 2025 hiring claim needs current corroboration.",
+      "url": "https://www.indeed.com/cmp/ITT-Cannon-LLC/reviews"
+    },
+    {
+      "id": "C02-E34",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Experian: Accessible Platform Solutions Data Analyst internship page requires return to school in Fall 2026, SQL and BI/cloud familiarity.",
+      "limitation": "Historical-intake wording; do not recommend as a verified current 2027 opportunity or count as newly posted.",
+      "url": "https://jobs.experian.com/job/platform-solutions-data-analyst-summer-intern-remote-and-paid-in-united-states-jid-3335"
+    },
+    {
+      "id": "C02-E35",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Experian: Official hiring FAQ advises finding a live suitable role; remote workers generally must remain in their role's country and cannot work overseas.",
+      "limitation": "General policy, not a promise of sponsorship or suitability for an individual applicant.",
+      "url": "https://www.experian.com/careers/hiring-process"
+    },
+    {
+      "id": "C02-E36",
+      "published": "2026-09-24",
+      "observed": "2026-11-01",
+      "fact": "PIMCO: Employer listing for Newport Beach 2027 Masters Quant Research Analyst requires quantitative master's study, autumn-2027 enrolment and availability for full-time work January–August 2028; deadline shown 14 November 2026.",
+      "limitation": "Employer-posted AEA listing, not readable Workday text; live employer application must be checked. Not evidence of an August-2027 graduate match.",
+      "url": "https://swlb1.aeaweb.org/joe/listing.php?JOE_ID=2026-02_111477936"
+    },
+    {
+      "id": "C02-E37",
+      "published": "2026-10-20",
+      "observed": "2026-11-01",
+      "fact": "PIMCO: Accessible reviews posted 20, 7 and 6 October 2026 describe timed recorded interviews and a mix of behavioural/technical questions; the 6 October review refers to a May 2025 interview.",
+      "limitation": "Anonymous anecdotes; distinguish posting date from interview date. Review depth limited to three exposed reports; no probability inferred.",
+      "url": "https://api.glassdoor.com/Interview/PIMCO-Interview-Questions-E3585.htm"
+    },
+    {
+      "id": "C02-E38",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "PIMCO: PIMCO describes client analytics work across allocation, optimisation, asset/liability management and bespoke investment solutions.",
+      "limitation": "Service description establishes function specialisation, not a vacancy or growth forecast.",
+      "url": "https://www.pimco.com/us/en/resources/client-solutions-and-analytics"
+    },
+    {
+      "id": "C02-E39",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Citadel: Visible first-page student opportunities include US software roles in Greenwich/Houston/Miami/New York and a 2027 sector data scientist internship in New York.",
+      "limitation": "Partial paginated view; supports checking location, not claiming an exhaustive absence of OC roles.",
+      "url": "https://www.citadel.com/careers/open-opportunities/"
+    },
+    {
+      "id": "C02-E40",
+      "published": "2026-03-06",
+      "observed": "2026-11-01",
+      "fact": "Citadel: Read accessible comments and nested OP replies: author corrects the initial datathon label to Terminal application; a separate OP reply reports no response. Two comments were removed.",
+      "limitation": "Exclude from datathon-specific assessment or hiring conclusions. Anonymous account; incomplete removed replies; no outcome validation.",
+      "url": "https://www.reddit.com/r/quantfinance/comments/1rm3hlm/any_prepresources_for_the_citadel_datathon/"
+    },
+    {
+      "id": "C03-E01",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Employer describes 150+ interns, 10–12 weeks, relevant bachelor's/master's/PhD enrollment throughout the program, GPA 3.0 and no current/future employment-visa sponsorship. Engineering lists Irvine and seasonal application windows. 150+ intern student group across functions; relevant bachelor/master/PhD enrollment, 3.0 GPA and sponsorship restriction listed. Relevant degree enrollment throughout program; no sponsorship now/future; stale 2025 application footer.",
+      "limitation": "Broad program conditions; individual job listings can be narrower. Company-wide student group, not Irvine analytics count; stale 2025 application paragraph. Evergreen, not active 2027 vacancy evidence.",
+      "url": "https://edwards.com/careers/university-recruiting/internship-programs"
+    },
+    {
+      "id": "C03-E02",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Employer identifies Irvine as global headquarters, nearly 5,000 onsite employees and an expanding campus.",
+      "limitation": "Undated marketing description; not proof of current net hiring or new graduate openings.",
+      "url": "https://edwards.com/careers/locations/irvine"
+    },
+    {
+      "id": "C03-E03",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Indexed employer result identifies full-time Irvine clinical-affairs data analytics role. Irvine role requires bachelor's and at least 3 years related experience; clinical forecasting, dashboards and trial knowledge feature prominently.",
+      "limitation": "Direct open returned 404; availability and exact qualifications not verified. Indexed historical/possibly stale posting; independent direct-open returned 404. Not a verified live vacancy.",
+      "url": "https://www.edwards.com/job/51135/analyst-data-analytics-tmtt"
+    },
+    {
+      "id": "C03-E04",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Employer job listing describes anticipated future roles in demand forecasting and planning; requires bachelor's enrollment, graduation December 2027 or later, GPA 3.0 and no sponsorship.",
+      "limitation": "Talent-pipeline listing rather than confirmed vacancy; August 2027 MSBA does not satisfy the published degree/date gate.",
+      "url": "https://www.linkedin.com/jobs/view/irvine-supply-chain-internship-program-summer-2027-at-edwards-lifesciences-4459591002"
+    },
+    {
+      "id": "C03-E05",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Company-authored public post celebrates Irvine and Draper interns and links early-career opportunities.",
+      "limitation": "Employer promotion, not an employee hiring solicitation; relative post date not normalized.",
+      "url": "https://www.linkedin.com/company/edwards-lifesciences"
+    },
+    {
+      "id": "C03-E06",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Full-time onsite Irvine; bachelor's plus 5 years required; SQL, ETL, Power BI semantic models and Snowflake requested.",
+      "limitation": "Experienced role; not a 2027 graduate seat.",
+      "url": "https://edwards.wd5.myworkdayjobs.com/en-US/EdwardsCareers/job/Senior-Analyst--Data-Analytics--Program-Operations-and-Analytics_Req-45582"
+    },
+    {
+      "id": "C03-E07",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Anticipation-of-future-roles wording; relevant degrees include statistics/economics; students must remain enrolled and cannot need employment-based sponsorship now or later. Independent direct-open audit identifies December-2027-or-later graduation requirement. Indexed anticipatory role requires graduationDec 2027+ and no sponsorship; masters included.",
+      "limitation": "Pipeline posting, not confirmed vacancy; August-2027 graduation fails audited date requirement. Direct-open unreadable; stated deadlineNov1, not proof accepting at review date.",
+      "url": "https://edwards.wd5.myworkdayjobs.com/en-US/EdwardsCareers/job/Clinical---Regulatory-Internship--Summer-2027_Req-49745"
+    },
+    {
+      "id": "C03-E08",
+      "published": "2023-02-26",
+      "observed": "2026-11-01",
+      "fact": "Applicant discussion and nested replies report lengthy silence/rejections; 2025 QA reply describes reposting after rejection.",
+      "limitation": "Self-selected, mostly unspecified or QA roles; speculation about resume farming is unsupported and excluded from conclusions.",
+      "url": "https://www.reddit.com/r/biotech/comments/11cp7o9/thoughts_on_edwards_lifesciences/"
+    },
+    {
+      "id": "C03-E09",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Personal public post describes Python, data wrangling and clinical trial metrics in a completed return internship.",
+      "limitation": "Historical self-report; cannot establish present opening, location-specific staff numbers or conversion probability.",
+      "url": "https://www.linkedin.com/posts/for-shreyak_im-excited-to-share-that-i-recently-completed-activity-7231279993408888832-3hso"
+    },
+    {
+      "id": "C03-E10",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Public post advertises an Irvine data-science/AI internship and directs candidates to Workday.",
+      "limitation": "Relative date only; opening may have closed; no graduate conversion guarantee.",
+      "url": "https://www.linkedin.com/posts/samanparvaneh_internship-ai-edwardslifesciences-activity-7429945869690425344-HmTS"
+    },
+    {
+      "id": "C03-E11",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Indexed employer description specifies Irvine hybrid, 3+ years, SQL and visualization experience; experiments, regression and dashboards; Python/R and Snowflake preferred.",
+      "limitation": "404 on direct open; use as role-pattern evidence, not an active vacancy.",
+      "url": "https://careers.abbvie.com/en/job/senior-analyst-marketing-business-intelligence-allergan-aesthetics-irvine-ca-in-irvine-ca-jid-25735"
+    },
+    {
+      "id": "C03-E12",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Irvine Eye Care R00152333 is readable with Apply. Requires five-plus commercial insights/analytics years including pharmaceutical experience and primary market research. SQL/Snowflake and Power BI are preferred; body specifies Tuesday–Thursday onsite.",
+      "limitation": "Experienced role, not confirmed candidate fit, sponsorship support or 2027 start. Header/body differ on onsite versus hybrid labelling.",
+      "url": "https://careers.abbvie.com/job/manager-analytics-and-market-research-eye-care-in-irvine-ca-jid-34862"
+    },
+    {
+      "id": "C03-E13",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Indexed Irvine description requires MS plus 2+ years or BS plus 4+ years, clinical trials, SAS and ADaM experience.",
+      "limitation": "Direct page returned 404; no verified open status.",
+      "url": "https://careers.abbvie.com/en/job/statistical-analyst-adam-programming-hybrid-in-irvine-ca-jid-33956"
+    },
+    {
+      "id": "C03-E14",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "2027 BTS Data & Software Engineering undergraduate internship is R00147803. Opened current list showed North Chicago although earlier index showed Irvine.",
+      "limitation": "Location conflict and undergraduate restriction; exclude as verified local MSBA lead.",
+      "url": "https://careers.abbvie.com/en/jobs?la=0&lo=0&lr=100?_atxsrc%3DEarly_Talent_Landing_Page&options=20850,&page=1&q="
+    },
+    {
+      "id": "C03-E15",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Page explicitly expired; Irvine analyst required 3+ years, SQL, visualization and statistical analysis; master's preferred.",
+      "limitation": "Historical skills evidence, not current vacancy.",
+      "url": "https://careers.abbvie.com/en/job/analyst-bi-and-analytics-aa-in-irvine-ca-jid-17999"
+    },
+    {
+      "id": "C03-E16",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Irvine hybrid internship requires MBA, enrollment following internship, December 2027–June 2028 graduation and 3 years prior experience.",
+      "limitation": "Clear mismatch for stated MSBA/August-2027 profile; does not exclude other programs.",
+      "url": "https://careers.abbvie.com/en/job/2027-commercial-leader-program-intern-aesthetics-mba-in-irvine-ca-jid-32358"
+    },
+    {
+      "id": "C03-E17",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Lists Irvine among entry-level sites, while specific finance and commercial rotations impose degree, coursework, experience and relocation requirements.",
+      "limitation": "Program marketing is not a count of local analytics seats.",
+      "url": "https://www.abbvie.com/join-us/student-and-new-graduates/new-graduates-and-entry-level-positions.html"
+    },
+    {
+      "id": "C03-E18",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Paid 10–12-week internships include Irvine; graduate students may apply subject to individual listing requirements.",
+      "limitation": "No current specific analytics role or conversion volume.",
+      "url": "https://www.abbvie.com/join-us/internships.html"
+    },
+    {
+      "id": "C03-E19",
+      "published": "2026-03-16",
+      "observed": "2026-11-01",
+      "fact": "Automation-intern candidate asks advice; nested September reply reports three weeks waiting after panel; others recommend resume and role-specific preparation.",
+      "limitation": "Location unspecified, automation not commercial analytics, anecdotal and self-selected; no hiring odds inferred.",
+      "url": "https://www.reddit.com/r/biotech/comments/1rvcxai/interview_with_abbvie_this_week_advice_would/"
+    },
+    {
+      "id": "C03-E20",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Public personal post reports completion of Irvine EHS Select Agents & Toxins internship.",
+      "limitation": "Different function; cannot substantiate MSBA analytics vacancies or conversion rate.",
+      "url": "https://www.linkedin.com/posts/khushal-shukla-3a8808318_hi-everyone-i-wrapped-up-my-summer-internship-activity-7504992148971331585-CLF3"
+    },
+    {
+      "id": "C03-E21",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Official 2027 interest list; paid 10-week internships in marketing, finance and technology, mainly Irvine/Buffalo. Enrolled/recent graduates may qualify subject to role. Rotation specifies a technical bachelor’s, GPA 3.0 and graduation by July 2027; general applications March for internships and April for rotations.",
+      "limitation": "Programme information, not an open Irvine analytics seat. Direct page supersedes stale 2026 search text. Prior degree and August MSBA timing need clarification. Testimonials are selected historical examples, not conversion statistics.",
+      "url": "https://careers.ingrammicro.com/en/locations/north-america/united-states/early-careers/"
+    },
+    {
+      "id": "C03-E22",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Indexed employer listing: Irvine hybrid, relevant bachelor's, 3+ years, SQL/BigQuery, Excel, BI visualization, forecasting and stakeholder communication. Hybrid Irvine HQ role asks for related bachelor's, 3+ years, SQL, Excel and BI tools.",
+      "limitation": "Employer-indexed role requirements; direct Workday text unreadable. Availability unverified, not a confirmed live vacancy.",
+      "url": "https://ingrammicro.wd5.myworkdayjobs.com/en-US/IngramMicro/job/Irvine-CA-United-States-of-America/Reporting---Analytics-Professional_R-117129"
+    },
+    {
+      "id": "C03-E23",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Employer Irvine listing uses inventory, service-level and forecast metrics; SQL, Excel, Power BI/Tableau, ERP and financial interpretation are relevant skills.",
+      "limitation": "Experienced professional role; full eligibility and active application state require recheck.",
+      "url": "https://careers.ingrammicro.com/de/stellenangebote/r-114475/professional-supply-chain-analytics/"
+    },
+    {
+      "id": "C03-E24",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Employer LinkedIn job listing describes Irvine hybrid paid 10-week internship with data cleaning, AI/ML experiments and business communication; enrolled/recent graduates accepted, juniors/seniors preferred. Employer-supplied LinkedIn listing describes 10-week Irvine hybrid internship, data preparation and AI/ML experimentation; current/recent students eligible.",
+      "limitation": "Historical 2026-cycle evidence, not a 2027 opening or employee hiring post. Prior cycle, not confirmed active for 2027; third-party hosted job mirror.",
+      "url": "https://www.linkedin.com/jobs/view/summer-intern-applied-ai-at-ingram-micro-4404258819"
+    },
+    {
+      "id": "C03-E25",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Public self-report of accepted FP&A internship.",
+      "limitation": "Location and final conversion not established; celebratory selection bias.",
+      "url": "https://www.linkedin.com/posts/nathan-nguyen04_im-excited-to-share-that-ive-accepted-an-activity-7455650772861493248-RiIf"
+    },
+    {
+      "id": "C03-E26",
+      "published": "2026-07-12",
+      "observed": "2026-11-01",
+      "fact": "Nested replies describe delayed assessments and incomplete questions; Mumbai/graduate-trainee context appears in thread.",
+      "limitation": "Not Irvine hiring evidence; geographically unsuitable for judging local MSBA odds. Retained only as explicit research coverage gap.",
+      "url": "https://www.reddit.com/r/PlacementsPrep/comments/1uuevmy/ingram_micro_anybody_interviewed_at_ingrammicro/"
+    },
+    {
+      "id": "C03-E27",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Employer job/search evidence: Irvine hybrid digital-customer-intelligence role; technical bachelor's, 7+ years analytics, 5 years SQL, A/B testing, digital platforms and BI tools.",
+      "limitation": "Oracle mirror of the same AIDM job listing. Date conflicts with other views; no independent or net-new hiring signal.",
+      "url": "https://eczd.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/5354"
+    },
+    {
+      "id": "C03-E28",
+      "published": "2026-10-21",
+      "observed": "2026-11-01",
+      "fact": "Employer listing covers project/store data, report validation, workflow issues and process improvements; 3+ years related experience, Office and preferably Smartsheet. Irvine hybrid; 3+ years development operations/business administration/data management; Excel and workflow validation; no current/future sponsorship or immigration support.",
+      "limitation": "Despite Associate Analyst title, not a no-experience role; direct open no readable lines, indexed description available. Associate title is not entry-level; master-data operations differs from advanced analytics.",
+      "url": "https://jobs.yum.com/jobs/development/irvine-ca-united-states/associate-analyst-development/5683"
+    },
+    {
+      "id": "C03-E29",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Official index shows Irvine corporate positions including strategic product finance, development analyst, asset/data steward, gift-card operations and AIDM analytics, with October and July 2026 posting dates.",
+      "limitation": "Dynamic snapshot and mixed functions; job counts are not new-graduate hiring counts.",
+      "url": "https://eczd.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/jobs?selectedOrganizationsFacet=300000002153695"
+    },
+    {
+      "id": "C03-E30",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Employer LinkedIn job listing identifies market-planning/development analytics with 5–8 years required, Excel, BI and mapping tools; lists Benan Yuceer as job poster/talent acquisition partner.",
+      "limitation": "Not a personal hiring post or verified current vacancy; use only as a possible recruiter identity to verify, not an outreach authorization.",
+      "url": "https://www.linkedin.com/jobs/view/associate-manager-real-estate-analytics-and-insights-at-taco-bell-4420180880"
+    },
+    {
+      "id": "C03-E31",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Direct official page readable with Apply for Irvine AIDM Analytics. Requires seven-plus analytics years, five SQL years, a technical bachelor’s, A/B testing and digital analytics tools; hybrid schedule.",
+      "limitation": "Displayed posting dates conflict across cached and direct views, including 1–2 November. date published unknown; no new-hiring inference. Current listing does not promise a 2027 start or sponsorship.",
+      "url": "https://jobs.tacobell.com/job/associate-manager-aidm-analytics/irvine-ca/300003318888736/"
+    },
+    {
+      "id": "C03-E32",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Three Irvine onsite days; bachelor's and 3–5 years gift-card operational experience required.",
+      "limitation": "Specialist operations role. Displayed dates are mutable and not reliable proof of a new posting; current employer details and eligibility must be checked.",
+      "url": "https://jobs.tacobell.com/job/gift-card-operations-analyst/irvine-ca/300003334842761/"
+    },
+    {
+      "id": "C03-E33",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "The dynamic Irvine search mixes corporate and restaurant roles.",
+      "limitation": "Not a count of corporate analytics vacancies or hires; broad job totals excluded.",
+      "url": "https://jobs.tacobell.com/jobs/?searchlocation=Irvine%2C+CA"
+    },
+    {
+      "id": "C03-E34",
+      "published": "2023-02-16",
+      "observed": "2026-11-01",
+      "fact": "Nested reply from claimed hire describes LinkedIn recruiter outreach, roughly a month and eight interviews including a technical test; another user reports applications without interviews.",
+      "limitation": "Old anonymous technical-role story with no level verification; positive and negative self-selection; not a conversion probability.",
+      "url": "https://www.reddit.com/r/tacobell/comments/113i5dp/just_got_hired_at_the_corporate_office_in_irvine/"
+    },
+    {
+      "id": "C03-E35",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Indexed recent post reports repeated corporate applications and long waits; reply cites 1,000+ openings.",
+      "limitation": "Full thread open failed; indexed snippets only. Broad opening count confounds restaurants and corporate; no quantitative inference.",
+      "url": "https://www.reddit.com/r/tacobell/comments/1wody9u/tips_for_getting_hired_at_the_irvine_campus/"
+    },
+    {
+      "id": "C03-E36",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Public personal reflection describes a Taco Bell interview ten years earlier and personal presentation/culture.",
+      "limitation": "Historical culture anecdote, not analytics or current hiring evidence; no usable junior-analytics LinkedIn hiring post found.",
+      "url": "https://www.linkedin.com/posts/jessicacausse_ten-years-ago-i-showed-up-to-my-taco-bell-activity-7325142304233566208-GoTl"
+    },
+    {
+      "id": "C03-E37",
+      "published": "2026-09-25",
+      "observed": "2026-11-01",
+      "fact": "Historical Newport Beach Summer 2027 data-engineering internship accepted bachelor’s/master’s quantitative or business students and requested Python/R and data modelling. The direct Pacific Life career page now states the role is filled.",
+      "limitation": "Cached job descriptions and Workday/LinkedIn syndication do not prove continued intake. Exact closure time unknown. One job listing, not several independent vacancies.",
+      "url": "https://careers.pacificlife.com/us/en/job/PLBPLAUSR17828EXTERNALENUS/Summer-2027-Data-Engineering-Internship"
+    },
+    {
+      "id": "C03-E38",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Employer identifies student/graduate opportunities in Newport Beach and summer internships as early-career experience. Student and graduate opportunities span Newport Beach, Omaha and Charlotte.",
+      "limitation": "Evergreen program marketing; does not establish specific 2027 full-time vacancies. Program marketing does not disclose local analytics student group size or conversion rate.",
+      "url": "https://www.pacificlife.com/home/Careers/early-career.html"
+    },
+    {
+      "id": "C03-E39",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Indexed employer role in Newport Beach works on data supporting actuarial assumptions/predictive models and asks 2+ years of analytics experience.",
+      "limitation": "Historical indexed page; direct open returned no readable content; do not label open or new graduate.",
+      "url": "https://pacificlife.wd1.myworkdayjobs.com/pacificlifecareers/job/newport-beach-ca-700/data-analyst-ii---life-policyholder-behavior_r16653"
+    },
+    {
+      "id": "C03-E40",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Company job listing corroborates local summer role and internship pipeline framing.",
+      "limitation": "Stale syndication: direct employer marks R17828 filled. Not an independent employee endorsement or extra vacancy.",
+      "url": "https://www.linkedin.com/jobs/view/summer-2027-data-engineering-internship-at-pacific-life-4472209823"
+    },
+    {
+      "id": "C03-E41",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Historical Newport Beach Summer 2027 data-engineering internship accepted bachelor’s/master’s quantitative or business students and requested Python/R and data modelling. The direct Pacific Life career page now states the role is filled.",
+      "limitation": "Cached job descriptions and Workday/LinkedIn syndication do not prove continued intake. Exact closure time unknown. One job listing, not several independent vacancies.",
+      "url": "https://pacificlife.wd1.myworkdayjobs.com/en-US/PacificLifeCareers/job/Summer-2027-Data-Engineering-Internship_R17828"
+    },
+    {
+      "id": "C03-E42",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Newport Beach/Charlotte posting requires at least six years in data analysis, quality or engineering and expert SQL/strong Python.",
+      "limitation": "Indexed three months ago; current availability unverified.",
+      "url": "https://pacificlife.wd1.myworkdayjobs.com/PacificLifeCareers/job/Newport-Beach-CA-700/Sr-Data-Governance--Data-Quality-Analyst_R16545"
+    },
+    {
+      "id": "C03-E43",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Employer post describes 57 interns in six offices, including data engineering and data analytics.",
+      "limitation": "Search-accessible post, not a fresh hiring invitation; no local track count or exact date published verified.",
+      "url": "https://www.linkedin.com/posts/pacific-life-careers_meet-our-2026-north-america-summer-intern-activity-7480259380379160578-vjDC"
+    },
+    {
+      "id": "C03-E44",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Current page describes Data & Technology as one of three rotational tracks, three eight-month rotations over two years, plus direct graduate hiring; most early-career recruiting is in fall for the following year. Offers Data & Technology rotational and direct-placement routes; general early-career eligibility includes master’s students; most recruiting occurs in fall.",
+      "limitation": "Role, location and eligibility vary; no August 2027 master's guarantee. Role-specific eligibility and location control; no guarantee of a local seat.",
+      "url": "https://www.capitalgroup.com/about-us/careers/students.html"
+    },
+    {
+      "id": "C03-E45",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Irvine analytics/BI/data-science internship with possible full-time conversion; minimum GPA3.0 and no sponsorship now/future. Deadline Oct23 2026; bachelor's graduation Dec 2027–Jun 2028. Requires bachelor’s study and December 2027–June 2028 graduation, GPA 3.0 and US work authorization without future sponsorship; end date October 23, 2026. Official index: Oct23deadline,bachelorDec 2027–June 2028,no sponsorship now/future.",
+      "limitation": "Expired as of review date and degree/date mismatch; not an application recommendation. Employer search text; direct open unreadable; expired by stated deadline even if indexed Apply persists. Direct unreadable; historical index sufficient to reject stated match, not establish active intake.",
+      "url": "https://capgroup.wd1.myworkdayjobs.com/en-US/capitalgroupcareers/job/CAMPUS--Data---Technology-Summer-Associate--Irvine--CA--2027-_JR7384"
+    },
+    {
+      "id": "C03-E46",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Historical two-year Irvine/LA rotation required Tableau/PowerBI and/or Python/SQL/R/Spark; welcomed master's graduating Spring 2026; permanent placement depends on performance/business need.",
+      "limitation": "Historical 2026 student group; cannot extrapolate eligibility or volume to 2027.",
+      "url": "https://capgroup.wd1.myworkdayjobs.com/en-US/capitalgroupcareers/job/CAMPUS--DART-Associate_JR5676-1"
+    },
+    {
+      "id": "C03-E47",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Employee-authored public post states she joined DART in August after a June bachelor's graduation and discusses initial rotation; displayed as 3 years old.",
+      "limitation": "Personal outcome, not company recruitment policy; not proof of MSBA eligibility, location or current openings.",
+      "url": "https://www.linkedin.com/posts/madelinemporter_capitalgroup-earlycareer-dataanalytics-activity-7116119602027237376-qr3A"
+    },
+    {
+      "id": "C03-E48",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Employer index identifies a full-time Irvine senior analyst role, JR6729.",
+      "limitation": "Full requirements unreadable; do not infer precise experience threshold.",
+      "url": "https://capgroup.wd1.myworkdayjobs.com/en-US/capitalgroupcareers/job/Finance-Data-Solutions-Senior-Analyst_JR6729"
+    },
+    {
+      "id": "C03-E49",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Highlights Charlotte expansion and data/analytics careers; says it does not offer fully remote positions.",
+      "limitation": "Growth messaging is not Irvine junior hiring evidence.",
+      "url": "https://www.capitalgroup.com/about-us/careers.html/"
+    },
+    {
+      "id": "C03-E50",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Public indexed Irvine listing includes leadership, mentoring and performance-management duties.",
+      "limitation": "Indexed five months ago; not current entry-level evidence or recruiter post.",
+      "url": "https://www.linkedin.com/jobs/view/data-and-analytics-specialist-at-capital-group-4412413523"
+    },
+    {
+      "id": "C03-E51",
+      "published": "2026-10-27",
+      "observed": "2026-11-01",
+      "fact": "Employer onsite Fountain Valley role manages Sonata/Kona pricing analysis; needs six-plus years, advanced Excel; master's a plus. Onsite Fountain Valley; six or more years; pricing forecasts, SAP, advanced Excel and executive recommendations. DirectApply,onsiteFountainValley,six+years preferablypricing/finance,advancedExcel,mastersplus.",
+      "limitation": "Experienced role establishes function, not graduate access. Direct page verified; individual opening does not measure hiring growth. Specific relevant depth and sponsorship unverified; current job not promisedAug 2027 start.",
+      "url": "https://careers-americas.hyundai.com/hma/job/Fountain-Valley-Assistant-Manager%2C-Pricing-Analytics-CA-92708/1371590200/"
+    },
+    {
+      "id": "C03-E52",
+      "published": "2026-10-15",
+      "observed": "2026-11-01",
+      "fact": "Fountain Valley role supports safety/quality with machine learning, statistics, text analytics, data engineering and global integration. Fountain Valley safety/quality analytics; prior experience relevant analysis and four years each SQL/Python required; master’s only a plus.",
+      "limitation": "Senior management, not plausible immediate MSBA entry route. A senior job listing, not a graduate opportunity.",
+      "url": "https://careers-americas.hyundai.com/hma/job/Fountain-Valley-Senior-Manager%2C-Data-Science-%26-Analytic-Solutions-CA-92708/1430644600/"
+    },
+    {
+      "id": "C03-E53",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "2026 program ran 12 weeks June–August, fully onsite Fountain Valley; accepted enrolled undergraduate/graduate students throughout program and required no company sponsorship now/future. Page currently shows zero openings.",
+      "limitation": "2026 historical rules; 2027 dates, roles and requirements unannounced here.",
+      "url": "https://careers-americas.hyundai.com/hma/go/Internships/9863100/"
+    },
+    {
+      "id": "C03-E54",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Company-authored public post corroborates paid12-week Hyundai/Genesis internships at Fountain Valley headquarters.",
+      "limitation": "Past 2026 recruiting campaign; comments are personal reactions, not hiring commitments.",
+      "url": "https://www.linkedin.com/posts/hyundai-motor-company_applications-are-now-open-for-the-2026-summer-activity-7401292598524485633-_tKM"
+    },
+    {
+      "id": "C03-E55",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Current index lists Pricing Analytics Assistant Manager and Incentives Strategy & Analytics Senior Manager.",
+      "limitation": "",
+      "url": "https://careers-americas.hyundai.com/hma/go/Product-Line-Management-%26-Sales-Planning/9732900/"
+    },
+    {
+      "id": "C03-E56",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Fountain Valley reporting/dashboard role prefers four years of HR/HRIS/reporting/analytics or administrative experience.",
+      "limitation": "Public indexed job, not individual hiring post; preference is not mandatory exclusion; current status unverified.",
+      "url": "https://www.linkedin.com/jobs/view/senior-associate-hris-data-analytics-at-hyundai-motor-company-4458915164"
+    },
+    {
+      "id": "C03-E57",
+      "published": "2026-08-31",
+      "observed": "2026-11-01",
+      "fact": "Archived Anaheim DLR Finance posting required Excel/VBA/PowerQuery, BI, SQL and familiarity with R/Python; full-time January–June 2027; removal timestamp Sep6 2026.",
+      "limitation": "Secondary archive removal is not an employer closing date; primary availability not established.",
+      "url": "https://builtin.com/job/revenue-planning-analytics-intern-spring-2027/10939292"
+    },
+    {
+      "id": "C03-E58",
+      "published": "2026-05-12",
+      "observed": "2026-11-01",
+      "fact": "Employer indexed Anaheim/Florida role required1+ year, strong SQL/Excel and computer-vision output knowledge; estimated15-month project with no permanent-placement guarantee. Closed May27 2026.",
+      "limitation": "Historical temporary role; technical requirements beyond generic business dashboards.",
+      "url": "https://disney.wd5.myworkdayjobs.com/en-US/disneycareer/job/Associate-Data-Analyst--PH-_10149432"
+    },
+    {
+      "id": "C03-E59",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Indexed employer Anaheim internship involved hotel/Downtown Disney operations and revenue-management analytics; closing date Oct27 2026.",
+      "limitation": "Expired by review date; direct open had no readable content.",
+      "url": "https://disney.wd5.myworkdayjobs.com/disneycareer/job/Anaheim-CA-USA/Finance-Intern--Spring-2027_10162487"
+    },
+    {
+      "id": "C03-E60",
+      "published": "2024-05-07",
+      "observed": "2026-11-01",
+      "fact": "City reports final approval and contractual minimum$1.9b investment over ten years in theme parks, lodging, entertainment, shopping and dining.",
+      "limitation": "Capital investment does not establish analytics hiring count, student group or timing.",
+      "url": "https://www.anaheim.gov/m/newsflash/Home/Detail/2917"
+    },
+    {
+      "id": "C03-E61",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Company job syndication corroborates Anaheim team supporting ticketing, hotels, merchandise, food/beverage and events.",
+      "limitation": "Syndicated historical job, not employee post or continued availability.",
+      "url": "https://www.linkedin.com/jobs/view/revenue-planning-analytics-intern-spring-2027-at-disney-experiences-4461567197"
+    },
+    {
+      "id": "C03-E62",
+      "published": "2026-10-16",
+      "observed": "2026-11-01",
+      "fact": "Role 10161966 includes Anaheim, Seattle and Glendale and requires five years data engineering; Snowflake, SQL, AWS and pipelines featured.",
+      "limitation": "Direct employer page verified; multi-location listing is one job listing, not three hires.",
+      "url": "https://www.disneycareers.com/en/job/anaheim/sr-data-engineer/391/102011639680"
+    },
+    {
+      "id": "C03-E63",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Indexed local technology results include Senior Manager Digital Analytics, lead product roles and Sr Data Engineer.",
+      "limitation": "Dynamic filter excludes finance internships; cannot establish zero junior demand.",
+      "url": "https://www.disneycareers.com/en/employment/anaheim-california-united-states-technologie-jobs/391/26715/6252001-5332921-5379524-5323810/4"
+    },
+    {
+      "id": "C03-E64",
+      "published": "2026-10-27",
+      "observed": "2026-11-01",
+      "fact": "Burbank full-time January–June program requires enrollment at application or current Disney program participation and unrestricted authorization.",
+      "limitation": "Outside Orange County; cannot count as Anaheim pipeline.",
+      "url": "https://www.disneycareers.com/en/job/burbank/content-research-insights-and-analytics-intern-spring-2027/391/102522410624"
+    },
+    {
+      "id": "C03-E65",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Public indexed Disney Experiences role names Anaheim and full-time January–June 2027 commitment.",
+      "limitation": "Not a verified current official application; relative posting timestamp and applicant count not relied upon.",
+      "url": "https://www.linkedin.com/jobs/view/finance-data-intern-spring-2027-at-disney-experiences-4475366400"
+    },
+    {
+      "id": "C03-E66",
+      "published": null,
+      "observed": "2026-11-01",
+      "fact": "Mirror describes Disneyland forecasting/yield work and full-time Anaheim January–June 2027 with enrollment at application and unrestricted authorization.",
+      "limitation": "Secondary mirror only; official live status unverified.",
+      "url": "https://www.indeed.com/viewjob?jk=0bf54a00e7416eef"
+    },
+    {
+      "id": "C03-E67",
+      "published": "2026-03-05",
+      "observed": "2026-11-01",
+      "fact": "Author reports HireVue, behavioral and case interviews; nested reply describes analytics-problem approaches. Another reply asks whether the team was NYC.",
+      "limitation": "Nested replies inspected; anonymous anecdote, location unconfirmed; not evidence of Anaheim staff numbers or timing SLA.",
+      "url": "https://www.reddit.com/r/internships/comments/1rls09r/how_long_does_disney_take_to_send_data_science/"
+    },
+    {
+      "id": "C03-E68",
+      "published": "2026-10-20",
+      "observed": "2026-11-01",
+      "fact": "Official indexed Anaheim Finance Intern 10162487 described finance and operational analytics; direct URL returned 404.",
+      "limitation": "Historical pattern; a failed page alone does not establish a precise closure date. Workday index separately supplied 27 October 2026 deadline.",
+      "url": "https://www.disneycareers.com/en/job/anaheim/finance-intern-spring-2027/391/102225085696"
+    },
+    {
+      "id": "C03-E69",
+      "published": "2026-09-14",
+      "observed": "2026-11-01",
+      "fact": "Official indexed Disneyland Industrial Engineering Intern 10159978 requires an Industrial Engineering programme, graduation December 2027 or later, full-time May–August and unrestricted work authorisation.",
+      "limitation": "Direct old URL redirects to generic careers; current availability unverified and stated degree/date do not match an August 2027 MSBA.",
+      "url": "https://jobs.disneycareers.com/job/anaheim/disneyland-resort-industrial-engineering-intern-summer-2027/391/100603865040"
+    },
+    {
+      "id": "C04-E01",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "Costa Mesa hybrid Senior Marketing Manager, Fintech describes integrated campaigns, segmentation and performance measurement. Ten years of related experience required.",
+      "limitation": "Senior threshold exceeds demonstrated experience. The early-career timetable does not guarantee another seat.",
+      "url": "https://jobs.smartrecruiters.com/Experian/744000157558849-senior-marketing-manager-fintech"
+    },
+    {
+      "id": "C04-E02",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "The Costa Mesa AI/ML Partner Summer Intern page now explicitly labels the vacancy expired.",
+      "limitation": "No closure date or evidence of a hire. This says nothing about other teams.",
+      "url": "https://jobs.experian.com/job/ai-ml-partner-summer-intern-hybrid-and-paid-in-costa-mesa-united-states-jid-3782"
+    },
+    {
+      "id": "C04-E03",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "PIMCO Prep lists April 2027 sessions with registration coming soon. It describes an informational webinar before internship recruitment.",
+      "limitation": "Global webinar. Neither local attendance nor a job or interview follows from participation.",
+      "url": "https://www.pimco.com/us/en/about-us/careers/students/pimco-prep"
+    },
+    {
+      "id": "C04-E04",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "Summer Analyst guidance targets undergraduates and master's students in their second-to-last year.",
+      "limitation": "Programme-level criteria cannot establish work authorisation or the entry criteria for a different vacancy.",
+      "url": "https://www.pimco.com/us/en/about-us/careers/students/internships"
+    },
+    {
+      "id": "C04-E05",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "North American datathon application deadline is 11 January 2027. The organiser requires undergraduate status and graduation from December 2027 to June 2029.",
+      "limitation": "The stated conditions exclude the August 2027 MSBA route. No local meeting verified.",
+      "url": "https://www.citadel.com/careers/programs-and-events/datathons/"
+    },
+    {
+      "id": "C04-E06",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "The US datathon student category lists undergraduates graduating December 2027 to June 2029. A separate category covers PhD candidates.",
+      "limitation": "A datathon does not establish local OC/LA data hiring. Geographic and degree restrictions vary by event.",
+      "url": "https://www.citadel.com/careers/programs-and-events/datathons/"
+    },
+    {
+      "id": "C04-E07",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "Indexed company advert 34108 lists Irvine and Atlanta and six years in a relevant analytics discipline. Another ID 32301 has closely matching wording.",
+      "limitation": "Application availability unconfirmed. Matching descriptions may be a repost or multi-location choice, not staff numbers growth.",
+      "url": "https://careers.rivian.com/careers-home/jobs/34108?lang=en-US"
+    },
+    {
+      "id": "C04-E08",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "C02's indexed description specified January–August and a December 2027 or later graduation window.",
+      "limitation": "The access restriction is not a vacancy closure or a company-wide sponsorship policy.",
+      "url": "https://careers.rivian.com/careers-home/jobs/33671"
+    },
+    {
+      "id": "C04-E09",
+      "published": "2026-11-05",
+      "observed": "2026-11-05",
+      "fact": "On 5 November Bloomberg reported a $240m Series D after interviewing CEO John Harris. Uses include manufacturing for defence, autonomy and energy storage.",
+      "limitation": "Funding uses span several businesses. Neither a new junior job nor future sponsorship follows, and the advert predates this review.",
+      "url": "https://www.ttnews.com/articles/harbinger-raises-240m-power-defense"
+    },
+    {
+      "id": "C04-E10",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "The Garden Grove marketing intern link 5246809007 redirects to a general board with error=true.",
+      "limitation": "Neither the redirect nor production orders establish whether the role was filled, cancelled or moved.",
+      "url": "https://job-boards.greenhouse.io/harbingermotors/jobs/5246809007"
+    },
+    {
+      "id": "C04-E11",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "Garden Grove dealer marketing manager advert covers channel campaigns and requires five years of relevant experience.",
+      "limitation": "Existing job listing. An eventual start after graduation and sponsorship remain unknown.",
+      "url": "https://job-boards.greenhouse.io/harbingermotors/jobs/5194170007"
+    },
+    {
+      "id": "C04-E12",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "The indexed Irvine Product Specialist 2025-15645 covered cost, market pricing and quote closure for aerospace interconnects. Direct employer URL now returns 410 Gone.",
+      "limitation": "Expired or removed comparator. job listing prefix is not the posting date. The acquisition supports an integration theme but no junior seat.",
+      "url": "https://careersenus-itt-inc.icims.com/jobs/15645/product-specialist/job?in_iframe=1"
+    },
+    {
+      "id": "C04-E13",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "",
+      "limitation": "Exact removal date, hiring decision, employing team and replacement staff numbers remain unknown.",
+      "url": "https://careersenus-itt-inc.icims.com/jobs/16663/business-analyst/job?in_iframe=1"
+    },
+    {
+      "id": "C04-E14",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "UCI lists an affordable homeownership AI hackathon on Saturday 7 November at Merage, open across UCI majors, without a coding prerequisite.",
+      "limitation": "Event access and professional conversation differ from paid recruitment. Confirm final room with organiser.",
+      "url": "https://merage.uci.edu/events/2026/11/AI-Hackathon-110726.html"
+    },
+    {
+      "id": "C04-E15",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "UCI advertises a free 7 November Merage hackathon for students across majors with industry professionals, prizes and Claude credits.",
+      "limitation": "UCI names the Merage Auditorium. Confirm the room against organiser instructions. Actual attendance, placement and employment outcomes are unknown.",
+      "url": "https://merage.uci.edu/events/2026/11/AI-Hackathon-110726.html"
+    },
+    {
+      "id": "C04-E16",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "The 2027 Business Operations Intern advert has Apply, welcomes business analytics degrees and requires a 12-week in-person term plus at least one subsequent academic quarter or semester.",
+      "limitation": "August 2027 completion conflicts with returning to study. Check clearance and work-authorisation requirements on each individual position.",
+      "url": "https://job-boards.greenhouse.io/andurilindustries/jobs/5271826007"
+    },
+    {
+      "id": "C04-E17",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "Business Operations Intern 5271826007 shows Apply. It requires US-person status, 12 weeks in person and at least one further academic quarter or semester after summer 2027.",
+      "limitation": "US-person status and the student's eligibility are unassessed. Other roles have their own terms.",
+      "url": "https://job-boards.greenhouse.io/andurilindustries/jobs/5271826007"
+    },
+    {
+      "id": "C04-E18",
+      "published": "2026-11-02",
+      "observed": "2026-11-05",
+      "fact": "Local reporting describes a Costa Mesa move and a Newport Beach lease.",
+      "limitation": "One property story. Transfers could account for staffing. No team-level vacancy was announced.",
+      "url": "https://www.ocbj.com/oc-homepage/anduril-gobbles-up-space-in-orange-county-and-southern-california/"
+    },
+    {
+      "id": "C04-E19",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "The employer still has an Irvine Sr. Global Product Manager, Upstream page, req 49655, an experienced product route distinct from its clinical and supply-chain student programmes.",
+      "limitation": "This senior medical-device route has specialised experience demands. Some student positions require later graduation and restrict sponsorship.",
+      "url": "https://www.edwards.com/job/49655/sr-global-product-manager-upstream"
+    },
+    {
+      "id": "C04-E20",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "Official Irvine TMTT Analyst Data Analytics URL 51135 returned 404.",
+      "limitation": "A missing page alone cannot date closure, establish a hire or exclude other job listings.",
+      "url": "https://www.edwards.com/job/51135/analyst-data-analytics-tmtt"
+    },
+    {
+      "id": "C04-E21",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "AbbVie’s Irvine Eye Care analytics and market research manager R00152333 page displays Apply. Pharmaceutical experience is required.",
+      "limitation": "Eye Care and Allergan Aesthetics are different units. Finance communications alone does not satisfy pharmaceutical experience.",
+      "url": "https://careers.abbvie.com/job/manager-analytics-and-market-research-eye-care-in-irvine-ca-jid-34862"
+    },
+    {
+      "id": "C04-E22",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "Irvine Eye Care role R00152333 displays Apply and requires five or more years in commercial insights/analytics including pharmaceutical experience.",
+      "limitation": "Eye Care is a distinct business from Allergan Aesthetics. Its advert gives no verified August 2027 start or sponsorship commitment.",
+      "url": "https://careers.abbvie.com/job/manager-analytics-and-market-research-eye-care-in-irvine-ca-jid-34862"
+    },
+    {
+      "id": "C04-E23",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "Early Careers FAQ gives March internship opening and March–April review, a ten-week summer programme, and separate April recruitment for the graduate rotation. The 2027 rotation requires graduation by July.",
+      "limitation": "No team-specific 2027 analytics seat established. Earlier bachelor's degree does not by itself resolve degree subject, GPA, work rights or start-date fit.",
+      "url": "https://careers.ingrammicro.com/en/locations/north-america/united-states/early-careers/"
+    },
+    {
+      "id": "C04-E24",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "The official US early-career page directs users to an email list for notification when 2027 applications open. The graduate technology rotation includes SAP, platform engineering and AI/data science.",
+      "limitation": "Testimonials of conversion are selected individual examples without a denominator. Dates, Irvine placements and role-specific OPT/CPT or sponsorship support remain unknown.",
+      "url": "https://careers.ingrammicro.com/en/locations/north-america/united-states/early-careers/"
+    },
+    {
+      "id": "C04-E25",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "Irvine Program Manager, Value & Digital Marketing job 300003409517982 shows Apply and explicitly requires permanent full-time authorisation without current or future sponsorship.",
+      "limitation": "Role-specific restriction sharply limits application value. Senior portfolio role; a rolling display date does not demonstrate a new vacancy.",
+      "url": "https://jobs.tacobell.com/job/program-manager-value-digital-enterprise/irvine-ca/300003409517982/"
+    },
+    {
+      "id": "C04-E26",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "The Irvine AIDM Analytics vacancy displays Apply Now. It asks for at least seven years of analytics experience and five years of SQL.",
+      "limitation": "The role's visible terms do not verify a deferred start or future sponsorship. Do not transfer eligibility statements across positions.",
+      "url": "https://jobs.tacobell.com/job/associate-manager-aidm-analytics/irvine-ca/300003318888736/"
+    },
+    {
+      "id": "C04-E27",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "Indexed employer Workday advert R17734 identifies a Life Insurance Marketing Strategist in Newport Beach. Direct Workday page has no readable body. Prior R17828 summer data engineering page explicitly says filled.",
+      "limitation": "R17734 availability and requirements unconfirmed. No validated deferred start, visa support or replacement internship.",
+      "url": "https://pacificlife.wd1.myworkdayjobs.com/en-US/PacificLifeCareers/job/Newport-Beach-CA-700/Life-Insurance-Marketing-Strategist_R17734?source=APPLICANT_SOURCE-3-87"
+    },
+    {
+      "id": "C04-E28",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "The employer's Newport Beach R17828 Summer 2027 Data Engineering Internship page explicitly says filled.",
+      "limitation": "The closure timestamp and candidate outcome are unknown. No inference about other teams or their sponsorship terms.",
+      "url": "https://careers.pacificlife.com/us/en/job/PLBPLAUSR17828EXTERNALENUS/Summer-2027-Data-Engineering-Internship"
+    },
+    {
+      "id": "C04-E29",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "The student FAQ says most internship and full-time recruitment is in autumn for the following year. Graduate rotations and direct placement are separate routes; master's students can apply subject to the posting.",
+      "limitation": "Role-level dates and location control. Most summer associates have another year of study. Closed JR7384 is historical.",
+      "url": "https://www.capitalgroup.com/about-us/careers/students.html"
+    },
+    {
+      "id": "C04-E30",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "The current student hub describes a full-time two-year rotation and cautions that some roles have sponsorship limits. Specific Irvine JR7384 yielded no readable direct body on recheck.",
+      "limitation": "Degree and location eligibility for a future full-time DART student group is unresolved. Prior summer-role restrictions are specific to JR7384.",
+      "url": "https://www.capitalgroup.com/about-us/careers/students.html"
+    },
+    {
+      "id": "C04-E31",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "The req 2841 pricing page now explicitly says filled. A distinct Fountain Valley req 3628, Senior Manager, Incentives Strategy & Analytics, displayed Apply and asks for eight years including five in relevant industry work.",
+      "limitation": "Req 3628 is a senior comparator, not a verified replacement, entry-level seat or fit for general finance marketing. No verified August 2027 route.",
+      "url": "https://careers-americas.hyundai.com/hma/job/Fountain-Valley-Senior-Manager%2C-Incentives-Strategy-%26-Analytics-CA-92708/1402927200/"
+    },
+    {
+      "id": "C04-E32",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "The exact Fountain Valley pricing job 2841 now explicitly says filled, after C03 documented an Apply control on 1 November.",
+      "limitation": "The page gives no closure date or basis for assuming pricing hiring has stopped across the team.",
+      "url": "https://careers-americas.hyundai.com/hma/job/Fountain-Valley-Assistant-Manager%2C-Pricing-Analytics-CA-92708/1371590200/"
+    },
+    {
+      "id": "C04-E33",
+      "published": "2026-11-02",
+      "observed": "2026-11-05",
+      "fact": "Req 3753 describes a Fountain Valley customer analytics management role, with eight years of analytics and three years leading teams.",
+      "limitation": "A specialist benchmark. Start timing and role-specific sponsorship remain unknown.",
+      "url": "https://careers-americas.hyundai.com/hma/job/Fountain-Valley-Senior-Manager,-VOC-Advanced-Analytics-CA-92708/1407340700/"
+    },
+    {
+      "id": "C04-E34",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "Disney’s Disneyland Resort employer landing page directly identifies its Anaheim operation. The tracked Burbank content insights internship link returned 404. The indexed Senior Business and Information Analyst 10157559 listed an October 31 deadline.",
+      "limitation": "No compatible live job listing demonstrated. Reuters on 3 November reported group-wide savings discussions attributed to Bloomberg, without a Disneyland analyst-team decision.",
+      "url": "https://join.disneycareers.com/global/en/disneyland-resort"
+    },
+    {
+      "id": "C04-E35",
+      "published": null,
+      "observed": "2026-11-05",
+      "fact": "The official Anaheim Spring 2027 Finance Intern URL 10162487 returned 404 on recheck. Earlier evidence recorded an October application deadline.",
+      "limitation": "A removed page does not identify a hire or demonstrate cancellation. A Los Angeles or Florida position is not an Anaheim replacement.",
+      "url": "https://www.disneycareers.com/en/job/anaheim/finance-intern-spring-2027/391/102225085696"
+    },
+    {
+      "id": "C05-E01",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "The Costa Mesa hybrid Fintech senior marketing manager description calls for integrated campaigns, segmentation, performance measurement and at least ten years’ related experience. The employer ATS displays an interest control.",
+      "limitation": "An unusually close industry and subject match for finance marketing. This particular tenure threshold is substantial.",
+      "url": "https://jobs.smartrecruiters.com/Experian/744000157558849-senior-marketing-manager-fintech"
+    },
+    {
+      "id": "C05-E02",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "Costa Mesa AI/ML partner internship explicitly expired and required a fall 2026 return to school.",
+      "limitation": "Partner operations describes a past skills profile. Its fall date cannot be copied into a 2027 eligibility rule.",
+      "url": "https://jobs.experian.com/job/ai-ml-partner-summer-intern-hybrid-and-paid-in-costa-mesa-united-states-jid-3782"
+    },
+    {
+      "id": "C05-E03",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "The PIMCO Prep page still lists April 2027 sessions with registration coming soon. Its student programme is an information route ahead of internship recruiting.",
+      "limitation": "A practical way to learn about client and product strategy. Student session timing does not establish a Newport Beach hire.",
+      "url": "https://www.pimco.com/us/en/about-us/careers/students/pimco-prep"
+    },
+    {
+      "id": "C05-E04",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "The summer analyst programme is for undergraduate and master’s candidates in their penultimate year.",
+      "limitation": "For an August 2027 finisher, summer 2027 does not naturally precede another year of study.",
+      "url": "https://www.pimco.com/us/en/about-us/careers/students/internships"
+    },
+    {
+      "id": "C05-E05",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "The official North America datathon lists a US/Canada undergraduate graduation window of December 2027 to June 2029. A separate PhD category exists.",
+      "limitation": "A quantitative competition has a defined intake, but these categories supply no eligibility for an August 2027 MSBA candidate.",
+      "url": "https://www.citadel.com/careers/programs-and-events/datathons/"
+    },
+    {
+      "id": "C05-E06",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "The US Women’s and Invitational Datathons specify undergraduates graduating December 2027–June 2029. The separate doctoral event requires enrolment in a PhD.",
+      "limitation": "The advertised groups do not match an August 2027 MSBA. Participation also requires selection.",
+      "url": "https://www.citadel.com/careers/programs-and-events/datathons/"
+    },
+    {
+      "id": "C05-E07",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "The employer-indexed Lead Analyst, Marketing Analytics advert 31991 names Irvine and El Segundo, six-plus years in marketing science or growth analytics and high-consideration customer journeys.",
+      "limitation": "A more direct link to campaign measurement than the earlier sales-operations description. Current availability is unknown.",
+      "url": "https://careers.rivian.com/careers-home/jobs/31991"
+    },
+    {
+      "id": "C05-E08",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "The earlier cycle documented a January–August co-op and a December 2027-or-later graduation requirement.",
+      "limitation": "Access denial cannot distinguish closed from active. An engineering co-op is weak evidence for local customer analytics intake.",
+      "url": "https://careers.rivian.com/careers-home/jobs/33671"
+    },
+    {
+      "id": "C05-E09",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "Garden Grove dealer marketing role 5194170007 directly displays an application form and asks for five years in dealer, retail, channel, field or trade marketing. Plans link dealer groups and national campaigns.",
+      "limitation": "Experienced candidates can connect campaign leadership to partner performance. Prior agency experience alone does not establish five qualifying years or a suitable start date.",
+      "url": "https://job-boards.greenhouse.io/harbingermotors/jobs/5194170007"
+    },
+    {
+      "id": "C05-E10",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "Garden Grove dealer marketing role 5194170007 displays an application form and requires five or more years of dealer, retail, channel, field or trade marketing.",
+      "limitation": "Funding and a job advert do not demonstrate a new analyst team. General financial communications may not satisfy channel experience.",
+      "url": "https://job-boards.greenhouse.io/harbingermotors/jobs/5194170007"
+    },
+    {
+      "id": "C05-E11",
+      "published": "2026-11-04",
+      "observed": "2026-11-10",
+      "fact": "ITT reported a $55 million year-on-year increase in Connect & Control Technologies revenue, citing pricing and wins across several areas, and named Davide Barbon to lead the segment.",
+      "limitation": "Useful context for the earlier Irvine product specialist’s pricing work. The parent’s segment disclosure has no Irvine staff numbers, local vacancy or staffing plan.",
+      "url": "https://investors.itt.com/news-releases/news-release-details/itt-reports-third-quarter-2026-eps-138-and-adjusted-eps-226"
+    },
+    {
+      "id": "C05-E12",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "",
+      "limitation": "Its historical skills can inform preparation, but the removal does not identify an appointment, staff numbers or transfer.",
+      "url": "https://careersenus-itt-inc.icims.com/jobs/16663/business-analyst/job?in_iframe=1"
+    },
+    {
+      "id": "C05-E13",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "UCI lists a 7 November affordable homeownership AI hackathon at Merage, open to UCI students across majors and involving industry professionals. That scheduled date has passed.",
+      "limitation": "The enduring route is a permissioned portfolio case or practitioner feedback. The listing documents the programme rather than participant outcomes.",
+      "url": "https://merage.uci.edu/events/2026/11/AI-Hackathon-110726.html"
+    },
+    {
+      "id": "C05-E14",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "UCI advertised a single affordable-homeownership hackathon on 7 November at the Merage Auditorium. Its advertised date has passed.",
+      "limitation": "Access to a past build event is not evidence of a paid role or a commissioned pilot.",
+      "url": "https://merage.uci.edu/events/2026/11/AI-Hackathon-110726.html"
+    },
+    {
+      "id": "C05-E15",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "The 2027 Business Operations Intern advert displays an application form and requires a further academic quarter or semester after the internship, plus twelve weeks on site. The US-person condition remains role-specific.",
+      "limitation": "Useful benchmark for operations dashboards; an August 2027 finish creates a mismatch with the subsequent-term rule.",
+      "url": "https://job-boards.greenhouse.io/andurilindustries/jobs/5271826007"
+    },
+    {
+      "id": "C05-E16",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "The Costa Mesa business operations internship requires a further academic quarter or semester after the internship and US-person status for export-controlled access.",
+      "limitation": "Both gates apply to this job listing. A full-time role could have different criteria, and campus expansion does not establish eligibility.",
+      "url": "https://job-boards.greenhouse.io/andurilindustries/jobs/5271826007"
+    },
+    {
+      "id": "C05-E17",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "Irvine upstream product manager 49655 displays Apply Now. The employer specifies eight years with a bachelor’s or six with a master’s, subject to equivalency.",
+      "limitation": "Commercial research in medical devices is a potential experienced transition route. The threshold and product-specific depth matter more than the general marketing label.",
+      "url": "https://www.edwards.com/job/49655/sr-global-product-manager-upstream"
+    },
+    {
+      "id": "C05-E18",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "",
+      "limitation": "This establishes the tracked application page is unavailable. It cannot distinguish a fill from withdrawal or a new job ID.",
+      "url": "https://www.edwards.com/job/51135/analyst-data-analytics-tmtt"
+    },
+    {
+      "id": "C05-E19",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "Irvine Eye Care analytics and market research manager R00152333 displays Apply and specifies five or more years in commercial insights and analytics, including prior pharmaceutical experience.",
+      "limitation": "A concrete employer benchmark for stakeholder-facing research. The vacancy belongs to Eye Care, so it supplies no direct evidence of Allergan Aesthetics hiring.",
+      "url": "https://careers.abbvie.com/job/manager-analytics-and-market-research-eye-care-in-irvine-ca-jid-34862"
+    },
+    {
+      "id": "C05-E20",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "AbbVie lists an Irvine eye-care research manager needing at least five years in commercial insights and analytics, including pharmaceutical experience.",
+      "limitation": "This is an eye-care role, not proof of Allergan Aesthetics hiring. Finance marketing provides adjacent skills but no documented pharmaceutical experience.",
+      "url": "https://careers.abbvie.com/job/manager-analytics-and-market-research-eye-care-in-irvine-ca-jid-34862"
+    },
+    {
+      "id": "C05-E21",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "The employer gives March as the internship application month and April for fresh-grad rotation applications. Its 2027 rotation requires graduation by July 2027, a technical bachelor’s and at least a 3.0 GPA; internships accept current or recently graduated students with department-specific exceptions.",
+      "limitation": "The broader internship pool is more plausible than the narrower rotation. An August MSBA completion misses the stated graduation-by date for that degree; the earlier business degree does not on its face meet the technical specialisation.",
+      "url": "https://careers.ingrammicro.com/en/locations/north-america/united-states/early-careers/"
+    },
+    {
+      "id": "C05-E22",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "The technical Fresh Grad rotation specifies a technical bachelor’s, GPA of at least 3.0, and graduation by July 2027. The programme starts in July.",
+      "limitation": "August MSBA completion and a prior business bachelor’s are mismatches for this rotation. The general internship FAQ uses different eligibility rules.",
+      "url": "https://careers.ingrammicro.com/en/locations/north-america/united-states/early-careers/"
+    },
+    {
+      "id": "C05-E23",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "The Irvine Digital Marketing Analytics associate manager advert displays Apply Now, seven or more years in analytics and a minimum of five years in SQL.",
+      "limitation": "Commercial segmentation and digital customer measurement are relevant. Prior finance marketing is complementary to, rather than proof of, the stated analytical tenure.",
+      "url": "https://jobs.tacobell.com/job/associate-manager-aidm-analytics/irvine-ca/300003318888736/"
+    },
+    {
+      "id": "C05-E24",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "The Irvine Associate Manager, Digital Marketing Analytics listing specifies 7+ years in analytics and at least five years of SQL.",
+      "limitation": "The title understates the seniority. Experience leading content and campaign teams cannot be assumed to count as SQL tenure.",
+      "url": "https://jobs.tacobell.com/job/associate-manager-aidm-analytics/irvine-ca/300003318888736/"
+    },
+    {
+      "id": "C05-E25",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "The indexed Newport Beach Marketing Analytics Senior Analyst R16354 describes six or more years of relevant experience. The direct employer page returned no readable text.",
+      "limitation": "Role-design evidence for an experienced finance-marketing transition, independent of the filled engineering internship. Current application status is unverified.",
+      "url": "https://pacificlife.wd1.myworkdayjobs.com/PacificLifeCareers/job/Newport-Beach-CA-700/Marketing-Analytics-Senior-Analyst_R16354?source=APPLICANT_SOURCE-3-21"
+    },
+    {
+      "id": "C05-E26",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "Pacific Life explicitly marks its Newport Beach Summer 2027 Data Engineering Internship filled.",
+      "limitation": "A local data engineering vacancy cannot demonstrate recruitment in commercial marketing analytics.",
+      "url": "https://careers.pacificlife.com/us/en/job/PLBPLAUSR17828EXTERNALENUS/Summer-2027-Data-Engineering-Internship"
+    },
+    {
+      "id": "C05-E27",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "The employer’s student FAQ says most internship and full-time recruiting takes place in autumn for the following year, subject to variation by role and location. It offers rotations and direct placement.",
+      "limitation": "Full-time recruitment is worth investigating alongside internships. The general programme timetable does not establish eligibility for a particular Irvine job.",
+      "url": "https://www.capitalgroup.com/about-us/careers/students.html"
+    },
+    {
+      "id": "C05-E28",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "Capital Group states most summer roles target students with one year of study remaining. Full-time pathways often accept final-year and recent graduates. Qualifications vary by job listing.",
+      "limitation": "A broad programme description cannot supersede the narrower graduation and future-sponsorship exclusions recorded for historical JR7384.",
+      "url": "https://www.capitalgroup.com/about-us/careers/students.html"
+    },
+    {
+      "id": "C05-E29",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "The Fountain Valley voice-of-customer advanced analytics management advert 3753 displays Apply and describes statistical modelling, trend analysis and time-series forecasts. The requirements include eight years in analytics and three leading teams.",
+      "limitation": "A distinct experienced route from the filled pricing assistant manager vacancy. Good evidence for preparation in customer intelligence; immediate suitability depends on analytical leadership tenure.",
+      "url": "https://careers-americas.hyundai.com/hma/job/Fountain-Valley-Senior-Manager,-VOC-Advanced-Analytics-CA-92708/1407340700/"
+    },
+    {
+      "id": "C05-E30",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "Hyundai continues to mark the Fountain Valley Assistant Manager, Pricing Analytics position filled.",
+      "limitation": "A senior manager posting in the same function cannot reopen the earlier role or establish demand for entry-level staff.",
+      "url": "https://careers-americas.hyundai.com/hma/job/Fountain-Valley-Assistant-Manager%2C-Pricing-Analytics-CA-92708/1371590200/"
+    },
+    {
+      "id": "C05-E31",
+      "published": "2026-10-30",
+      "observed": "2026-11-10",
+      "fact": "Anaheim Disney Experiences req 10163266, posted 30 October, displays Apply Now. It calls for five years of analytics, four using Adobe or Google Analytics and two leading teams.",
+      "limitation": "A verified local customer/digital analytics function, separate from Burbank and the closed spring finance internship. It is an experienced management role.",
+      "url": "https://www.disneycareers.com/en/job/anaheim/senior-manager-digital-analytics/391/102620657472"
+    },
+    {
+      "id": "C05-E32",
+      "published": null,
+      "observed": "2026-11-10",
+      "fact": "",
+      "limitation": "Its old description remains a reference for resort finance. A removed URL does not establish hiring or relocate a Burbank entertainment opening to Anaheim.",
+      "url": "https://www.disneycareers.com/en/job/anaheim/finance-intern-spring-2027/391/102225085696"
+    }
+  ]
+}
