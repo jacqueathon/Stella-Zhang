@@ -1,5 +1,6 @@
 # Hydra Stack
 A working student career demo built from Zal Career Command and public BDashh research, with ATLAS.ai company insights.
+https://hydrastack2.vercel.app/
 
 ## Run
 Node.js 22+ for tests. Python 3 for a local static server.
