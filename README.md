@@ -26,3 +26,12 @@ This repository contains Hydra Stack for the Stella Zhang team. Edit files in `d
 
 ## Vercel setup
 Import this GitHub repository, choose the Other framework preset, leave build and install commands empty, and set the output directory to `dist`. No environment variables are required for this static demo. A Vercel project must be connected separately before GitHub commits trigger deployments.
+
+## Shared team workflow
+Read [AGENTS.md](AGENTS.md) and [CONTRIBUTING.md](CONTRIBUTING.md) before each session. Use a task branch, a contributor checkpoint label, and a pull request for teammate review.
+
+- [Start an AI session](docs/team/AI-START-PROMPT.txt)
+- [Finish an AI session](docs/team/AI-FINISH-PROMPT.txt)
+- [Handoff template](docs/team/HANDOFF-TEMPLATE.md)
+
+The team kit defines collaboration, not automatic synchronisation. The existing Hydra Stack architecture and test commands above remain authoritative.

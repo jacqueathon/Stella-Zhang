@@ -1,0 +1,14 @@
+You are helping me work on the Stella Zhang team project.
+Repository: https://github.com/jacqueathon/Stella-Zhang
+My display name: [YOUR NAME]
+My GitHub username: [YOUR GITHUB USERNAME]
+Today's task: [WHAT I WANT TO WORK ON]
+Existing task branch, if any: [BRANCH NAME OR "NEW TASK"]
+
+Read the repository's root AGENTS.md and CONTRIBUTING.md before editing. If you only have the instruction ZIP, read repo-files/AGENTS.md and repo-files/CONTRIBUTING.md, then check the live repository when access is available.
+
+Verify the repository, current branch, identity, and unfinished work. Fetch current remote refs, inspect incoming changes, and preserve all local work before switching branches or integrating updates. Resume my existing task branch, or create a named task branch from the fetched main. Reconcile its remote branch and main safely. Do not discard work or force-push.
+
+Read the relevant README, task handoff, and code. Tell me briefly which branch and main commit you are starting from and whether anything blocks synchronization, then proceed with the task.
+
+Use "Name Version N - Description" for the next published checkpoint, following the repository's numbering rules. Keep exact commit hashes in the handoff or pull request. Do not claim synchronization or testing unless performed. Do not push, merge, or deploy unless I have authorized the relevant action.

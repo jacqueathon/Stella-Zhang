@@ -1,0 +1,13 @@
+Finish this Stella Zhang work session using AGENTS.md and CONTRIBUTING.md.
+
+Publication choice: [CHOOSE ONE: SAVE LOCALLY ONLY / PUSH TASK BRANCH AND OPEN OR UPDATE A PULL REQUEST]
+
+Review the full diff, preserve unrelated work, check for secrets, and run the relevant existing project checks. Write or update a task-specific handoff with completed work, decisions, checks, blockers, and next steps.
+
+For the push choice: fetch again, reconcile new changes from the remote task branch and main, and re-run affected checks. Check contributor version history and label the final substantive commit "Name Version N - Description." Push only the intended task branch and open or update its pull request, using draft status if incomplete. Do not merge into main or deploy.
+
+For the local-only choice: make an appropriate local checkpoint of reviewed changes, leave remote state unchanged, and mark any future published version number as unassigned.
+
+If this publication choice has not been filled in, save locally and report that publication remains undecided.
+
+Give me the branch, commit hash, checkpoint label if assigned, what changed, checks performed with outcomes, remaining work, and exact status: local only, pushed, pull request open, or merged. Do not describe a push as a merge.
