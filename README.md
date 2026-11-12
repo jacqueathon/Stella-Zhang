@@ -13,6 +13,11 @@ Open http://localhost:8000. No install or build step required. Deploy only `dist
 ## Product flow
 Select Alex (marketing), Maya (data) or Jordan (finance). Review the editable profile, explore suggestions, save roles/people/company insights/events, draft outreach, record meeting plans and update progress. These three fictional personas are browser-local demo workspaces, not secure user accounts. Switch profiles using the top-right control.
 
+## Personal to-do list
+Open **To-do list** in the workspace navigation to add, edit, complete, reopen or delete tasks. Set an optional due date and High, Medium or Low priority. Filter by Open, Today, All or Completed, and search by task title. Pending tasks are ordered by due date, then priority; overdue dates use your device's local calendar.
+
+The **For you** dashboard shows the next three open tasks. Tasks save with the selected demo profile in this browser, are included in **Export progress**, and are cleared by that profile's reset confirmation. Existing saved workspaces start with an empty list. There are no reminders, notifications or shared/cross-device task sync.
+
 ## Source boundaries
 - `dist/` is the new app. `data.mjs` contains attributed research snapshots, not live jobs. `atlas-data.json` retains the C05 dated research from Zal's student-facing build.
 - Original private Zal source archives and internal research are excluded from this public repository. The complete Hydra app and its student-facing Atlas snapshot are included.
