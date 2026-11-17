@@ -1,10 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {timelineFor,evidenceFor,cycleCounts,renderIntel,renderEvidence} from '../dist/intel.mjs';
+import {timelineFor,evidenceFor,cycleCounts,renderIntel,renderEvidence,renderPredictionStrength} from '../dist/intel.mjs';
 const atlas=JSON.parse(readFileSync(new URL('../dist/atlas-data.json',import.meta.url)));
 test('timeline distinguishes publication and discovery dates, sorts undated last',()=>{const rows=timelineFor([{id:'C05-1',published:null,observed:'2026-11-10'},{id:'C02-1',published:'2024-02-01',observed:'2026-11-01'},{id:'x'}]);assert.deepEqual(rows.map(x=>x.id),['C02-1','C05-1','x']);assert.equal(rows[1].dateKind,'Discovered');});
 test('evidence charts count only linked unique records',()=>{const a={companies:{A:{evidence:['C02-1','C02-1','missing']}},evidence:[{id:'C02-1'},{id:'C05-2'}]};assert.equal(evidenceFor(a,'A').length,1);assert.deepEqual(cycleCounts(evidenceFor(a,'A')),[{label:'C02',count:1}]);});
 test('every company renders all sections without inventing forecast scores',()=>{for(const name of Object.keys(atlas.companies)){for(const tab of ['overview','predictions','patterns','actions']){const html=renderIntel(atlas,{company:name,tab,profile:{focus:'Data analytics'}});assert.ok(html.includes('Company intelligence sections'));assert.ok(html.includes(`id="intel-panel-${tab}"`));assert.ok(!html.includes('undefined'));assert.ok(html.includes('Not a live feed'));}}});
 test('unmatched company search is recoverable',()=>{assert.match(renderIntel(atlas,{query:'no-company-123'}),/Clear filters/);});
 test('source text and URLs are safe',()=>{const html=renderEvidence({id:'x',fact:'<script>alert(1)</script>',url:'javascript:alert(1)'});assert.ok(html.includes('&lt;script&gt;'));assert.ok(!html.includes('href='));});
+
+test('all company prediction tabs show a supported rating and explanation',()=>{for(const [company,c] of Object.entries(atlas.companies)){assert.ok(['STRONG','MEDIUM','WEAK'].includes(c.forecast.strength),company);assert.ok(c.forecast.strengthNote,company);const html=renderIntel(atlas,{company,tab:'predictions'});assert.ok(html.includes(`intel-strength-${c.forecast.strength.toLowerCase()}`));assert.ok(html.includes(`>${c.forecast.strength}</strong>`));assert.ok(html.includes('not your chance of getting hired'));}});
+test('unknown ratings are not silently converted into weak evidence',()=>{for(const strength of [undefined,'invalid','<script>']){const html=renderPredictionStrength({strength});assert.ok(html.includes('Not yet reviewed'));assert.ok(!html.includes('intel-strength-weak'));}for(const strength of ['STRONG','MEDIUM','WEAK'])assert.ok(renderPredictionStrength({strength}).includes(`intel-strength-${strength.toLowerCase()}`));});
