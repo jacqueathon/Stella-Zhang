@@ -25,7 +25,9 @@
         "deadline": "2026-12-31",
         "activation": "",
         "test": "",
-        "outcome": "10 November review of C04-H1 | Experian. Original criteria and start of tracking retained. No new trial or scored win."
+        "outcome": "10 November review of C04-H1 | Experian. Original criteria and start of tracking retained. No new trial or scored win.",
+        "strength": "MEDIUM",
+        "strengthNote": "The student programme supports a recruiting cycle, but interviews and offers have not been confirmed."
       },
       "evidence": [
         "C05-E01",
@@ -60,7 +62,9 @@
         "deadline": "2027-12-31",
         "activation": "",
         "test": "",
-        "outcome": "10 November review of C04-H2 | PIMCO. Original criteria and start of tracking retained. No new trial or scored win."
+        "outcome": "10 November review of C04-H2 | PIMCO. Original criteria and start of tracking retained. No new trial or scored win.",
+        "strength": "MEDIUM",
+        "strengthNote": "An established student programme supports another intake, but the 2028 openings are not yet confirmed."
       },
       "evidence": [
         "C05-E03",
@@ -96,7 +100,9 @@
         "deadline": "2027-04-30",
         "activation": "",
         "test": "",
-        "outcome": "10 November review of C04-H3 | Citadel. Original criteria and start of tracking retained. No new trial or scored win."
+        "outcome": "10 November review of C04-H3 | Citadel. Original criteria and start of tracking retained. No new trial or scored win.",
+        "strength": "WEAK",
+        "strengthNote": "The competition is documented, but a competition-linked interview has not been confirmed."
       },
       "evidence": [
         "C05-E05",
@@ -130,7 +136,9 @@
         "deadline": "2027-12-31",
         "activation": "",
         "test": "",
-        "outcome": "10 November review of C04-H4 | Rivian. Original criteria and start of tracking retained. No new trial or scored win."
+        "outcome": "10 November review of C04-H4 | Rivian. Original criteria and start of tracking retained. No new trial or scored win.",
+        "strength": "WEAK",
+        "strengthNote": "The forecast concerns Atlanta. The current Irvine role does not confirm additional Atlanta hiring."
       },
       "evidence": [
         "C05-E07",
@@ -167,7 +175,9 @@
         "deadline": "2027-12-31",
         "activation": "",
         "test": "",
-        "outcome": "10 November review of C04-H5 | Harbinger. Original criteria and start of tracking retained. No new trial or scored win."
+        "outcome": "10 November review of C04-H5 | Harbinger. Original criteria and start of tracking retained. No new trial or scored win.",
+        "strength": "MEDIUM",
+        "strengthNote": "Local recruitment supports demand, but another new role remains unconfirmed."
       },
       "evidence": [
         "C05-E09",
@@ -204,7 +214,9 @@
         "deadline": "2027-12-31",
         "activation": "",
         "test": "",
-        "outcome": "10 November review of C04-H6 | ITT Cannon. Original criteria and start of tracking retained. No new trial or scored win."
+        "outcome": "10 November review of C04-H6 | ITT Cannon. Original criteria and start of tracking retained. No new trial or scored win.",
+        "strength": "WEAK",
+        "strengthNote": "Business growth gives a reason to watch, but new Irvine analyst jobs are not confirmed."
       },
       "evidence": [
         "C05-E11",
@@ -238,7 +250,9 @@
         "deadline": "2027-03-31",
         "activation": "",
         "test": "",
-        "outcome": "10 November review of C04-H7 | UCI / Habitat OC programme. Original criteria and start of tracking retained. No new trial or scored win."
+        "outcome": "10 November review of C04-H7 | UCI / Habitat OC programme. Original criteria and start of tracking retained. No new trial or scored win.",
+        "strength": "WEAK",
+        "strengthNote": "The event is documented, but a follow-on project discussion has not been confirmed."
       },
       "evidence": [
         "C05-E13",
@@ -272,7 +286,9 @@
         "deadline": "2027-12-31",
         "activation": "",
         "test": "",
-        "outcome": "10 November review of C04-H8 | Anduril. Original criteria and start of tracking retained. No new trial or scored win."
+        "outcome": "10 November review of C04-H8 | Anduril. Original criteria and start of tracking retained. No new trial or scored win.",
+        "strength": "MEDIUM",
+        "strengthNote": "Expansion and operations recruitment support the outlook, but a new Long Beach role remains unconfirmed."
       },
       "evidence": [
         "C05-E15",
@@ -307,7 +323,9 @@
         "deadline": "2027-12-31",
         "activation": "",
         "test": "",
-        "outcome": "10 November review of C04-H9 | Edwards Lifesciences. Original criteria and start of tracking retained. No new trial or scored win."
+        "outcome": "10 November review of C04-H9 | Edwards Lifesciences. Original criteria and start of tracking retained. No new trial or scored win.",
+        "strength": "WEAK",
+        "strengthNote": "Local roles exist, but the reviewed experience requirements do not establish a suitable new opening."
       },
       "evidence": [
         "C05-E17",
@@ -347,7 +365,9 @@
         "deadline": "2027-12-31",
         "activation": "",
         "test": "",
-        "outcome": "10 November review of C04-H10 | AbbVie / Allergan Aesthetics. Original criteria and start of tracking retained. No new trial or scored win."
+        "outcome": "10 November review of C04-H10 | AbbVie / Allergan Aesthetics. Original criteria and start of tracking retained. No new trial or scored win.",
+        "strength": "WEAK",
+        "strengthNote": "Local insights work is documented, but specialist experience requirements limit support for a suitable new role."
       },
       "evidence": [
         "C05-E19",
@@ -387,7 +407,9 @@
         "deadline": "2027-12-31",
         "activation": "",
         "test": "",
-        "outcome": "10 November review of C04-H11 | Ingram Micro. Original criteria and start of tracking retained. No new trial or scored win."
+        "outcome": "10 November review of C04-H11 | Ingram Micro. Original criteria and start of tracking retained. No new trial or scored win.",
+        "strength": "MEDIUM",
+        "strengthNote": "The published programme timetable supports future recruitment. Role availability and eligibility still need checking."
       },
       "evidence": [
         "C05-E21",
@@ -423,7 +445,9 @@
         "deadline": "2027-12-31",
         "activation": "",
         "test": "",
-        "outcome": "10 November review of C04-H12 | Taco Bell. Original criteria and start of tracking retained. No new trial or scored win."
+        "outcome": "10 November review of C04-H12 | Taco Bell. Original criteria and start of tracking retained. No new trial or scored win.",
+        "strength": "WEAK",
+        "strengthNote": "Local analytics demand is visible, but the reviewed role requires substantial analytics and SQL experience."
       },
       "evidence": [
         "C05-E23",
@@ -463,7 +487,9 @@
         "deadline": "2027-12-31",
         "activation": "",
         "test": "",
-        "outcome": "10 November review of C04-H13 | Pacific Life. Original criteria and start of tracking retained. No new trial or scored win."
+        "outcome": "10 November review of C04-H13 | Pacific Life. Original criteria and start of tracking retained. No new trial or scored win.",
+        "strength": "WEAK",
+        "strengthNote": "The internship is filled and the other listing could not be verified, so a suitable new opening remains uncertain."
       },
       "evidence": [
         "C05-E25",
@@ -500,7 +526,9 @@
         "deadline": "2027-12-31",
         "activation": "",
         "test": "",
-        "outcome": "10 November review of C04-H14 | Capital Group. Original criteria and start of tracking retained. No new trial or scored win."
+        "outcome": "10 November review of C04-H14 | Capital Group. Original criteria and start of tracking retained. No new trial or scored win.",
+        "strength": "MEDIUM",
+        "strengthNote": "Recurring recruitment and graduate routes support the outlook, but a suitable new Irvine role is not confirmed."
       },
       "evidence": [
         "C05-E27",
@@ -537,7 +565,9 @@
         "deadline": "2027-12-31",
         "activation": "",
         "test": "",
-        "outcome": "10 November review of C04-H15 | Hyundai Motor America. Original criteria and start of tracking retained. No new trial or scored win."
+        "outcome": "10 November review of C04-H15 | Hyundai Motor America. Original criteria and start of tracking retained. No new trial or scored win.",
+        "strength": "WEAK",
+        "strengthNote": "Local analytics work is visible, but one role is filled and the other requires extensive management experience."
       },
       "evidence": [
         "C05-E29",
@@ -574,7 +604,9 @@
         "deadline": "2027-12-31",
         "activation": "",
         "test": "",
-        "outcome": "10 November review of C04-H16 | Disney / Disneyland Resort. Original criteria and start of tracking retained. No new trial or scored win."
+        "outcome": "10 November review of C04-H16 | Disney / Disneyland Resort. Original criteria and start of tracking retained. No new trial or scored win.",
+        "strength": "WEAK",
+        "strengthNote": "The local analytics role supports demand, but its specialist and leadership requirements leave candidate fit uncertain."
       },
       "evidence": [
         "C05-E31",
