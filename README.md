@@ -36,7 +36,7 @@ A typical session:
 | **Jobs & companies** | Search roles, filter by location or saved status, inspect skill overlap and eligibility notes, and save leads. The company tab presents ATLAS.ai assessments with source evidence, counterevidence, forecasts and suggested research steps. |
 | **My network** | Explore priority contacts and LinkedIn links, edit and copy connection/follow-up drafts, browse event snapshots, and use mentorship preparation guidance. Create or edit personal conversation plans. |
 | **To-do list** | Add, edit, complete, reopen or delete tasks. Set optional due dates and High/Medium/Low priorities; search titles; filter by Open, Today, All or Completed; and see overdue tasks and completion counts. |
-| **My progress** | Organize saved jobs, people, companies and events into Saved, In progress, Waiting and Completed stages. Record next-step notes, self-reported referral status and conversation plans. Export progress as JSON. |
+| **My progress** | Organize saved jobs, people, companies and events into Saved, In progress, Waiting and Completed stages. Record next-step notes, self-reported referral status and conversation plans. Export progress as JSON and restore a backup for the same profile. |
 | **My profile** | Edit the demo student's background, goals, skills and availability. Paste résumé notes or import a plain-text résumé, and reset that profile when needed. |
 
 Outreach drafts are prepared for you to review and copy. The app does not send messages, submit applications, register for events or book meetings.
@@ -71,7 +71,7 @@ Workspace state contains the profile, saved leads, conversation plans, outreach 
 
 - Tasks are ordered with open items first, then by due date and priority. Undated tasks follow dated ones. Today and overdue labels use the device's local calendar.
 - Existing workspaces without tasks start with an empty task list while keeping their other progress.
-- **Export progress** downloads the active profile's state as JSON, including tasks. The demo currently has no JSON restore/import screen.
+- **Export progress** downloads the active profile's state as JSON, including tasks. In **My progress**, choose **Restore backup**, select a JSON export for the active demo profile, then review and confirm the replacement. Export your current progress first if you want to keep a copy.
 - **Reset this demo profile** clears that profile's edits and progress after confirmation; the other profiles remain unchanged.
 - If browser storage cannot be written, changes remain in memory for that session and the app displays a warning to export before closing.
 
@@ -86,6 +86,7 @@ The app uses native browser APIs and ES modules, with no frontend framework, pac
 | [`dist/index.html`](dist/index.html) | Page entry point, metadata, stylesheet and module loading. |
 | [`dist/app.mjs`](dist/app.mjs) | Navigation, page rendering, dialogs, event handling, profile persistence and exports. |
 | [`dist/core.mjs`](dist/core.mjs) | Matching, eligibility notes, draft templates, state helpers and text/URL safeguards. |
+| [`dist/workspace-backup.mjs`](dist/workspace-backup.mjs) | JSON export, backup validation and profile-specific storage writes. |
 | [`dist/tasks.mjs`](dist/tasks.mjs) | Task validation, normalization, updates, filtering, sorting and counts. |
 | [`dist/tasks-view.mjs`](dist/tasks-view.mjs) | To-do page, task rows, edit form and home dashboard preview. |
 | [`dist/data.mjs`](dist/data.mjs) and [`dist/atlas-data.json`](dist/atlas-data.json) | Bundled demo data and attributed research snapshots. |
@@ -116,6 +117,7 @@ From the repository root:
 
 ```bash
 node --check dist/app.mjs
+node --check dist/workspace-backup.mjs
 node --check dist/tasks.mjs
 node --check dist/tasks-view.mjs
 node --test tests/*.test.mjs
