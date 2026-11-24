@@ -43,7 +43,7 @@ Outreach drafts are prepared for you to review and copy. The app does not send m
 
 ## How it works
 
-Hydra Stack is a static application. HTML, CSS, JavaScript modules and bundled research files are served to the browser, where the interface, matching rules and workspace state run. There is no application backend or cloud database in this repository.
+Hydra Stack is a static application. HTML, CSS, JavaScript modules and bundled research files are served to the browser, where the interface, matching rules and workspace state run. The demo is browser-only. The separate [customer workspace](docs/customer-accounts.md) uses Supabase Auth and Postgres when configured.
 
 ### Profile-based matching
 
@@ -79,7 +79,7 @@ Storage belongs to the browser and site address. A local preview, the Vercel dem
 
 ## Technology and repository layout
 
-The app uses native browser APIs and ES modules, with no frontend framework, package installation or compilation step. Node.js runs the automated tests; Python is one option for serving the static files locally.
+The app uses native browser APIs and ES modules, with no frontend framework. The demo runs directly from source. Customer mode adds a pinned Supabase browser SDK through an optional static build. Node.js runs the automated tests; Python is one option for serving the static files locally.
 
 | File or directory | Responsibility |
 | --- | --- |
@@ -143,7 +143,7 @@ A ChatGPT Sites copy is a separate publication. GitHub changes do not automatica
 
 ## Current scope
 
-This is a working product demo, not a production service. It currently has no real user authentication, shared team database, cross-device sync, live feed updater, AI provider integration, PDF/résumé parsing, calendar integration or scheduled reminders.
+The published demo uses fictional data. The optional customer route supports account-owned career goals and next steps across devices. Demo features remain browser-local. The project has no live feed updater, AI provider integration, PDF/résumé parsing, calendar integration or scheduled reminders.
 
 Résumé import accepts plain-text `.txt` files for reference. Meeting plans and referral statuses are records entered by the user; they do not verify a booking or referral. Public contact records do not establish mentorship availability or hiring authority. Avoid entering sensitive personal records into demo profiles.
 
