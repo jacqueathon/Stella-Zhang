@@ -1,0 +1,6 @@
+{
+  "name": "hydra-stack",
+  "private": true,
+  "scripts": { "build:account": "node scripts/build-account.mjs", "test": "node --test tests/*.test.mjs" },
+  "dependencies": { "@supabase/supabase-js": "2.119.2" }
+}

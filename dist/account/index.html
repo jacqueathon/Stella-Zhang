@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer"><meta name="theme-color" content="#13243d">
+<title>Customer workspace · Hydra Stack</title>
+<link rel="icon" href="/logo.svg"><link rel="stylesheet" href="/account/account.css">
+</head><body><main>
+<a href="/">← Hydra Stack demo profiles</a><p class="brand">Hydra Stack</p>
+<h1>Customer workspace</h1>
+<p id="status" role="status" aria-live="polite">Connecting to your account…</p>
+<section id="credentials" hidden>
+<form id="login"><label>Email<input name="email" type="email" autocomplete="username" required></label>
+<label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+<button id="submit-login">Sign in</button></form>
+<button id="mode" class="secondary">Create an account</button>
+<button id="reset" class="secondary">Send password reset email</button></section>
+<form id="verify" hidden><button>Continue from email</button></form>
+<form id="recovery" hidden><label>New password<input name="password" type="password" autocomplete="new-password" minlength="8" required></label><button>Update password</button></form>
+<section id="account" hidden><p id="identity"></p>
+<form id="workspace" hidden><label>Career goal<textarea name="career_goal" maxlength="500" rows="3"></textarea></label>
+<label>Next step<textarea name="next_step" maxlength="500" rows="3"></textarea></label><button>Save workspace</button></form>
+<button id="reload" class="secondary" hidden>Reload saved workspace</button>
+<button id="logout" class="secondary">Sign out</button></section>
+<noscript>Enable JavaScript to access your account.</noscript>
+</main><script type="module" src="/account/account.mjs"></script></body></html>
