@@ -82,3 +82,40 @@ test('empty views, completed previews and unavailable-storage notices are explic
   assert.doesNotMatch(taskPage([], 'open', '', false), /Saved automatically/);
   assert.match(taskWidget(toggleTask(add([], 'a'), 'a')), /All caught up/);
 });
+
+test('Overdue filters incomplete past tasks and composes with title search and profile state', () => {
+  const today = '2026-11-11';
+  const alex = initialState(profiles[0]), maya = initialState(profiles[1]);
+  for (const [title, due] of [
+    ['Past proposal', '2026-11-10'], ['Past interview', '2026-11-09'],
+    ['Today proposal', today], ['Future proposal', '2026-11-12'],
+    ['Undated proposal', ''], ['Done proposal', '2026-11-08'],
+  ]) alex.tasks = add(alex.tasks, title, {due});
+  alex.tasks = toggleTask(alex.tasks, 'Done proposal');
+  maya.tasks = add(maya.tasks, 'Maya proposal', {due:'2026-11-10'});
+
+  const overdue = (tasks, query = '') => selectTasks(tasks, 'overdue', query, today).map(task => task.title);
+  assert.deepEqual(overdue(alex.tasks), ['Past interview', 'Past proposal']);
+  assert.equal(taskCounts(alex.tasks, today).overdue, 2);
+  assert.deepEqual(overdue(alex.tasks, ' PROPOSAL '), ['Past proposal']);
+  assert.deepEqual(overdue(maya.tasks), ['Maya proposal']);
+  assert.deepEqual(overdue(toggleTask(alex.tasks, 'Past proposal')), ['Past interview']);
+
+  const html = taskPage(alex.tasks, 'overdue', ' PROPOSAL ', true, today);
+  assert.match(html, /data-filter="overdue" aria-pressed="true">Overdue <span>2<\/span>/);
+  assert.match(html, /Past proposal/);
+  assert.match(html, /Overdue ·/);
+  assert.doesNotMatch(html, /Past interview|Today proposal|Future proposal|Undated proposal|Done proposal/);
+  assert.match(taskPage([], 'overdue', '', true, today), /No overdue tasks/);
+  assert.match(taskPage(alex.tasks, 'overdue', 'other', true, today), /No tasks match your search/);
+});
+
+test('a due-today task becomes overdue immediately after local midnight', () => {
+  const tasks = add([], 'Midnight task', {due:'2026-12-31'});
+  const before = localDay(new Date(2026, 11, 31, 23, 59, 59));
+  const after = localDay(new Date(2027, 0, 1, 0, 0, 0));
+  assert.equal(selectTasks(tasks, 'overdue', '', before).length, 0);
+  assert.equal(taskCounts(tasks, before).overdue, 0);
+  assert.equal(selectTasks(tasks, 'overdue', '', after)[0].title, 'Midnight task');
+  assert.equal(taskCounts(tasks, after).overdue, 1);
+});
