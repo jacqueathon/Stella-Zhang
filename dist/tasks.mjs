@@ -44,10 +44,12 @@ export function saveTask(tasks, values, id, now = new Date().toISOString()) {
 
 export const toggleTask = (tasks, id) => tasks.map(task => task.id === id ? {...task, completed: !task.completed} : task);
 export const deleteTask = (tasks, id) => tasks.filter(task => task.id !== id);
+export const isOverdue = (task, today) => !task.completed && Boolean(task.due) && task.due < today;
+
 export const taskCounts = (tasks, today = localDay()) => ({
   open: tasks.filter(task => !task.completed).length,
   today: tasks.filter(task => !task.completed && task.due === today).length,
-  overdue: tasks.filter(task => !task.completed && task.due && task.due < today).length,
+  overdue: tasks.filter(task => isOverdue(task, today)).length,
   completed: tasks.filter(task => task.completed).length,
 });
 
@@ -55,7 +57,8 @@ export function selectTasks(tasks, filter = 'open', query = '', today = localDay
   const search = query.trim().toLowerCase();
   return tasks.filter(task => {
     const matches = filter === 'all' || (filter === 'completed' ? task.completed :
-      filter === 'today' ? !task.completed && task.due === today : !task.completed);
+      filter === 'today' ? !task.completed && task.due === today :
+      filter === 'overdue' ? isOverdue(task, today) : !task.completed);
     return matches && task.title.toLowerCase().includes(search);
   }).sort((a, b) => Number(a.completed) - Number(b.completed) ||
     (a.due || '9999-12-31').localeCompare(b.due || '9999-12-31') ||
