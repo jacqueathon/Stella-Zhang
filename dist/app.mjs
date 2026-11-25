@@ -1,7 +1,8 @@
 import {renderIntel,renderEvidence,intelTabs} from './intel.mjs';
 import {companyLogo,installLogoFallback} from './company-logos.mjs';
 installLogoFallback(document);
-import {normalizeTasks,saveTask,toggleTask,deleteTask} from './tasks.mjs';
+import {eventStatus,nextLocalMidnight} from './events.mjs';
+import {localDay,normalizeTasks,saveTask,toggleTask,deleteTask} from './tasks.mjs';
 import {taskPage,taskWidget,taskEditForm} from './tasks-view.mjs';
 import {profiles,jobs,people,events} from './data.mjs';
 import {escapeHtml as esc,safeUrl,storageKey,initialState,updateLead,rankJobs,eligibility,connectionDraft,followupDraft,selectEvidence,storageNotice} from './core.mjs';
@@ -10,6 +11,7 @@ const paths={home:'M3 10 12 3l9 7v10H4V10m5 10v-7h6v7',jobs:'M8 7V4h8v3M3 7h18v1
 const icon=n=>`<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="${paths[n]||paths.spark}"/></svg>`;
 let current=null,state=null,view='home',jobTab='jobs',networkTab='people',query='',region='',savedOnly=false,atlas=null,atlasError=false,toastTimer;
 let cache={},storageFailed=false,taskFilter='open';
+let eventFilter='all',eventDayTimer,eventDetailTrigger;
 let intelCompany='Experian',intelTab='overview';
 function loadState(id){if(cache[id])return cache[id];let s=initialState(profiles.find(p=>p.id===id));try{const old=JSON.parse(localStorage.getItem(storageKey(id))||'null');if(old&&old.profile?.id===id&&old.leads&&typeof old.leads==='object'){s={...s,...old,profile:{...s.profile,...old.profile},meetings:Array.isArray(old.meetings)?old.meetings:[],drafts:old.drafts||{}};if(!Array.isArray(s.profile.skills))s.profile.skills=[];}}catch{}s.tasks=normalizeTasks(s.tasks);cache[id]=s;return s;}
 function persist(){cache[current]=state;try{localStorage.setItem(storageKey(current),JSON.stringify(state));storageFailed=false;return true;}catch{storageFailed=true;toast('Changes are kept for this session.');return false;}}
@@ -21,20 +23,91 @@ const sourceLink=(url,label)=>safeUrl(url)?`<a class="source-link" href="${esc(s
 const sourceBtn=(url,label)=>`<a class="btn outline" href="${esc(safeUrl(url))}" target="_blank" rel="noopener noreferrer">${esc(label)} ${icon('external')}</a>`;
 const date=d=>d?new Date(d+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'Unconfirmed';
 function saveButton(id,type){const saved=!!state?.leads[id];return `<button class="bookmark ${saved?'saved':''}" data-action="save" data-id="${esc(id)}" data-type="${type}" aria-label="${saved?'Remove saved lead':'Save lead'}" aria-pressed="${saved}">${icon('bookmark')}</button>`;}
-function landing(){current=null;state=null;app.innerHTML=`<div class="landing"><nav class="landing-nav">${brand()}<span class="nav-end"><span class="demo-badge">TEAM DEMO · 3 PROFILES</span><span class="fruit-logos"><img class="strawberry-logo" src="strawberry.svg" alt="Strawberry logo" width="34" height="34"><img class="eggplant-logo" src="eggplant.svg" alt="Eggplant logo" width="34" height="34"></span></span></nav><main class="landing-main" id="main"><p class="eyebrow">A little direction. A world of possibility.</p><h1>Your next chapter.<br><em>All the right connections.</em></h1><p class="landing-intro">Find your direction, meet your people and turn possibilities into a career. A workspace built around you.</p><div class="journey"><span><b>1</b> Your profile</span>${icon('arrow')}<span><b>2</b> Your opportunities</span>${icon('arrow')}<span><b>3</b> Your next step</span></div><div class="section-heading"><h2>Step into a student’s shoes</h2><span class="subtitle">Choose a demo profile</span></div><div class="grid-3">${profiles.map(p=>`<article class="persona">${avatar(p,'big')}<h3>${esc(p.name)}</h3><span class="subtitle">${esc(p.focus)}</span><p>${esc(p.degree)}<br>${esc(p.university)} · Class of 2027</p><div class="tags">${p.skills.slice(0,3).map(t=>pill(t,'muted')).join('')}</div><button class="btn ${p.id==='alex'?'':'outline'}" data-action="choose" data-id="${p.id}">Explore as ${p.name.split(' ')[0]} ${icon('arrow')}</button></article>`).join('')}</div><p class="landing-bottom">Three fictional profiles, three different paths. This is a working demo, with profile-specific progress saved in this browser. Profile selection does not create an account.</p></main><footer class="landing-footer"><span>HYDRA STACK · STUDENT CAREER NAVIGATION</span><span>Built with Zal Career Command, ATLAS.ai & BDashh research</span></footer></div>`;}
+function landing(){clearTimeout(eventDayTimer);current=null;state=null;app.innerHTML=`<div class="landing"><nav class="landing-nav">${brand()}<span class="nav-end"><span class="demo-badge">TEAM DEMO · 3 PROFILES</span><span class="fruit-logos"><img class="strawberry-logo" src="strawberry.svg" alt="Strawberry logo" width="34" height="34"><img class="eggplant-logo" src="eggplant.svg" alt="Eggplant logo" width="34" height="34"></span></span></nav><main class="landing-main" id="main"><p class="eyebrow">A little direction. A world of possibility.</p><h1>Your next chapter.<br><em>All the right connections.</em></h1><p class="landing-intro">Find your direction, meet your people and turn possibilities into a career. A workspace built around you.</p><div class="journey"><span><b>1</b> Your profile</span>${icon('arrow')}<span><b>2</b> Your opportunities</span>${icon('arrow')}<span><b>3</b> Your next step</span></div><div class="section-heading"><h2>Step into a student’s shoes</h2><span class="subtitle">Choose a demo profile</span></div><div class="grid-3">${profiles.map(p=>`<article class="persona">${avatar(p,'big')}<h3>${esc(p.name)}</h3><span class="subtitle">${esc(p.focus)}</span><p>${esc(p.degree)}<br>${esc(p.university)} · Class of 2027</p><div class="tags">${p.skills.slice(0,3).map(t=>pill(t,'muted')).join('')}</div><button class="btn ${p.id==='alex'?'':'outline'}" data-action="choose" data-id="${p.id}">Explore as ${p.name.split(' ')[0]} ${icon('arrow')}</button></article>`).join('')}</div><p class="landing-bottom">Three fictional profiles, three different paths. This is a working demo, with profile-specific progress saved in this browser. Profile selection does not create an account.</p></main><footer class="landing-footer"><span>HYDRA STACK · STUDENT CAREER NAVIGATION</span><span>Built with Zal Career Command, ATLAS.ai & BDashh research</span></footer></div>`;}
 const navs=[['home','home','For you'],['jobs','jobs','Jobs & companies'],['network','people','My network'],['tasks','check','To-do list'],['progress','progress','My progress'],['profile','user','My profile']];
 function shell(){const p=state.profile;app.innerHTML=`<aside class="sidebar">${brand()}<div class="workspace-label">YOUR WORKSPACE <span>01</span></div><nav class="nav" aria-label="Main navigation">${navs.map(([id,ico,label])=>`<button data-action="nav" data-view="${id}" class="${view===id?'active':''}" ${view===id?'aria-current="page"':''}>${icon(ico)}<span>${label}</span>${id==='jobs'?'<span class="nav-badge">ATLAS</span>':''}</button>`).join('')}</nav><div class="sidebar-note"><span class="spark">${icon('spark')}</span><strong>Small steps. Real momentum.</strong><p>Save a role. Start a conversation. Make your next move count.</p><button class="text-button" data-action="nav" data-view="progress">See your next steps ${icon('arrow')}</button></div><div class="sidebar-bottom"><button class="help" data-action="about">${icon('info')} About this demo</button><button class="help" data-action="switch">${icon('logout')} Switch student profile</button><div class="user-small" role="button" tabindex="0" data-action="nav" data-view="profile">${avatar(p)}<div><span class="name">${esc(p.name)}</span><small>${esc(p.degree)}</small></div></div></div></aside><div class="shell"><header class="topbar"><div class="breadcrumbs">Your workspace <span>/</span> <strong>${navs.find(n=>n[0]===view)?.[2]}</strong></div><div class="mobile-brand brand"><img src="logo.svg" alt="">hydrastack</div><div class="top-actions"><span class="demo-badge">TEAM DEMO</span><button class="icon-button" data-action="about" aria-label="About this demo">${icon('info')}</button><button class="profile-switch" data-action="switch" aria-label="Switch student profile">${avatar(p)}<span>${esc(p.name.split(' ')[0])}</span>${icon('chevron')}</button><span class="fruit-logos"><img class="strawberry-logo" src="strawberry.svg" alt="Strawberry logo" width="34" height="34"><img class="eggplant-logo" src="eggplant.svg" alt="Eggplant logo" width="34" height="34"></span></div></header><main id="main" class="main"></main></div>`;renderPage();}
 function render(){if(!current)return landing();shell();}
 function heading(title,sub,eyebrow='YOUR NEXT CHAPTER',extra=''){return `<header class="page-heading"><div><p class="eyebrow">${eyebrow}</p><h1>${title}</h1><p class="subtitle">${sub}</p></div>${extra}</header>`;}
 function footer(){return `<footer class="footer"><span><span class="count-dot"></span> Demo workspace · saved on this device · no outreach sent</span><button class="text-button" data-action="about">Sources & demo limitations ${icon('arrow')}</button></footer>`;}
-function renderPage(){const main=$('#main');if(!main)return;const draft=view==='tasks'&&$('#taskForm')?Object.fromEntries(new FormData($('#taskForm'))):null;main.innerHTML=({home:home,jobs:jobsPage,network:networkPage,tasks:tasksPage,progress:progressPage,profile:profilePage}[view]||home)()+footer();if(draft)for(const [name,value] of Object.entries(draft))$('#taskForm').elements.namedItem(name).value=value;}
+function renderPage(){const main=$('#main');if(!main)return;const draft=view==='tasks'&&$('#taskForm')?Object.fromEntries(new FormData($('#taskForm'))):null;main.innerHTML=({home:home,jobs:jobsPage,network:networkPage,tasks:tasksPage,progress:progressPage,profile:profilePage}[view]||home)()+footer();updateEventList();if(draft)for(const [name,value] of Object.entries(draft))$('#taskForm').elements.namedItem(name).value=value;}
 function home(){const p=state.profile,ranked=rankJobs(jobs,p),n=Object.keys(state.leads).length;return heading(`A little closer, ${esc(p.name.split(' ')[0])}.`,`Let’s turn your ${esc(p.focus.toLowerCase())} goals into your next move.`,'YOUR CAREER, COMING TOGETHER',`<span class="date-tag">${icon('calendar')} Research snapshot · Nov 2026</span>`)+`<section class="hero"><div class="hero-copy"><p class="eyebrow">GOOD THINGS START WITH A NEXT STEP</p><h2>Your ambition.<br>A clearer way forward.</h2><p>Discover opportunities that connect your experience to the future you’re building.</p><button class="btn light" data-action="nav" data-view="jobs">Explore your opportunities ${icon('arrow')}</button></div><div class="hero-art" aria-hidden="true"><svg viewBox="0 0 240 200"><g fill="none" stroke="#94bc9029"><ellipse cx="120" cy="100" rx="96" ry="77"/><ellipse cx="120" cy="100" rx="73" ry="54"/><ellipse cx="120" cy="100" rx="45" ry="33"/><path d="M24 100h192M120 23v154" stroke-dasharray="3 6"/></g><path d="M45 135q60-12 75-35t73-54M120 100l63 48M120 100 70 44" stroke="#8ea5c6" stroke-width="1.4" stroke-dasharray="3 4" fill="none"/><g fill="#21344e" stroke="#6f839f"><rect x="99" y="78" width="44" height="44" rx="12"/><rect x="25" y="115" width="38" height="38" rx="10"/><rect x="174" y="27" width="38" height="38" rx="10"/><rect x="165" y="130" width="38" height="38" rx="10"/><rect x="51" y="25" width="38" height="38" rx="10"/></g><g fill="none" stroke="#bed0e9" stroke-width="1.5"><path d="M111 108v-7h20v7m-10-20a5 5 0 1 0 0 10 5 5 0 0 0 0-10M35 128h18v13H35zm5 0v-3h8v3M184 38h18v16h-18zm5 0v-3h8v3M61 35h18v17H61zm4 0v-4m10 0v4M175 141h18v15h-18zm4 0v-4h10v4"/></g><g fill="#aec6e8"><circle cx="133" cy="29" r="3"/><circle cx="210" cy="105" r="3"/><circle cx="80" cy="167" r="3"/></g></svg></div><aside class="next-step"><span class="step-icon">${icon('target')}</span><p class="eyebrow">A GOOD PLACE TO START</p><h3>${n?'Keep the conversation moving':'Find a role worth exploring'}</h3><p>${n?'Review your saved leads and choose one small action for today.':'Compare the requirements with your experience. Save a role to plan your next step.'}</p><button class="text-button" data-action="nav" data-view="${n?'progress':'jobs'}">${n?'Open my progress':'Browse matched roles'} ${icon('arrow')}</button></aside></section><div class="stats">${[[n,'Saved opportunities','bookmark'],[people.length,'People to explore','people'],[atlas?Object.keys(atlas.companies).length:'—','Company insights','layers'],[state.meetings.length,'Meeting plans','calendar']].map(([n,label,i])=>`<div class="stat"><span class="stat-icon">${icon(i)}</span><div><strong>${n}</strong><small>${label}</small></div></div>`).join('')}</div>${taskWidget(state.tasks)}<section><div class="section-heading"><div><div class="section-title-line"><h2>A few possibilities for you</h2>${pill('PROFILE MATCH')}</div><p class="subtitle">Based on your skills and goals. Check the source before applying.</p></div><button class="text-button" data-action="nav" data-view="jobs">View all ${icon('arrow')}</button></div><div class="grid-3 home-jobs">${ranked.slice(0,3).map(jobCard).join('')}</div></section><div class="below"><section><div class="section-heading"><h2>Start with a conversation</h2><button class="text-button" data-action="nav" data-view="network">Your network ${icon('arrow')}</button></div><div class="panel">${suggestPeople().slice(0,3).map(p=>`<div class="person-row">${avatar(p)}<div class="info"><strong>${esc(p.name)}</strong><small>${esc(p.company)} · ${esc(p.city)}</small></div><button class="circle-btn" data-action="person" data-id="${p.id}" aria-label="View ${esc(p.name)}">${icon('arrow')}</button></div>`).join('')}</div></section><section><div class="section-heading"><h2>See the bigger picture</h2><span class="pill muted">ATLAS.ai</span></div><div class="insight-preview"><div class="orbit"></div><p class="eyebrow">${icon('layers')} COMPANY INTELLIGENCE</p><h3>Look beyond the job description.</h3><p>Explore company signals, hiring context and questions worth asking. Evidence first. No crystal ball.</p><button class="text-button" data-action="atlas">Explore company insights ${icon('arrow')}</button></div></section></div>`;}
 function jobCard(j){return `<article class="card"><div class="card-top">${companyLogo(j.company)}${saveButton(j.id,'job')}</div><h3>${esc(j.title)}</h3><div class="company-line">${esc(j.company)} <span>·</span> ${icon('pin')}${esc(j.city)}</div><div class="tags">${pill(j.fit||'Worth exploring','teal')}${pill(j.start==='August 2027'?'August 2027 start':j.employment,'muted')}</div><div class="match-reason">${icon('spark')}<span>${esc(j.reasons?.slice(0,2).join(' · ')||j.tags.slice(0,2).join(' + '))}</span></div><div class="card-footer"><small>Snapshot · ${esc(date(j.lastChecked))}</small><button class="text-button" data-action="job" data-id="${j.id}">Explore role ${icon('arrow')}</button></div></article>`;}
 function jobsPage(){const list=rankJobs(jobs,state.profile).filter(j=>(!query||`${j.title} ${j.company} ${j.tags.join(' ')}`.toLowerCase().includes(query.toLowerCase()))&&(!region||j.region===region)&&(!savedOnly||state.leads[j.id]));return heading('Find your kind of opportunity.','A role is a starting point. Understand the fit, the company and your next step.','JOBS & COMPANY INSIGHTS')+`<div class="tabs"><button data-action="jobtab" data-tab="jobs" class="${jobTab==='jobs'?'active':''}">Job opportunities</button><button data-action="jobtab" data-tab="companies" class="${jobTab==='companies'?'active':''}">Company insights <span class="new-label">ATLAS.ai</span></button></div>${jobTab==='companies'?companyList():`<div class="filter-bar"><label class="search-wrap">${icon('search')}<input id="jobSearch" data-search="jobs" type="search" placeholder="Search roles, companies or skills" value="${esc(query)}" aria-label="Search jobs"></label><select id="region" aria-label="Filter by location"><option value="">All locations</option><option ${region==='Orange County'?'selected':''}>Orange County</option><option ${region==='Inland Empire'?'selected':''}>Inland Empire</option></select><button class="btn ${savedOnly?'':'outline'}" data-action="saved-filter">${icon('bookmark')} Saved only</button></div><div class="notice">${icon('info')}<span>These are dated research leads, not a live jobs feed. Current availability, eligibility and sponsorship need rechecking. Matching shows skill overlap, not a hiring probability.</span></div><div class="list-meta"><span>${list.length} opportunities · sorted for ${esc(state.profile.name.split(' ')[0])}</span><span>Sources checked Oct–Nov 2026</span></div><div class="grid-3">${list.length?list.map(jobCard).join(''):`<div class="empty result-none"><strong>No matching opportunities</strong>Try another keyword or location.<br><button class="btn outline small" data-action="clear">Clear filters</button></div>`}</div>`}`;}
 function companyList(){if(!atlas)return `<div class="empty"><strong>${atlasError?'Company research could not load':'Loading the research snapshot…'}</strong>${atlasError?'<button class="btn outline" data-action="reload-atlas">Try again</button>':''}</div>`;const names=Object.keys(atlas.companies).filter(n=>!query||n.toLowerCase().includes(query.toLowerCase()));if(!names.includes(intelCompany)&&names.length)intelCompany=names[0];return renderIntel(atlas,{company:intelCompany,tab:intelTab,query,profile:state.profile,saved:!!state.leads['company:'+intelCompany]});}
 function suggestPeople(){const companies=rankJobs(jobs,state.profile).slice(0,4).map(j=>j.company);return [...people].sort((a,b)=>Number(companies.includes(b.company))-Number(companies.includes(a.company)));}
 function networkPage(){return heading('The right people. A real conversation.','Build relationships with purpose, from the first hello to the next meeting.','PERSONALISED NETWORKING',`<button class="btn outline" data-action="meeting">${icon('plus')} Plan a meeting</button>`)+`<div class="tabs">${[['people','Priority contacts'],['events','Events'],['mentors','Mentorship']].map(([t,l])=>`<button data-action="networktab" data-tab="${t}" class="${networkTab===t?'active':''}">${l}</button>`).join('')}</div>${networkTab==='people'?`<div class="filter-bar"><label class="search-wrap">${icon('search')}<input data-search="people" type="search" value="${esc(query)}" placeholder="Search people, companies or locations" aria-label="Search people"></label></div><div class="notice">${icon('people')}<span>Public recruiter profiles from BDashh’s 28 October 2026 snapshot. Current roles need rechecking. No confirmed vacancy ownership, mentorship availability or referral offers are implied.</span></div><div class="grid-3 people-grid">${suggestPeople().filter(p=>!query||`${p.name} ${p.company} ${p.city}`.toLowerCase().includes(query.toLowerCase())).map(p=>`<article class="card contact-card"><div class="card-top"><div class="contact-identity">${avatar(p)}${companyLogo(p.company)}</div>${saveButton(p.id,'person')}</div><h3 class="contact-name">${esc(p.name)}</h3><p class="role contact-role">${esc(p.title)}<br><strong>${esc(p.company)}</strong></p><div class="company-line">${icon('pin')} ${esc(p.city)}</div><div class="tags">${pill(p.focus,'muted')}</div><div class="match-reason">${icon('people')}<span>${esc(p.relationship)} · Hiring link unconfirmed</span></div><div class="contact-links">${safeUrl(p.sourceUrl).startsWith('https://www.linkedin.com/in/')?`<a class="btn linkedin-button" href="${esc(safeUrl(p.sourceUrl))}" target="_blank" rel="noopener noreferrer" aria-label="View ${esc(p.name)} on LinkedIn">LinkedIn ${icon('arrow')}</a>`:''}</div><div class="card-footer"><small>Snapshot · 28 Oct 2026</small><button class="text-button" data-action="person" data-id="${p.id}">Plan a conversation ${icon('arrow')}</button></div></article>`).join('')||'<div class="empty result-none">No people match this search.</div>'}</div>`:networkTab==='events'?eventList():mentorList()}`;}
-function eventList(){return `<div class="notice">${icon('calendar')}<span>Event examples from the 10 November 2026 research snapshot. Times are Pacific. Check dates, registration and eligibility on the organiser’s page before making plans.</span></div><div class="grid-3">${events.map(e=>`<article class="card event-card"><div class="card-top"><div class="event-date"><small>NOV</small><strong>${e.date.slice(-2)}</strong></div>${saveButton(e.id,'event')}</div><h3>${esc(e.title)}</h3><div class="company-line">${icon('pin')}${esc(e.city)} · ${esc(e.time)}</div><p>${esc(e.description)}</p><div class="tags">${e.tags.map(t=>pill(t)).join('')}</div><p class="facts">${esc(e.price)}</p><div class="card-footer"><small>${new Date(e.date+'T23:59:59-08:00')<new Date()?'Past event · reference only':'Availability needs recheck'}</small><button class="text-button" data-action="event" data-id="${e.id}">Event details ${icon('arrow')}</button></div></article>`).join('')}<article class="card"><div class="card-top"><span class="stat-icon">${icon('people')}</span>${pill('MAKE IT COUNT','muted')}</div><h3>Go with a conversation in mind.</h3><p class="facts">Choose one question and two people you’d like to learn from. Follow up with a specific detail from your conversation.</p><ul class="checklist"><li>${icon('check')} Check eligibility and registration</li><li>${icon('check')} Prepare a 20-second introduction</li><li>${icon('check')} Record a next step after meeting</li></ul></article></div>`;}
+const eventFilters = [['all', 'All'], ['upcoming', 'Upcoming'], ['past', 'Past']];
+const eventMonth = new Intl.DateTimeFormat('en-GB', {month:'short', timeZone:'UTC'});
+
+function eventCard(event) {
+  return `<article class="card event-card" data-event-date="${esc(event.date)}">
+    <div class="card-top">
+      <div class="event-date"><small>${eventMonth.format(new Date(event.date)).toUpperCase()}</small><strong>${event.date.slice(-2)}</strong></div>
+      ${saveButton(event.id,'event')}
+    </div>
+    <h3>${esc(event.title)}</h3>
+    <div class="company-line">${icon('pin')}${esc(event.city)} · ${esc(event.time)}</div>
+    <p>${esc(event.description)}</p><div class="tags">${event.tags.map(t=>pill(t)).join('')}</div>
+    <p class="facts">${esc(event.price)}</p>
+    <div class="card-footer"><small data-event-status></small>
+      <button class="text-button" data-action="event" data-id="${esc(event.id)}">Event details ${icon('arrow')}</button>
+    </div>
+  </article>`;
+}
+
+function eventList() {
+  return `<div class="notice">${icon('calendar')}<span>Event examples from the 10 November 2026 research snapshot. Times are Pacific. Check dates, registration and eligibility on the organiser’s page before making plans.</span></div>
+    <div class="tabs event-filters" id="eventFilters" role="group" aria-label="Event status">
+      ${eventFilters.map(([value,label])=>`<button type="button" data-action="event-filter" data-filter="${value}" aria-pressed="false" aria-controls="eventResults">${label} <span></span></button>`).join('')}
+    </div>
+    <p class="visually-hidden" id="eventCount" role="status"></p>
+    <div class="grid-3" id="eventResults">
+      ${events.map(eventCard).join('')}
+      <div class="empty result-none" id="noEvents" hidden>
+        <p></p><button class="text-button" data-action="event-filter" data-filter="all">Show all events</button>
+      </div>
+      <article class="card"><div class="card-top"><span class="stat-icon">${icon('people')}</span>${pill('MAKE IT COUNT','muted')}</div><h3>Go with a conversation in mind.</h3><p class="facts">Choose one question and two people you’d like to learn from. Follow up with a specific detail from your conversation.</p><ul class="checklist"><li>${icon('check')} Check eligibility and registration</li><li>${icon('check')} Prepare a 20-second introduction</li><li>${icon('check')} Record a next step after meeting</li></ul></article>
+    </div>`;
+}
+
+function updateEventList() {
+  clearTimeout(eventDayTimer);
+  const filters = $('#eventFilters');
+  if (!filters) return;
+  const now = new Date();
+  const today = localDay(now);
+  const counts = {all:0, upcoming:0, past:0};
+  const focused = document.activeElement;
+  let restoreFocus = false;
+  for (const card of document.querySelectorAll('[data-event-date]')) {
+    const status = eventStatus(card.dataset.eventDate, today);
+    counts.all++;
+    counts[status]++;
+    card.querySelector('[data-event-status]').textContent = status === 'past'
+      ? 'Past event · reference only' : 'Availability needs recheck';
+    card.hidden = eventFilter !== 'all' && eventFilter !== status;
+    if (card.hidden && card.contains(focused)) restoreFocus = true;
+  }
+  for (const button of filters.querySelectorAll('button')) {
+    const filter = button.dataset.filter;
+    button.classList.toggle('active', filter === eventFilter);
+    button.setAttribute('aria-pressed', String(filter === eventFilter));
+    button.querySelector('span').textContent = counts[filter];
+  }
+  const count = counts[eventFilter];
+  const filterLabel = eventFilters.find(([value])=>value === eventFilter)[1];
+  const announcement = `${filterLabel}: ${count} ${count === 1 ? 'event' : 'events'}.`;
+  const status = $('#eventCount');
+  if (status.textContent !== announcement) status.textContent = announcement;
+  const empty = $('#noEvents');
+  empty.hidden = count > 0;
+  empty.querySelector('p').textContent = eventFilter === 'all' ? 'No events in this snapshot.' :
+    `No ${eventFilter} events in this snapshot. Show all events to browse the full list.`;
+  empty.querySelector('button').hidden = eventFilter === 'all';
+  if (restoreFocus || (empty.hidden && empty.contains(focused))) filters.querySelector('.active').focus();
+  // Reclassify an open board at the next local midnight, including DST changes.
+  eventDayTimer = setTimeout(updateEventList, nextLocalMidnight(now) - now);
+}
 function mentorList(){return `<div class="notice">${icon('book')}<span>Mentorship starts with permission and a focused question. These are preparation tools, not a directory of available mentors.</span></div><div class="below"><div class="panel"><h2>Build a mentorship plan</h2>${[['Choose your learning goal',`Focus on one area, such as ${state.profile.skills.slice(0,2).join(' or ')}.`],['Find relevant experience','Look for someone whose career path helps answer your question. Verify their current role.'],['Ask for a small first conversation','Offer a specific topic and a short, flexible meeting. Do not assume ongoing availability.'],['Agree a next step together','Record what you learned and follow through on any agreed action.']].map(([h,p],i)=>`<div class="mini-step"><b>${i+1}</b><div><strong>${esc(h)}</strong><p>${esc(p)}</p></div></div>`).join('')}<div class="form-actions"><button class="btn" data-action="meeting">Create a conversation plan ${icon('arrow')}</button></div></div><div class="panel"><p class="eyebrow">YOUR STARTING QUESTION</p><h3>“What would you focus on learning first if you were entering this field today?”</h3><p class="facts">Connect your question to a verified part of their work. Keep the first request small and make it easy to decline.</p><button class="text-button" data-action="networktab" data-tab="people">Explore potential connections ${icon('arrow')}</button><div class="notice">${icon('info')} Recruiters can offer hiring context. That does not mean they are offering mentorship.</div></div></div>`;}
 function record(id){if(id.startsWith('company:'))return {id,type:'company',title:id.slice(8),company:'ATLAS.ai company insight'};return [...jobs,...people,...events].find(x=>x.id===id);}
 function tasksPage(){return heading('One step at a time.','Plan your day, keep track of deadlines and make room for what matters.','MY TO-DO LIST',`<button class="btn outline" data-action="export">${icon('download')} Export progress</button>`)+(storageFailed?'<div class="notice amber" role="status">Tasks are kept for this session only. Browser storage is unavailable; export progress before closing.</div>':'')+taskPage(state.tasks,taskFilter,query,!storageFailed);}
@@ -49,9 +122,39 @@ function meetingForm(personId='',meetingId=''){const old=state.meetings.find(m=>
 function about(){openModal('A clearer path, with honest context.',`<h3>A working team demo</h3><p>Alex, Maya and Jordan are fictional student profiles. Your changes are saved separately per profile in this browser. These are not authenticated accounts, and there is no cross-device or shared team database.</p><h3>Recommendations</h3><p>Suggestions use transparent skill and career-focus rules. They do not run a live AI model, analyse uploaded résumés or predict the likelihood of getting hired. Profile experience and résumé notes remain available for your own preparation.</p><h3>Research provenance</h3><p>Job and recruiter examples come from Brian Uong’s BDashh source snapshot and Zal Career Command’s dated research. ATLAS.ai preserves the C05 company evidence, counterevidence and original forecasts. Current job availability and recruiter responsibilities have not been reverified for this demo.</p>${sourceLink('https://github.com/Brian-Uong/bdashh-Personal-Dashboard','Brian Uong · BDashh source repository')}<h3>You stay in control</h3><p>No applications, referrals, emails or connection requests are sent. A recruiter profile does not establish an available referral or mentor. Meeting plans are not invitations. No private Google Sheets, Outlook accounts or personal browser notes are connected.</p><h3>Team handover</h3><p>The new source retains the original Zal code outside the published assets. Brian’s repository is read-only to the current connection, so this demo is published as a separate Site.</p>`,'SOURCES & LIMITATIONS');}
 async function loadAtlas(){atlasError=false;try{const r=await fetch('atlas-data.json');if(!r.ok)throw Error();atlas=await r.json();}catch{atlasError=true;}if(current&&(view==='home'||view==='jobs'))renderPage();}
 function navigate(to){view=to;query='';region='';savedOnly=false;if(modal.open)modal.close();render();window.scrollTo({top:0,behavior:'instant'});}
-function save(id,type,keep=false){if(keep&&state.leads[id]){toast('Already saved in your progress');return;}if(state.leads[id]){delete state.leads[id];toast('Removed from your saved leads');}else{state=updateLead(state,id,{type,stage:'Saved',savedAt:new Date().toISOString()});toast('Saved to your progress');}persist();renderPage();if(keep){const b=modal.querySelector('[data-action="save-detail"]');if(b)b.innerHTML=icon('check')+' Saved to my progress';}}
+function save(id,type,keep=false){
+  if(keep&&state.leads[id]){toast('Already saved in your progress');return;}
+  if(state.leads[id]){
+    delete state.leads[id];
+    toast('Removed from your saved leads');
+  }else{
+    state=updateLead(state,id,{type,stage:'Saved',savedAt:new Date().toISOString()});
+    toast('Saved to your progress');
+  }
+  persist();
+  const bookmark = type === 'event' && $(`#eventResults button[data-type="event"][data-id="${CSS.escape(id)}"]`);
+  if(bookmark){
+    const saved = Boolean(state.leads[id]);
+    bookmark.classList.toggle('saved',saved);
+    bookmark.setAttribute('aria-pressed',String(saved));
+    bookmark.setAttribute('aria-label',saved?'Remove saved lead':'Save lead');
+  }else renderPage();
+  if(keep){
+    const button = modal.querySelector('[data-action="save-detail"]');
+    if(button) button.innerHTML=icon('check')+' Saved to my progress';
+  }
+}
+
+modal.addEventListener('close',()=>{
+  // A queued close event can arrive after another event is opened.
+  if(modal.open) return;
+  if(eventDetailTrigger?.isConnected && eventDetailTrigger.closest('.event-card').hidden){
+    $('#eventFilters .active')?.focus();
+  }
+  eventDetailTrigger = null;
+});
 document.addEventListener('click',async e=>{const b=e.target.closest('[data-action]');if(!b)return;const a=b.dataset.action,id=b.dataset.id;
- if(a==='choose'){current=id;state=loadState(id);view=state.onboarded?'home':'profile';query='';taskFilter='open';render();window.scrollTo(0,0);}
+ if(a==='choose'){current=id;state=loadState(id);view=state.onboarded?'home':'profile';query='';taskFilter='open';eventFilter='all';render();window.scrollTo(0,0);}
  if(a==='switch'){if(modal.open)modal.close();landing();window.scrollTo(0,0);}
  if(a==='task-filter'){taskFilter=b.dataset.filter;renderPage();$('.task-filters .active')?.focus();}
  if(a==='edit-task'){const task=state.tasks.find(t=>t.id===id);if(task)openModal('Edit your task',taskEditForm(task),'MY TO-DO LIST');}
@@ -66,11 +169,18 @@ document.addEventListener('click',async e=>{const b=e.target.closest('[data-acti
  if(a==='intel-tab'){intelTab=b.dataset.tab;renderPage();document.getElementById('intel-tab-'+intelTab)?.focus({preventScroll:true});}
  if(a==='intel-evidence'){const evidence=atlas?.evidence.find(e=>e.id===id);if(evidence)openModal('Source briefing',renderEvidence(evidence),'ATLAS.ai · EVIDENCE');}
  if(a==='intel-scroll')document.querySelector('.intel-timeline')?.scrollBy({left:Number(b.dataset.direction)*320,behavior:'smooth'});
- if(a==='event')eventDetail(id);
+ if(a==='event'){
+   eventDetailTrigger=b.closest('#eventResults')?b:null;
+   eventDetail(id);
+ }
  if(a==='save'||a==='save-detail')save(id,b.dataset.type,a==='save-detail');
  if(a==='jobtab'){jobTab=b.dataset.tab;query='';renderPage();}
  if(a==='atlas'){jobTab='companies';navigate('jobs');}
- if(a==='networktab'){networkTab=b.dataset.tab;query='';renderPage();}
+ if(a==='networktab'){networkTab=b.dataset.tab;query='';renderPage();$('.tabs [data-action="networktab"].active')?.focus({preventScroll:true});}
+ if(a==='event-filter'){
+   eventFilter=b.dataset.filter;
+   updateEventList();
+ }
  if(a==='saved-filter'){savedOnly=!savedOnly;renderPage();}
  if(a==='clear'){query='';region='';savedOnly=false;renderPage();}
  if(a==='meeting')meetingForm(id);
@@ -107,6 +217,7 @@ document.addEventListener('submit',e=>{
  else{$('#taskForm input[name="title"]')?.focus();}
  toast(editing?'Task updated':'Task added');
 });
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)updateEventList();});
 landing();loadAtlas();
 
 
