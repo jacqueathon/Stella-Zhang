@@ -1,18 +1,54 @@
 import {renderIntel,renderEvidence,intelTabs} from './intel.mjs';
 import {companyLogo,installLogoFallback} from './company-logos.mjs';
 installLogoFallback(document);
-import {normalizeTasks,saveTask,toggleTask,deleteTask} from './tasks.mjs';
-import {taskPage,taskWidget,taskEditForm} from './tasks-view.mjs';
+import {saveTask,toggleTask,deleteTask} from './tasks.mjs';
+import {createProfileStore} from './profile-store.mjs';
+import {taskPage,taskWidget,taskEditForm,taskStorageNote} from './tasks-view.mjs';
 import {profiles,jobs,people,events} from './data.mjs';
-import {escapeHtml as esc,safeUrl,storageKey,initialState,updateLead,rankJobs,eligibility,connectionDraft,followupDraft,selectEvidence,storageNotice} from './core.mjs';
+import {escapeHtml as esc,safeUrl,initialState,rankJobs,eligibility,connectionDraft,followupDraft,selectEvidence,storageNotice} from './core.mjs';
 const $=s=>document.querySelector(s),app=$('#app'),modal=$('#modal');
 const paths={home:'M3 10 12 3l9 7v10H4V10m5 10v-7h6v7',jobs:'M8 7V4h8v3M3 7h18v14H3zM3 12c5 3 13 3 18 0M10 13h4',people:'M16 21v-3c0-3-8-3-8 0v3M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M18 5a3 3 0 0 1 0 6m2 4c2 0 3 1 3 3',progress:'M4 20V10h4v10m4 0V4h4v16m4 0v-7h3v7',user:'M20 21v-3a8 8 0 0 0-16 0v3M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0',arrow:'M4 12h15m-6-6 6 6-6 6',chevron:'m8 10 4 4 4-4',bookmark:'M6 3h12v19l-6-4-6 4z',spark:'m12 2 3 7 7 3-7 3-3 7-3-7-7-3 7-3z',pin:'M19 10c0 5-7 12-7 12S5 15 5 10a7 7 0 0 1 14 0M14 10a2 2 0 1 1-4 0 2 2 0 0 1 4 0',calendar:'M4 5h16v16H4zM4 10h16M8 3v5m8-5v5',search:'M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0m-2 5 6 6',close:'m6 6 12 12M6 18 18 6',external:'M14 3h7v7m0-7L10 14m0-10H4v16h16v-6',check:'m5 12 4 4L20 5',info:'M12 8v.1m0 4v5M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0',target:'M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0M17 12a5 5 0 1 1-10 0 5 5 0 0 1 10 0M12 10v4m-2-2h4',book:'M3 4h7l2 3 2-3h7v16h-7l-2 2-2-2H3zM12 7v15',mail:'M3 5h18v14H3zm0 0 9 8 9-8',download:'M12 3v13m-5-5 5 5 5-5M4 17v4h16v-4',clock:'M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0m-10-6v6l4 2',layers:'m12 2 10 6-10 6L2 8zm-10 10 10 6 10-6M2 17l10 6 10-6',plus:'M12 5v14M5 12h14',copy:'M9 9h12v12H9zM5 15H3V3h12v2',refresh:'M20 8a9 9 0 1 0 1 8M20 3v5h-5',logout:'M10 3H3v18h7m4-14 5 5-5 5m-6-5h11'};
 const icon=n=>`<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="${paths[n]||paths.spark}"/></svg>`;
 let current=null,state=null,view='home',jobTab='jobs',networkTab='people',query='',region='',savedOnly=false,atlas=null,atlasError=false,toastTimer;
-let cache={},storageFailed=false,taskFilter='open';
+const newWorkspace = id => initialState(profiles.find(p=>p.id===id));
+const profileStore = createProfileStore(newWorkspace, () => localStorage, navigator.locks, id=>{
+  if(current===id) setStorageFailed(true);
+});
+let profileSession=0,uiRevision=0,storageFailed=false,taskFilter='open';
 let intelCompany='Experian',intelTab='overview';
-function loadState(id){if(cache[id])return cache[id];let s=initialState(profiles.find(p=>p.id===id));try{const old=JSON.parse(localStorage.getItem(storageKey(id))||'null');if(old&&old.profile?.id===id&&old.leads&&typeof old.leads==='object'){s={...s,...old,profile:{...s.profile,...old.profile},meetings:Array.isArray(old.meetings)?old.meetings:[],drafts:old.drafts||{}};if(!Array.isArray(s.profile.skills))s.profile.skills=[];}}catch{}s.tasks=normalizeTasks(s.tasks);cache[id]=s;return s;}
-function persist(){cache[current]=state;try{localStorage.setItem(storageKey(current),JSON.stringify(state));storageFailed=false;return true;}catch{storageFailed=true;toast('Changes are kept for this session.');return false;}}
+const taskStorageWarning='<div class="notice amber">Tasks are kept for this session only. Browser storage is unavailable. Export progress before closing.</div>';
+
+function setStorageFailed(failed){
+  if(storageFailed===failed) return;
+  storageFailed=failed;
+  // The storage notice describes the active profile. Updating it in place
+  // leaves any newer dialog, focus, drafts, and action feedback alone.
+  const warning=$('#task-storage-warning');
+  if(warning) warning.innerHTML=failed?taskStorageWarning:'';
+  const note=$('.task-storage-note');
+  if(note) note.textContent=taskStorageNote(!failed);
+}
+function loadState(id){
+  storageFailed=profileStore.isSessionOnly(id);
+  return profileStore.read(id);
+}
+
+function claimMutationUi(){
+  const revision=++uiRevision, session=profileSession;
+  return ()=>revision===uiRevision && session===profileSession;
+}
+
+async function persist(change,{signal,ownsUi=claimMutationUi()}={}){
+  const id=current, session=profileSession;
+  const update=await profileStore.update(id,change,signal);
+  if(profileSession!==session) return null;
+  // A submitted write still commits, but its completion can no longer drive
+  // the screen after another dialog, page, or mutation has taken ownership.
+  if(!ownsUi()) return null;
+  state=update.state;
+  setStorageFailed(!update.durable || profileStore.isSessionOnly(id));
+  return update;
+}
 function toast(t){$('#toast').textContent=storageNotice(t,!storageFailed);$('#toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').classList.remove('show'),3500);}
 const avatar=(p,cls='')=>`<span class="avatar ${esc(p.colour||'teal')} ${cls}">${esc(p.initials||p.name.split(' ').map(x=>x[0]).slice(0,2).join(''))}</span>`;
 const brand=()=>`<div class="brand"><img src="logo.svg" alt=""><div>hydra<span>stack</span></div></div>`;
@@ -21,7 +57,7 @@ const sourceLink=(url,label)=>safeUrl(url)?`<a class="source-link" href="${esc(s
 const sourceBtn=(url,label)=>`<a class="btn outline" href="${esc(safeUrl(url))}" target="_blank" rel="noopener noreferrer">${esc(label)} ${icon('external')}</a>`;
 const date=d=>d?new Date(d+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'Unconfirmed';
 function saveButton(id,type){const saved=!!state?.leads[id];return `<button class="bookmark ${saved?'saved':''}" data-action="save" data-id="${esc(id)}" data-type="${type}" aria-label="${saved?'Remove saved lead':'Save lead'}" aria-pressed="${saved}">${icon('bookmark')}</button>`;}
-function landing(){current=null;state=null;app.innerHTML=`<div class="landing"><nav class="landing-nav">${brand()}<span class="nav-end"><span class="demo-badge">TEAM DEMO · 3 PROFILES</span><span class="fruit-logos"><img class="strawberry-logo" src="strawberry.svg" alt="Strawberry logo" width="34" height="34"><img class="eggplant-logo" src="eggplant.svg" alt="Eggplant logo" width="34" height="34"></span></span></nav><main class="landing-main" id="main"><p class="eyebrow">A little direction. A world of possibility.</p><h1>Your next chapter.<br><em>All the right connections.</em></h1><p class="landing-intro">Find your direction, meet your people and turn possibilities into a career. A workspace built around you.</p><div class="journey"><span><b>1</b> Your profile</span>${icon('arrow')}<span><b>2</b> Your opportunities</span>${icon('arrow')}<span><b>3</b> Your next step</span></div><div class="section-heading"><h2>Step into a student’s shoes</h2><span class="subtitle">Choose a demo profile</span></div><div class="grid-3">${profiles.map(p=>`<article class="persona">${avatar(p,'big')}<h3>${esc(p.name)}</h3><span class="subtitle">${esc(p.focus)}</span><p>${esc(p.degree)}<br>${esc(p.university)} · Class of 2027</p><div class="tags">${p.skills.slice(0,3).map(t=>pill(t,'muted')).join('')}</div><button class="btn ${p.id==='alex'?'':'outline'}" data-action="choose" data-id="${p.id}">Explore as ${p.name.split(' ')[0]} ${icon('arrow')}</button></article>`).join('')}</div><p class="landing-bottom">Three fictional profiles, three different paths. This is a working demo, with profile-specific progress saved in this browser. Profile selection does not create an account.</p></main><footer class="landing-footer"><span>HYDRA STACK · STUDENT CAREER NAVIGATION</span><span>Built with Zal Career Command, ATLAS.ai & BDashh research</span></footer></div>`;}
+function landing(){profileSession++;current=null;state=null;app.innerHTML=`<div class="landing"><nav class="landing-nav">${brand()}<span class="nav-end"><span class="demo-badge">TEAM DEMO · 3 PROFILES</span><span class="fruit-logos"><img class="strawberry-logo" src="strawberry.svg" alt="Strawberry logo" width="34" height="34"><img class="eggplant-logo" src="eggplant.svg" alt="Eggplant logo" width="34" height="34"></span></span></nav><main class="landing-main" id="main"><p class="eyebrow">A little direction. A world of possibility.</p><h1>Your next chapter.<br><em>All the right connections.</em></h1><p class="landing-intro">Find your direction, meet your people and turn possibilities into a career. A workspace built around you.</p><div class="journey"><span><b>1</b> Your profile</span>${icon('arrow')}<span><b>2</b> Your opportunities</span>${icon('arrow')}<span><b>3</b> Your next step</span></div><div class="section-heading"><h2>Step into a student’s shoes</h2><span class="subtitle">Choose a demo profile</span></div><div class="grid-3">${profiles.map(p=>`<article class="persona">${avatar(p,'big')}<h3>${esc(p.name)}</h3><span class="subtitle">${esc(p.focus)}</span><p>${esc(p.degree)}<br>${esc(p.university)} · Class of 2027</p><div class="tags">${p.skills.slice(0,3).map(t=>pill(t,'muted')).join('')}</div><button class="btn ${p.id==='alex'?'':'outline'}" data-action="choose" data-id="${p.id}">Explore as ${p.name.split(' ')[0]} ${icon('arrow')}</button></article>`).join('')}</div><p class="landing-bottom">Three fictional profiles, three different paths. This is a working demo, with profile-specific progress saved in this browser. Profile selection does not create an account.</p></main><footer class="landing-footer"><span>HYDRA STACK · STUDENT CAREER NAVIGATION</span><span>Built with Zal Career Command, ATLAS.ai & BDashh research</span></footer></div>`;}
 const navs=[['home','home','For you'],['jobs','jobs','Jobs & companies'],['network','people','My network'],['tasks','check','To-do list'],['progress','progress','My progress'],['profile','user','My profile']];
 function shell(){const p=state.profile;app.innerHTML=`<aside class="sidebar">${brand()}<div class="workspace-label">YOUR WORKSPACE <span>01</span></div><nav class="nav" aria-label="Main navigation">${navs.map(([id,ico,label])=>`<button data-action="nav" data-view="${id}" class="${view===id?'active':''}" ${view===id?'aria-current="page"':''}>${icon(ico)}<span>${label}</span>${id==='jobs'?'<span class="nav-badge">ATLAS</span>':''}</button>`).join('')}</nav><div class="sidebar-note"><span class="spark">${icon('spark')}</span><strong>Small steps. Real momentum.</strong><p>Save a role. Start a conversation. Make your next move count.</p><button class="text-button" data-action="nav" data-view="progress">See your next steps ${icon('arrow')}</button></div><div class="sidebar-bottom"><button class="help" data-action="about">${icon('info')} About this demo</button><button class="help" data-action="switch">${icon('logout')} Switch student profile</button><div class="user-small" role="button" tabindex="0" data-action="nav" data-view="profile">${avatar(p)}<div><span class="name">${esc(p.name)}</span><small>${esc(p.degree)}</small></div></div></div></aside><div class="shell"><header class="topbar"><div class="breadcrumbs">Your workspace <span>/</span> <strong>${navs.find(n=>n[0]===view)?.[2]}</strong></div><div class="mobile-brand brand"><img src="logo.svg" alt="">hydrastack</div><div class="top-actions"><span class="demo-badge">TEAM DEMO</span><button class="icon-button" data-action="about" aria-label="About this demo">${icon('info')}</button><button class="profile-switch" data-action="switch" aria-label="Switch student profile">${avatar(p)}<span>${esc(p.name.split(' ')[0])}</span>${icon('chevron')}</button><span class="fruit-logos"><img class="strawberry-logo" src="strawberry.svg" alt="Strawberry logo" width="34" height="34"><img class="eggplant-logo" src="eggplant.svg" alt="Eggplant logo" width="34" height="34"></span></div></header><main id="main" class="main"></main></div>`;renderPage();}
 function render(){if(!current)return landing();shell();}
@@ -37,28 +73,169 @@ function networkPage(){return heading('The right people. A real conversation.','
 function eventList(){return `<div class="notice">${icon('calendar')}<span>Event examples from the 10 November 2026 research snapshot. Times are Pacific. Check dates, registration and eligibility on the organiser’s page before making plans.</span></div><div class="grid-3">${events.map(e=>`<article class="card event-card"><div class="card-top"><div class="event-date"><small>NOV</small><strong>${e.date.slice(-2)}</strong></div>${saveButton(e.id,'event')}</div><h3>${esc(e.title)}</h3><div class="company-line">${icon('pin')}${esc(e.city)} · ${esc(e.time)}</div><p>${esc(e.description)}</p><div class="tags">${e.tags.map(t=>pill(t)).join('')}</div><p class="facts">${esc(e.price)}</p><div class="card-footer"><small>${new Date(e.date+'T23:59:59-08:00')<new Date()?'Past event · reference only':'Availability needs recheck'}</small><button class="text-button" data-action="event" data-id="${e.id}">Event details ${icon('arrow')}</button></div></article>`).join('')}<article class="card"><div class="card-top"><span class="stat-icon">${icon('people')}</span>${pill('MAKE IT COUNT','muted')}</div><h3>Go with a conversation in mind.</h3><p class="facts">Choose one question and two people you’d like to learn from. Follow up with a specific detail from your conversation.</p><ul class="checklist"><li>${icon('check')} Check eligibility and registration</li><li>${icon('check')} Prepare a 20-second introduction</li><li>${icon('check')} Record a next step after meeting</li></ul></article></div>`;}
 function mentorList(){return `<div class="notice">${icon('book')}<span>Mentorship starts with permission and a focused question. These are preparation tools, not a directory of available mentors.</span></div><div class="below"><div class="panel"><h2>Build a mentorship plan</h2>${[['Choose your learning goal',`Focus on one area, such as ${state.profile.skills.slice(0,2).join(' or ')}.`],['Find relevant experience','Look for someone whose career path helps answer your question. Verify their current role.'],['Ask for a small first conversation','Offer a specific topic and a short, flexible meeting. Do not assume ongoing availability.'],['Agree a next step together','Record what you learned and follow through on any agreed action.']].map(([h,p],i)=>`<div class="mini-step"><b>${i+1}</b><div><strong>${esc(h)}</strong><p>${esc(p)}</p></div></div>`).join('')}<div class="form-actions"><button class="btn" data-action="meeting">Create a conversation plan ${icon('arrow')}</button></div></div><div class="panel"><p class="eyebrow">YOUR STARTING QUESTION</p><h3>“What would you focus on learning first if you were entering this field today?”</h3><p class="facts">Connect your question to a verified part of their work. Keep the first request small and make it easy to decline.</p><button class="text-button" data-action="networktab" data-tab="people">Explore potential connections ${icon('arrow')}</button><div class="notice">${icon('info')} Recruiters can offer hiring context. That does not mean they are offering mentorship.</div></div></div>`;}
 function record(id){if(id.startsWith('company:'))return {id,type:'company',title:id.slice(8),company:'ATLAS.ai company insight'};return [...jobs,...people,...events].find(x=>x.id===id);}
-function tasksPage(){return heading('One step at a time.','Plan your day, keep track of deadlines and make room for what matters.','MY TO-DO LIST',`<button class="btn outline" data-action="export">${icon('download')} Export progress</button>`)+(storageFailed?'<div class="notice amber" role="status">Tasks are kept for this session only. Browser storage is unavailable; export progress before closing.</div>':'')+taskPage(state.tasks,taskFilter,query,!storageFailed);}
-function progressPage(){const entries=Object.entries(state.leads).filter(([id])=>record(id));return heading('Small steps add up.','Your saved opportunities and relationship plans, in one place.','MY PROGRESS',`<button class="btn outline" data-action="export">${icon('download')} Export progress</button>`)+`<div class="notice">${icon('bookmark')}<span>Progress belongs to ${esc(state.profile.name)} and stays in this browser. Change stages yourself after taking action. Nothing here sends an application, request or message.</span></div><div class="pipeline">${['Saved','In progress','Waiting','Completed'].map(stage=>{const list=entries.filter(([,s])=>s.stage===stage);return `<section class="column"><div class="column-head">${stage}<span>${list.length}</span></div>${list.map(([id,s])=>{const r=record(id);return `<article class="lead-card">${pill(r.type,'muted')}<h3 style="margin-top:10px">${esc(r.title||r.name)}</h3><p>${esc(r.company)}</p><button class="text-button" data-action="${r.type==='person'?'person':r.type==='company'?'company':r.type==='event'?'event':'job'}" data-id="${esc(r.type==='company'?id.slice(8):id)}">View details ${icon('arrow')}</button><label><span class="visually-hidden">Stage for ${esc(r.title||r.name)}</span><select data-stage="${esc(id)}">${['Saved','In progress','Waiting','Completed'].map(t=>`<option ${t===stage?'selected':''}>${t}</option>`).join('')}</select></label>${r.type==='person'?`<label><span class="visually-hidden">Referral status for ${esc(r.name)}</span><select data-referral="${esc(id)}">${['No referral discussed','Conversation planned','Advice received','Referral offered','Referral submitted'].map(v=>`<option ${s.referral===v?'selected':''}>${v}</option>`).join('')}</select></label>`:''}<button class="text-button" style="margin-top:10px" data-action="lead-notes" data-id="${esc(id)}">${s.notes?'Edit next step':'Add next step'}</button></article>`;}).join('')||`<div class="empty">${stage==='Saved'?'Save a role, person or company to begin.':'Your next chapter is still taking shape.'}</div>`}</section>`;}).join('')}</div><section class="panel meeting-list"><div class="section-heading"><h2>Conversation plans</h2><button class="text-button" data-action="meeting">${icon('plus')} Add a plan</button></div>${state.meetings.length?state.meetings.map(m=>`<div class="meeting-row"><div><strong>${esc(m.person)}</strong><small>${esc(m.topic)} · ${m.date?date(m.date):'Date not set'} · ${esc(m.status)}</small></div><button class="icon-button" data-action="edit-meeting" data-id="${esc(m.id)}" aria-label="Edit meeting plan">${icon('arrow')}</button></div>`).join(''):'<p class="subtitle">No conversations planned yet. Start with a person and a question. A plan does not send an invitation.</p>'}</section>`;}
+function tasksPage(){return heading('One step at a time.','Plan your day, keep track of deadlines and make room for what matters.','MY TO-DO LIST',`<button class="btn outline" data-action="export">${icon('download')} Export progress</button>`)+`<div id="task-storage-warning" role="status">${storageFailed?taskStorageWarning:''}</div>`+taskPage(state.tasks,taskFilter,query,!storageFailed);}
+function progressPage(){const entries=Object.entries(state.leads).filter(([id])=>record(id));return heading('Small steps add up.','Your saved opportunities and relationship plans, in one place.','MY PROGRESS',`<button class="btn outline" data-action="export">${icon('download')} Export progress</button>`)+`<div class="notice">${icon('bookmark')}<span>Progress belongs to ${esc(state.profile.name)} and stays in this browser. Change stages yourself after taking action. Nothing here sends an application, request or message.</span></div><div class="pipeline">${['Saved','In progress','Waiting','Completed'].map(stage=>{const list=entries.filter(([,s])=>s.stage===stage);return `<section class="column"><h2 class="column-head" data-progress-stage="${esc(stage)}" tabindex="-1">${stage}<span>${list.length}</span></h2>${list.map(([id,s])=>{const r=record(id);return `<article class="lead-card">${pill(r.type,'muted')}<h3 style="margin-top:10px">${esc(r.title||r.name)}</h3><p>${esc(r.company)}</p><button class="text-button" data-action="${r.type==='person'?'person':r.type==='company'?'company':r.type==='event'?'event':'job'}" data-id="${esc(r.type==='company'?id.slice(8):id)}">View details ${icon('arrow')}</button><label><span class="visually-hidden">Stage for ${esc(r.title||r.name)}</span><select data-stage="${esc(id)}">${['Saved','In progress','Waiting','Completed'].map(t=>`<option ${t===stage?'selected':''}>${t}</option>`).join('')}</select></label>${r.type==='person'?`<label><span class="visually-hidden">Referral status for ${esc(r.name)}</span><select data-referral="${esc(id)}">${['No referral discussed','Conversation planned','Advice received','Referral offered','Referral submitted'].map(v=>`<option ${s.referral===v?'selected':''}>${v}</option>`).join('')}</select></label>`:''}<div class="lead-card-actions">
+    <button class="text-button" data-action="lead-notes" data-id="${esc(id)}">${s.notes?'Edit next step':'Add next step'}</button>
+    <button class="text-button" data-action="remove-lead" data-id="${esc(id)}" aria-label="Remove from progress — ${esc(r.name||r.title)}">Remove from progress</button>
+  </div></article>`;}).join('')||`<div class="empty">${stage==='Saved'?'Save a role, person or company to begin.':'Your next chapter is still taking shape.'}</div>`}</section>`;}).join('')}</div><section class="panel meeting-list"><div class="section-heading"><h2>Conversation plans</h2><button class="text-button" data-action="meeting">${icon('plus')} Add a plan</button></div>${state.meetings.length?state.meetings.map(m=>`<div class="meeting-row"><div><strong>${esc(m.person)}</strong><small>${esc(m.topic)} · ${m.date?date(m.date):'Date not set'} · ${esc(m.status)}</small></div><button class="icon-button" data-action="edit-meeting" data-id="${esc(m.id)}" aria-label="Edit meeting plan">${icon('arrow')}</button></div>`).join(''):'<p class="subtitle">No conversations planned yet. Start with a person and a question. A plan does not send an invitation.</p>'}</section>`;}
 function profilePage(){const p=state.profile;return heading(state.onboarded?'Make this space yours.':`Let’s get to know you, ${esc(p.name.split(' ')[0])}.`,'Your experience, interests and goals shape what you see next.','YOUR CAREER PROFILE',`<button class="btn outline" data-action="switch">Switch profile</button>`)+`${!state.onboarded?'<div class="onboarding-steps"><span>1 · Select profile</span> → <b>2 · Review career profile</b> → <span>3 · Explore recommendations</span></div>':''}<div class="profile-layout"><aside class="panel profile-summary">${avatar(p,'big')}<h2>${esc(p.name)}</h2>${pill('FICTIONAL DEMO STUDENT','muted')}<p>${esc(p.degree)}<br>${esc(p.university)}</p><div class="profile-complete"><span style="width:${p.goal&&p.skills.length?100:60}%"></span></div><p>Ready to explore<br><small>Switch profiles to compare career paths</small></p><div class="tags" style="justify-content:center">${p.skills.map(s=>pill(s)).join('')}</div></aside><form class="panel" id="profileForm"><div class="form-heading"><h3>Your direction</h3><p>Edit the sample profile to see how recommendations change.</p></div><div class="form-grid"><label>Full name<input name="name" required maxlength="70" value="${esc(p.name)}"></label><label>University<input name="university" required maxlength="90" value="${esc(p.university)}"></label><label>Degree / programme<input name="degree" required maxlength="90" value="${esc(p.degree)}"></label><label>Graduation month<input name="graduation" type="month" required value="${esc(p.graduation)}"></label><label>Career focus<select name="focus">${['Marketing & growth','Data & analytics','Finance & business'].map(v=>`<option ${v===p.focus?'selected':''}>${esc(v)}</option>`).join('')}</select></label><label>Preferred location<select name="location">${['Orange County','Inland Empire','Los Angeles County'].map(v=>`<option ${v===p.location?'selected':''}>${v}</option>`).join('')}</select></label><label class="full">Skills, separated by commas<input name="skills" maxlength="400" value="${esc(p.skills.join(', '))}"></label><label class="full">Experience<textarea name="experience" maxlength="2000">${esc(p.experience)}</textarea></label><label class="full">What are you working towards?<textarea name="goal" maxlength="1000">${esc(p.goal)}</textarea></label><label class="full">Availability<input name="availability" maxlength="150" value="${esc(p.availability)}"></label><label class="full">Résumé notes<textarea id="resumeNotes" name="resume" maxlength="15000" placeholder="Paste relevant experience or import a plain-text résumé. Stored only in this browser.">${esc(p.resume)}</textarea></label></div><label class="import-file">${icon('download')} Import résumé text<input id="resumeFile" type="file" accept=".txt,text/plain"></label><p class="subtitle">Text import only in this demo. Update the skills and focus fields to change matching. No résumé is uploaded or analysed by an AI service.</p><div class="form-actions"><button type="button" class="btn quiet" data-action="reset">Reset this demo profile</button><button type="submit" class="btn">${state.onboarded?'Save profile':'Show my recommendations'} ${icon('arrow')}</button></div></form></div>`;}
-function openModal(title,body,eyebrow='HYDRA STACK'){modal.innerHTML=`<div class="modal-header"><div><p class="eyebrow">${esc(eyebrow)}</p><h2 id="modalTitle">${esc(title)}</h2></div><button class="icon-button" data-action="close" aria-label="Close dialog">${icon('close')}</button></div><div class="modal-body">${body}</div>`;if(!modal.open)modal.showModal();modal.scrollTop=0;}
-function jobDetail(id){const j=rankJobs(jobs,state.profile).find(j=>j.id===id);if(!j)return;const links=people.filter(p=>p.company===j.company);openModal(j.title,`<div class="company-detail-brand">${companyLogo(j.company)}<strong>${esc(j.company)}</strong></div><div class="tags">${pill(j.company,'teal')}${pill('Needs recheck','amber')}</div><div class="detail-grid">${[['Location',`${j.city} · ${j.workMode}`],['Salary in source',j.salary||'Not published in snapshot'],['Start timing',j.start],['Source checked',date(j.lastChecked)]].map(([k,v])=>`<div class="detail-item"><small>${k}</small><strong>${esc(v)}</strong></div>`).join('')}</div><h3>Why this could be relevant</h3><p>${esc(j.reasons.join('. '))}. Skill overlap is a starting point, not a full eligibility assessment.</p><h3>Requirements & gaps</h3><p>${esc(j.requirements)}</p><div class="notice amber">${icon('info')}<span>${esc(eligibility(j,state.profile))} ${esc(j.caution||'')}</span></div><h3>Work authorisation & sponsorship</h3><p>${esc(j.sponsorship)}</p><h3>One useful next step</h3><p>Open the original posting and check that it is accepting applications. Compare the experience requirements with one concrete example from your work or coursework.</p>${links.length?`<h3>People at this employer</h3>${links.map(p=>`<div class="person-row">${avatar(p)}<div class="info"><strong>${esc(p.name)}</strong><small>Same company only · exact vacancy link unconfirmed</small></div><button class="text-button" data-action="person" data-id="${p.id}">View ${icon('arrow')}</button></div>`).join('')}`:''}<h3>Source trail</h3><p class="facts">${esc(j.provenance)}. Posting date ${j.posted?date(j.posted):'unconfirmed'}. The source was not reverified during this demo build.</p>${sourceLink(j.sourceUrl,j.source)}<div class="modal-actions">${sourceBtn(j.url,'Check original vacancy')}<button class="btn" data-action="save-detail" data-id="${id}" data-type="job">${icon('bookmark')} ${state.leads[id]?'Saved to my progress':'Save to my progress'}</button></div>`,'JOB OPPORTUNITY');}
-function personDetail(id){const p=people.find(p=>p.id===id);if(!p)return;const draft=state.drafts[id]?.connection??connectionDraft(p,state.profile),follow=state.drafts[id]?.followup??followupDraft(p,state.profile);openModal(p.name,`<div class="person-row">${avatar(p,'big')}<div class="info"><strong>${esc(p.title)}</strong><small>${esc(p.company)} · ${esc(p.city)}</small></div>${pill('Potential connection','teal')}</div><div class="notice amber">${icon('info')}<span>${esc(p.caution)} No referral offer or hiring authority is confirmed.</span></div><h3>Why connect</h3><p>Explore ${esc(p.focus.toLowerCase())} at ${esc(p.company)}. A conversation could help you understand which teams and skills to research for your ${esc(state.profile.focus.toLowerCase())} goals.</p><h3>Connection note</h3><p class="facts">Based on the listed professional role and your demo profile. Review and personalise before sending.</p><textarea class="draft-area" id="connectionDraft" data-draft="connection" data-person="${id}" maxlength="200" aria-label="Connection note">${esc(draft)}</textarea><div class="draft-actions"><small id="draftCount">${draft.length}/200 characters · Draft, not sent</small><button class="btn outline small" data-action="copy" data-target="connectionDraft">${icon('copy')} Copy draft</button></div><h3>Follow-up after confirmed acceptance</h3><textarea class="draft-area" id="followupDraft" data-draft="followup" data-person="${id}" aria-label="Follow-up draft" maxlength="2500">${esc(follow)}</textarea><div class="draft-actions"><small>Use only after they accept · Not sent</small><button class="btn outline small" data-action="copy" data-target="followupDraft">${icon('copy')} Copy follow-up</button></div><h3>Evidence & limitations</h3><p>${esc(p.activity)} Public-source snapshot checked ${date(p.lastChecked)}. Mentorship availability and sponsorship support are unconfirmed.</p>${sourceLink(p.sourceUrl,'Public profile listed in Brian Uong’s research')}<div class="modal-actions"><button class="btn" data-action="save-detail" data-id="${id}" data-type="person">${icon('bookmark')} ${state.leads[id]?'Saved to my progress':'Save connection'}</button><button class="btn outline" data-action="meeting" data-id="${id}">${icon('calendar')} Plan a conversation</button></div>`,'PRIORITY CONTACT');}
+function openModal(title,body,eyebrow='HYDRA STACK',descriptionId){
+  uiRevision++;
+  if(descriptionId) modal.setAttribute('aria-describedby',descriptionId);
+  else modal.removeAttribute('aria-describedby');
+  modal.innerHTML=`<div class="modal-header"><div><p class="eyebrow">${esc(eyebrow)}</p><h2 id="modalTitle">${esc(title)}</h2></div><button class="icon-button" data-action="close" aria-label="Close dialog">${icon('close')}</button></div><div class="modal-body">${body}</div>`;if(!modal.open)modal.showModal();modal.scrollTop=0;}
+function jobDetail(id){const j=rankJobs(jobs,state.profile).find(j=>j.id===id);if(!j)return;const links=people.filter(p=>p.company===j.company);openModal(j.title,`<div class="company-detail-brand">${companyLogo(j.company)}<strong>${esc(j.company)}</strong></div><div class="tags">${pill(j.company,'teal')}${pill('Needs recheck','amber')}</div><div class="detail-grid">${[['Location',`${j.city} · ${j.workMode}`],['Salary in source',j.salary||'Not published in snapshot'],['Start timing',j.start],['Source checked',date(j.lastChecked)]].map(([k,v])=>`<div class="detail-item"><small>${k}</small><strong>${esc(v)}</strong></div>`).join('')}</div><h3>Why this could be relevant</h3><p>${esc(j.reasons.join('. '))}. Skill overlap is a starting point, not a full eligibility assessment.</p><h3>Requirements & gaps</h3><p>${esc(j.requirements)}</p><div class="notice amber">${icon('info')}<span>${esc(eligibility(j,state.profile))} ${esc(j.caution||'')}</span></div><h3>Work authorisation & sponsorship</h3><p>${esc(j.sponsorship)}</p><h3>One useful next step</h3><p>Open the original posting and check that it is accepting applications. Compare the experience requirements with one concrete example from your work or coursework.</p>${links.length?`<h3>People at this employer</h3>${links.map(p=>`<div class="person-row">${avatar(p)}<div class="info"><strong>${esc(p.name)}</strong><small>Same company only · exact vacancy link unconfirmed</small></div><button class="text-button" data-action="person" data-id="${p.id}">View ${icon('arrow')}</button></div>`).join('')}`:''}<h3>Source trail</h3><p class="facts">${esc(j.provenance)}. Posting date ${j.posted?date(j.posted):'unconfirmed'}. The source was not reverified during this demo build.</p>${sourceLink(j.sourceUrl,j.source)}<div class="modal-actions">${sourceBtn(j.url,'Check original vacancy')}<button class="btn" data-action="save-detail" data-saved="${Boolean(state.leads[id])}" data-id="${id}" data-type="job">${icon('bookmark')} ${state.leads[id]?'Saved to my progress':'Save to my progress'}</button></div>`,'JOB OPPORTUNITY');}
+function personDetail(id){const p=people.find(p=>p.id===id);if(!p)return;const draft=state.drafts[id]?.connection??connectionDraft(p,state.profile),follow=state.drafts[id]?.followup??followupDraft(p,state.profile);openModal(p.name,`<div class="person-row">${avatar(p,'big')}<div class="info"><strong>${esc(p.title)}</strong><small>${esc(p.company)} · ${esc(p.city)}</small></div>${pill('Potential connection','teal')}</div><div class="notice amber">${icon('info')}<span>${esc(p.caution)} No referral offer or hiring authority is confirmed.</span></div><h3>Why connect</h3><p>Explore ${esc(p.focus.toLowerCase())} at ${esc(p.company)}. A conversation could help you understand which teams and skills to research for your ${esc(state.profile.focus.toLowerCase())} goals.</p><h3>Connection note</h3><p class="facts">Based on the listed professional role and your demo profile. Review and personalise before sending.</p><textarea class="draft-area" id="connectionDraft" data-draft="connection" data-person="${id}" maxlength="200" aria-label="Connection note">${esc(draft)}</textarea><div class="draft-actions"><small id="draftCount">${draft.length}/200 characters · Draft, not sent</small><button class="btn outline small" data-action="copy" data-target="connectionDraft">${icon('copy')} Copy draft</button></div><h3>Follow-up after confirmed acceptance</h3><textarea class="draft-area" id="followupDraft" data-draft="followup" data-person="${id}" aria-label="Follow-up draft" maxlength="2500">${esc(follow)}</textarea><div class="draft-actions"><small>Use only after they accept · Not sent</small><button class="btn outline small" data-action="copy" data-target="followupDraft">${icon('copy')} Copy follow-up</button></div><h3>Evidence & limitations</h3><p>${esc(p.activity)} Public-source snapshot checked ${date(p.lastChecked)}. Mentorship availability and sponsorship support are unconfirmed.</p>${sourceLink(p.sourceUrl,'Public profile listed in Brian Uong’s research')}<div class="modal-actions"><button class="btn" data-action="save-detail" data-saved="${Boolean(state.leads[id])}" data-id="${id}" data-type="person">${icon('bookmark')} ${state.leads[id]?'Saved to my progress':'Save connection'}</button><button class="btn outline" data-action="meeting" data-id="${id}">${icon('calendar')} Plan a conversation</button></div>`,'PRIORITY CONTACT');}
 function companyDetail(name){if(!atlas?.companies[name])return;intelCompany=name;intelTab='overview';jobTab='companies';navigate('jobs');}
-function eventDetail(id){const e=events.find(e=>e.id===id);if(!e)return;openModal(e.title,`<div class="detail-grid">${[['Date',date(e.date)],['Time',e.time],['Venue',`${e.venue}, ${e.city}`],['Admission',e.price]].map(([k,v])=>`<div class="detail-item"><small>${k}</small><strong>${esc(v)}</strong></div>`).join('')}</div><p>${esc(e.description)}</p><div class="notice amber">${icon('info')} ${esc(e.caution)}</div><h3>Make it useful for you</h3><p>Prepare a short introduction about your ${esc(state.profile.focus.toLowerCase())} interests. Ask a speaker or attendee which skill they use most in their work. Record any agreed follow-up afterwards.</p><p class="facts">Snapshot checked ${date(e.lastChecked)}. Saved does not mean registered or attended.</p>${sourceLink(e.sourceUrl,'Source supporting this event')}<div class="modal-actions">${sourceBtn(e.url,'Check organiser & availability')}<button class="btn" data-action="save-detail" data-id="${id}" data-type="event">${icon('bookmark')} ${state.leads[id]?'Saved to my progress':'Save event'}</button></div>`,'IN-PERSON NETWORKING');}
+function eventDetail(id){const e=events.find(e=>e.id===id);if(!e)return;openModal(e.title,`<div class="detail-grid">${[['Date',date(e.date)],['Time',e.time],['Venue',`${e.venue}, ${e.city}`],['Admission',e.price]].map(([k,v])=>`<div class="detail-item"><small>${k}</small><strong>${esc(v)}</strong></div>`).join('')}</div><p>${esc(e.description)}</p><div class="notice amber">${icon('info')} ${esc(e.caution)}</div><h3>Make it useful for you</h3><p>Prepare a short introduction about your ${esc(state.profile.focus.toLowerCase())} interests. Ask a speaker or attendee which skill they use most in their work. Record any agreed follow-up afterwards.</p><p class="facts">Snapshot checked ${date(e.lastChecked)}. Saved does not mean registered or attended.</p>${sourceLink(e.sourceUrl,'Source supporting this event')}<div class="modal-actions">${sourceBtn(e.url,'Check organiser & availability')}<button class="btn" data-action="save-detail" data-saved="${Boolean(state.leads[id])}" data-id="${id}" data-type="event">${icon('bookmark')} ${state.leads[id]?'Saved to my progress':'Save event'}</button></div>`,'IN-PERSON NETWORKING');}
 function meetingForm(personId='',meetingId=''){const old=state.meetings.find(m=>m.id===meetingId),p=people.find(p=>p.id===personId);openModal(old?'Edit your conversation plan':'Make room for a conversation',`<form id="meetingForm" data-id="${esc(meetingId)}"><p>A personal plan only. No invitation or calendar booking will be sent.</p><div class="form-grid"><label class="full">Who would you like to speak with?<input name="person" required maxlength="120" value="${esc(old?.person||p?.name||'')}"></label><label class="full">What would you like to learn?<textarea name="topic" required maxlength="1000">${esc(old?.topic||'')}</textarea></label><label>Proposed date<input name="date" type="date" value="${esc(old?.date||'')}"></label><label>Plan status<select name="status">${['Idea only','Ready to ask','Invitation sent by me','Confirmed by both parties','Completed'].map(s=>`<option ${old?.status===s?'selected':''}>${s}</option>`).join('')}</select></label></div><div class="form-actions"><button class="btn" type="submit">Save conversation plan</button></div></form>`,'MEETING & MENTORSHIP');}
 function about(){openModal('A clearer path, with honest context.',`<h3>A working team demo</h3><p>Alex, Maya and Jordan are fictional student profiles. Your changes are saved separately per profile in this browser. These are not authenticated accounts, and there is no cross-device or shared team database.</p><h3>Recommendations</h3><p>Suggestions use transparent skill and career-focus rules. They do not run a live AI model, analyse uploaded résumés or predict the likelihood of getting hired. Profile experience and résumé notes remain available for your own preparation.</p><h3>Research provenance</h3><p>Job and recruiter examples come from Brian Uong’s BDashh source snapshot and Zal Career Command’s dated research. ATLAS.ai preserves the C05 company evidence, counterevidence and original forecasts. Current job availability and recruiter responsibilities have not been reverified for this demo.</p>${sourceLink('https://github.com/Brian-Uong/bdashh-Personal-Dashboard','Brian Uong · BDashh source repository')}<h3>You stay in control</h3><p>No applications, referrals, emails or connection requests are sent. A recruiter profile does not establish an available referral or mentor. Meeting plans are not invitations. No private Google Sheets, Outlook accounts or personal browser notes are connected.</p><h3>Team handover</h3><p>The new source retains the original Zal code outside the published assets. Brian’s repository is read-only to the current connection, so this demo is published as a separate Site.</p>`,'SOURCES & LIMITATIONS');}
 async function loadAtlas(){atlasError=false;try{const r=await fetch('atlas-data.json');if(!r.ok)throw Error();atlas=await r.json();}catch{atlasError=true;}if(current&&(view==='home'||view==='jobs'))renderPage();}
-function navigate(to){view=to;query='';region='';savedOnly=false;if(modal.open)modal.close();render();window.scrollTo({top:0,behavior:'instant'});}
-function save(id,type,keep=false){if(keep&&state.leads[id]){toast('Already saved in your progress');return;}if(state.leads[id]){delete state.leads[id];toast('Removed from your saved leads');}else{state=updateLead(state,id,{type,stage:'Saved',savedAt:new Date().toISOString()});toast('Saved to your progress');}persist();renderPage();if(keep){const b=modal.querySelector('[data-action="save-detail"]');if(b)b.innerHTML=icon('check')+' Saved to my progress';}}
+function navigate(to){uiRevision++;state=loadState(current);view=to;query='';region='';savedOnly=false;if(modal.open)modal.close();render();window.scrollTo({top:0,behavior:'instant'});}
+async function save(button){
+  const {id,type}=button.dataset;
+  const keep=button.dataset.action==='save-detail';
+  const previous=state.leads[id];
+  const removing=!keep && (button.getAttribute('aria-pressed') ?? String(Boolean(previous)))==='true';
+  const savedAt=new Date().toISOString();
+  const update=await persist(latest=>{
+    const lead=latest.leads[id];
+    if(removing){
+      if(!sameLead(previous,lead)) return false;
+      delete latest.leads[id];
+    }else{
+      if(lead || (keep && button.dataset.saved==='true')) return false;
+      latest.leads[id]={type,stage:'Saved',savedAt};
+    }
+  });
+  if(!update) return;
+  renderPage();
+  if(update.result===false){
+    toast(state.leads[id]?'Already saved in your progress':'This saved lead has already changed.');
+    return;
+  }
+  toast(removing?'Removed from your saved leads':'Saved to your progress');
+  if(keep && modal.contains(button)){
+    button.dataset.saved='true';
+    button.innerHTML=icon('check')+' Saved to my progress';
+  }
+}
+
+function sameLead(previous,latest){
+  return Boolean(previous && latest && previous.savedAt===latest.savedAt);
+}
+
+async function editLead(id,field,value,expectedSavedAt=state.leads[id]?.savedAt ?? ''){
+  return persist(latest=>{
+    const lead=latest.leads[id];
+    if(!lead || (lead.savedAt ?? '')!==expectedSavedAt) return false;
+    lead[field]=value;
+  });
+}
+
+let pendingLeadRemoval;
+
+function cancelLeadRemoval(){
+  const request=pendingLeadRemoval;
+  if(!request) return true;
+  if(request.committing) return false;
+  pendingLeadRemoval=null;
+  request.controller.abort();
+  return true;
+}
+
+modal.addEventListener('cancel',event=>{
+  if(!cancelLeadRemoval())event.preventDefault();
+});
+modal.addEventListener('close',()=>{
+  if(!modal.open)cancelLeadRemoval();
+});
+
+function confirmLeadRemoval(id,trigger){
+  const item = record(id);
+  const lead=state.leads[id];
+  if(!item || !lead) return;
+  trigger.focus({preventScroll:true});
+  openModal(`Remove ${item.name || item.title} from progress?`, `
+    <p id="leadRemovalDescription">Only this item’s saved progress record will be removed, including its stage, referral status and next-step note. You can save the item again from its original section.</p>
+    <p id="leadRemovalStatus" role="status" tabindex="-1"></p>
+    <div class="modal-actions">
+      <button class="btn outline" type="button" data-action="close" autofocus>Cancel</button>
+      <button class="btn" type="button" data-action="confirm-remove-lead" data-id="${esc(id)}" data-stage-name="${esc(lead.stage)}" data-saved-at="${esc(lead.savedAt)}">Remove from progress</button>
+    </div>`, 'MY PROGRESS', 'leadRemovalDescription');
+}
+
+async function removeLead(button){
+  if(pendingLeadRemoval) return;
+  const {id,stageName,savedAt}=button.dataset;
+  const request={controller:new AbortController(),committing:false};
+  pendingLeadRemoval=request;
+  const {signal}=request.controller;
+  const ownsUi=claimMutationUi();
+  const status=$('#leadRemovalStatus');
+  const dismissButtons=modal.querySelectorAll('[data-action="close"]');
+  const cancel=modal.querySelector('.modal-actions [data-action="close"]');
+  button.disabled=true;
+  status.textContent='Waiting to remove this lead. You can still cancel.';
+  cancel.focus();
+
+  let update;
+  try{
+    update=await persist(latest=>{
+      // A programmatic close can precede the dialog's close event.
+      if(!modal.open || !modal.contains(button)){
+        request.controller.abort();
+        signal.throwIfAborted();
+      }
+      request.committing=true;
+      status.textContent='Removing this lead…';
+      for(const control of dismissButtons)control.disabled=true;
+      status.focus();
+      const lead=latest.leads[id];
+      if(!lead || (lead.savedAt ?? '')!==savedAt) return false;
+      const stage=lead.stage;
+      const ids=Object.keys(latest.leads).filter(key=>record(key) && latest.leads[key].stage===stage);
+      const index=ids.indexOf(id);
+      const neighbor=ids[index+1] ?? ids[index-1];
+      delete latest.leads[id];
+      return {stage,neighbor};
+    },{signal,ownsUi});
+  }catch{
+    if(signal.aborted || !ownsUi()) return;
+    if(modal.open && modal.contains(button)){
+      status.textContent='The lead could not be removed. Try again or cancel.';
+      for(const control of dismissButtons)control.disabled=false;
+      button.disabled=false;
+      button.focus();
+    }
+    return;
+  }finally{
+    if(pendingLeadRemoval===request) pendingLeadRemoval=null;
+  }
+  if(!update) return;
+  if(modal.contains(button)) modal.close();
+  if(view==='progress'){
+    renderPage();
+    const {stage=stageName,neighbor}=update.result || {};
+    const heading=$(`[data-progress-stage="${CSS.escape(stage)}"]`);
+    const target=(neighbor && leadRemovalButton(neighbor)) || heading;
+    target?.focus();
+  }
+  toast(update.result===false?'This saved lead has already changed.':'Removed from your saved leads');
+}
+
+function leadRemovalButton(id){
+  return $(`.pipeline [data-action="remove-lead"][data-id="${CSS.escape(id)}"]`);
+}
 document.addEventListener('click',async e=>{const b=e.target.closest('[data-action]');if(!b)return;const a=b.dataset.action,id=b.dataset.id;
- if(a==='choose'){current=id;state=loadState(id);view=state.onboarded?'home':'profile';query='';taskFilter='open';render();window.scrollTo(0,0);}
+ if(a==='choose'){profileSession++;current=id;state=loadState(id);view=state.onboarded?'home':'profile';query='';taskFilter='open';render();window.scrollTo(0,0);}
  if(a==='switch'){if(modal.open)modal.close();landing();window.scrollTo(0,0);}
  if(a==='task-filter'){taskFilter=b.dataset.filter;renderPage();$('.task-filters .active')?.focus();}
  if(a==='edit-task'){const task=state.tasks.find(t=>t.id===id);if(task)openModal('Edit your task',taskEditForm(task),'MY TO-DO LIST');}
  if(a==='delete-task'){const task=state.tasks.find(t=>t.id===id);if(task)openModal('Delete this task?',`<p>${esc(task.title)}</p><p>This removes the task from this demo profile.</p><div class="modal-actions"><button class="btn outline" data-action="close">Keep task</button><button class="btn" data-action="confirm-delete-task" data-id="${esc(id)}">Delete task</button></div>`,'MY TO-DO LIST');}
- if(a==='confirm-delete-task'){state.tasks=deleteTask(state.tasks,id);persist();modal.close();renderPage();$('#taskForm input[name="title"]')?.focus();toast('Task deleted');}
+ if(a==='confirm-delete-task'){if(!await persist(latest=>{latest.tasks=deleteTask(latest.tasks,id);}))return;if(modal.contains(b))modal.close();renderPage();$('#taskForm input[name="title"]')?.focus();toast('Task deleted');}
  if(a==='nav')navigate(b.dataset.view);
- if(a==='close')modal.close();
+ if(a==='close'&&cancelLeadRemoval())modal.close();
  if(a==='about')about();
  if(a==='job')jobDetail(id);
  if(a==='person')personDetail(id);
@@ -67,7 +244,7 @@ document.addEventListener('click',async e=>{const b=e.target.closest('[data-acti
  if(a==='intel-evidence'){const evidence=atlas?.evidence.find(e=>e.id===id);if(evidence)openModal('Source briefing',renderEvidence(evidence),'ATLAS.ai · EVIDENCE');}
  if(a==='intel-scroll')document.querySelector('.intel-timeline')?.scrollBy({left:Number(b.dataset.direction)*320,behavior:'smooth'});
  if(a==='event')eventDetail(id);
- if(a==='save'||a==='save-detail')save(id,b.dataset.type,a==='save-detail');
+ if(a==='save'||a==='save-detail')await save(b);
  if(a==='jobtab'){jobTab=b.dataset.tab;query='';renderPage();}
  if(a==='atlas'){jobTab='companies';navigate('jobs');}
  if(a==='networktab'){networkTab=b.dataset.tab;query='';renderPage();}
@@ -77,31 +254,124 @@ document.addEventListener('click',async e=>{const b=e.target.closest('[data-acti
  if(a==='edit-meeting')meetingForm('',id);
  if(a==='reload-atlas')loadAtlas();
  if(a==='copy'){const el=$('#'+b.dataset.target);try{await navigator.clipboard.writeText(el.value);toast('Draft copied. Review before sending.');}catch{el.select();toast('Select and copy this draft using your keyboard.');}}
- if(a==='lead-notes'){const r=record(id);openModal('Your next step',`<form id="notesForm" data-id="${esc(id)}"><p>${esc(r.title||r.name)}</p><label class="facts" for="leadNotes">What will you do next?</label><textarea id="leadNotes" name="notes" class="draft-area" maxlength="2000">${esc(state.leads[id].notes||'')}</textarea><div class="form-actions"><button class="btn">Save next step</button></div></form>`,'MY PROGRESS');}
- if(a==='export'){const blob=new Blob([JSON.stringify({product:'Hydra Stack demo',exportedAt:new Date().toISOString(),state},null,2)],{type:'application/json'});const u=URL.createObjectURL(blob),link=document.createElement('a');link.href=u;link.download=`hydra-stack-${current}-progress.json`;link.click();setTimeout(()=>URL.revokeObjectURL(u),1000);toast('Progress exported for this profile');}
+ if(a==='lead-notes'){const r=record(id);openModal('Your next step',`<form id="notesForm" data-id="${esc(id)}" data-saved-at="${esc(state.leads[id].savedAt)}"><p>${esc(r.title||r.name)}</p><label class="facts" for="leadNotes">What will you do next?</label><textarea id="leadNotes" name="notes" class="draft-area" maxlength="2000">${esc(state.leads[id].notes||'')}</textarea><div class="form-actions"><button class="btn">Save next step</button></div></form>`,'MY PROGRESS');}
+ if(a==='remove-lead')confirmLeadRemoval(id,b);
+ if(a==='confirm-remove-lead'&&modal.open&&modal.contains(b))await removeLead(b);
+ if(a==='export'){if(!await persist(()=>false))return;const blob=new Blob([JSON.stringify({product:'Hydra Stack demo',exportedAt:new Date().toISOString(),state},null,2)],{type:'application/json'});const u=URL.createObjectURL(blob),link=document.createElement('a');link.href=u;link.download=`hydra-stack-${current}-progress.json`;link.click();setTimeout(()=>URL.revokeObjectURL(u),1000);toast('Progress exported for this profile');}
  if(a==='reset')openModal('Reset this demo profile?',`<p>This clears ${esc(state.profile.name)}’s local edits, saved leads, drafts, tasks and meeting plans. The other two profiles remain unchanged.</p><div class="modal-actions"><button class="btn outline" data-action="close">Keep my progress</button><button class="btn" data-action="confirm-reset">Reset this profile</button></div>`);
- if(a==='confirm-reset'){state=initialState(profiles.find(p=>p.id===current));persist();modal.close();view='profile';render();toast('This profile has been reset');}
+ if(a==='confirm-reset'){const fresh=newWorkspace(current);if(!await persist(latest=>{
+   for(const key of Object.keys(latest))delete latest[key];
+   Object.assign(latest,fresh);
+ })){return;}if(modal.contains(b))modal.close();view='profile';render();toast('This profile has been reset');}
 });
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.matches('.user-small'))navigate('profile');});
-document.addEventListener('input',e=>{if(e.target.dataset.search){const cursor=e.target.selectionStart,key=e.target.dataset.search;query=e.target.value;renderPage();const field=document.querySelector(`[data-search="${key}"]`);field.focus();field.setSelectionRange(cursor,cursor);}if(e.target.dataset.draft){const id=e.target.dataset.person,kind=e.target.dataset.draft;state.drafts[id]={...state.drafts[id],[kind]:e.target.value};persist();if(kind==='connection')$('#draftCount').textContent=`${e.target.value.length}/200 characters · Draft, not sent`;}});
-document.addEventListener('change',async e=>{if(e.target.id==='intelCompany'){intelCompany=e.target.value;renderPage();document.getElementById('intelCompany')?.focus({preventScroll:true});}if(e.target.id==='region'){region=e.target.value;renderPage();}if(e.target.dataset.stage){state.leads[e.target.dataset.stage].stage=e.target.value;persist();renderPage();toast('Progress updated by you');}if(e.target.dataset.referral){state.leads[e.target.dataset.referral].referral=e.target.value;persist();toast('Referral status recorded by you');}if(e.target.id==='resumeFile'){const f=e.target.files[0];if(!f)return;if(f.size>100000||!f.name.toLowerCase().endsWith('.txt')){toast('Choose a plain-text .txt file under 100 KB.');e.target.value='';return;}$('#resumeNotes').value=(await f.text()).slice(0,15000);toast('Text imported. Save your profile to keep it.');}});
-document.addEventListener('submit',e=>{if(!['profileForm','meetingForm','notesForm'].includes(e.target.id))return;e.preventDefault();const values=Object.fromEntries(new FormData(e.target));if(e.target.id==='profileForm'){const skills=values.skills.split(',').map(s=>s.trim()).filter(Boolean).slice(0,20);state.profile={...state.profile,...values,name:values.name.trim()||state.profile.name,skills};state.profile.initials=state.profile.name.split(/\s+/).map(s=>s[0]).slice(0,2).join('');state.onboarded=true;persist();navigate('home');toast('Profile saved. Your recommendations are ready.');}if(e.target.id==='meetingForm'){const id=e.target.dataset.id||`meeting-${Date.now()}`;const m={id,...values};state.meetings=state.meetings.filter(m=>m.id!==id);state.meetings.push(m);persist();modal.close();renderPage();toast('Conversation plan saved. No invitation sent.');}if(e.target.id==='notesForm'){state.leads[e.target.dataset.id].notes=values.notes;persist();modal.close();renderPage();toast('Next step saved');}});
-document.addEventListener('change',e=>{
+document.addEventListener('input',async e=>{
+  if(e.target.dataset.search){
+    const cursor=e.target.selectionStart,key=e.target.dataset.search;
+    query=e.target.value;
+    renderPage();
+    const field=document.querySelector(`[data-search="${key}"]`);
+    field.focus();
+    field.setSelectionRange(cursor,cursor);
+  }
+  if(e.target.dataset.draft){
+    const id=e.target.dataset.person,kind=e.target.dataset.draft,value=e.target.value;
+    if(kind==='connection')$('#draftCount').textContent=`${value.length}/200 characters · Draft, not sent`;
+    const update=await persist(latest=>{latest.drafts[id]={...latest.drafts[id],[kind]:value};});
+    if(update && !update.durable)toast('Changes are kept for this session.');
+  }
+});
+
+document.addEventListener('change',async e=>{
+  if(e.target.id==='intelCompany'){
+    intelCompany=e.target.value;
+    renderPage();
+    document.getElementById('intelCompany')?.focus({preventScroll:true});
+  }
+  if(e.target.id==='region'){region=e.target.value;renderPage();}
+  if(e.target.dataset.stage){
+    const update=await editLead(e.target.dataset.stage,'stage',e.target.value);
+    if(!update)return;
+    renderPage();
+    toast(update.result===false?'This saved lead has already changed.':'Progress updated by you');
+  }
+  if(e.target.dataset.referral){
+    const update=await editLead(e.target.dataset.referral,'referral',e.target.value);
+    if(!update)return;
+    if(update.result===false)renderPage();
+    toast(update.result===false?'This saved lead has already changed.':'Referral status recorded by you');
+  }
+  if(e.target.id==='resumeFile'){
+    const f=e.target.files[0];
+    if(!f)return;
+    if(f.size>100000||!f.name.toLowerCase().endsWith('.txt')){toast('Choose a plain-text .txt file under 100 KB.');e.target.value='';return;}
+    $('#resumeNotes').value=(await f.text()).slice(0,15000);
+    toast('Text imported. Save your profile to keep it.');
+  }
+});
+
+document.addEventListener('submit',async e=>{
+  const form=e.target;
+  if(!['profileForm','meetingForm','notesForm'].includes(form.id))return;
+  e.preventDefault();
+  const values=Object.fromEntries(new FormData(form));
+  if(form.id==='profileForm'){
+    const skills=values.skills.split(',').map(s=>s.trim()).filter(Boolean).slice(0,20);
+    if(!await persist(latest=>{
+      latest.profile={...latest.profile,...values,name:values.name.trim()||latest.profile.name,skills};
+      latest.profile.initials=latest.profile.name.split(/\s+/).map(s=>s[0]).slice(0,2).join('');
+      latest.onboarded=true;
+    }))return;
+    navigate('home');
+    toast('Profile saved. Your recommendations are ready.');
+  }
+  if(form.id==='meetingForm'){
+    const id=form.dataset.id||`meeting-${Date.now()}`;
+    if(!await persist(latest=>{
+      latest.meetings=latest.meetings.filter(meeting=>meeting.id!==id);
+      latest.meetings.push({id,...values});
+    }))return;
+    if(modal.contains(form))modal.close();
+    renderPage();
+    toast('Conversation plan saved. No invitation sent.');
+  }
+  if(form.id==='notesForm'){
+    const update=await editLead(form.dataset.id,'notes',values.notes,form.dataset.savedAt);
+    if(!update)return;
+    if(modal.contains(form))modal.close();
+    renderPage();
+    toast(update.result===false?'This saved lead has already changed.':'Next step saved');
+  }
+});
+document.addEventListener('change',async e=>{
  if(!e.target.matches('[data-task-toggle]'))return;
  const id=e.target.dataset.taskToggle;
- state.tasks=toggleTask(state.tasks,id);persist();renderPage();
+ if(!await persist(latest=>{latest.tasks=toggleTask(latest.tasks,id);}))return;
+ renderPage();
  const checkbox=[...document.querySelectorAll('[data-task-toggle]')].find(el=>el.dataset.taskToggle===id);
  (checkbox||$('.task-filters .active')||$('[data-view="tasks"]'))?.focus();
  toast(state.tasks.find(t=>t.id===id)?.completed?'Task completed':'Task reopened');
 });
-document.addEventListener('submit',e=>{
- if(!['taskForm','editTaskForm'].includes(e.target.id))return;
+document.addEventListener('submit',async e=>{
+ const form=e.target;
+ if(!['taskForm','editTaskForm'].includes(form.id))return;
  e.preventDefault();
- const editing=e.target.id==='editTaskForm',id=editing?e.target.dataset.id:crypto.randomUUID();
- const values=Object.fromEntries(new FormData(e.target));
- try{state.tasks=saveTask(state.tasks,values,id);}catch(error){toast(error.message);return;}
- persist();
- if(editing){modal.close();}else{e.target.reset();taskFilter='open';query='';}
+ const editing=form.id==='editTaskForm',id=editing?form.dataset.id:crypto.randomUUID();
+ const values=Object.fromEntries(new FormData(form));
+ const ownsUi=claimMutationUi();
+ try{
+   if(!await persist(latest=>{latest.tasks=saveTask(latest.tasks,values,id);},{ownsUi}))return;
+ }catch(error){
+   if(ownsUi())toast(error.message);
+   return;
+ }
+ if(editing){
+   if(modal.contains(form))modal.close();
+ }else{
+   form.reset();
+   taskFilter='open';
+   query='';
+ }
  renderPage();
  if(editing){[...document.querySelectorAll('[data-action="edit-task"]')].find(el=>el.dataset.id===id)?.focus();}
  else{$('#taskForm input[name="title"]')?.focus();}

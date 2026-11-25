@@ -20,6 +20,12 @@ export function taskWidget(tasks) {
   return `<section class="panel task-widget" aria-labelledby="taskWidgetHeading"><div class="section-heading"><div><p class="eyebrow">YOUR NEXT SMALL WIN</p><h2 id="taskWidgetHeading">Next on your list</h2><p class="subtitle">${counts.open ? `${counts.open} open · ${counts.today} due today${counts.overdue ? ` · ${counts.overdue} overdue` : ''}` : 'Make room for one useful next step.'}</p></div><button class="text-button" data-action="nav" data-view="tasks">Open to-do list →</button></div>${next.length ? taskRows(next, {compact:true}) : `<p class="subtitle">${tasks.length ? 'All caught up. Your completed tasks are saved in your list.' : 'Add a task for coursework, an application or anything you want to move forward.'}</p>`}</section>`;
 }
 
+export function taskStorageNote(persistent) {
+  const status = persistent ? 'Saved automatically for this demo profile in this browser.' :
+    'Session only: browser storage is unavailable.';
+  return `${status} Export progress to keep a copy of your tasks.`;
+}
+
 export function taskPage(tasks, filter, query, persistent = true) {
   const counts = taskCounts(tasks), visible = selectTasks(tasks, filter, query);
   const percent = tasks.length ? Math.round(counts.completed / tasks.length * 100) : 0;
@@ -30,7 +36,7 @@ export function taskPage(tasks, filter, query, persistent = true) {
       <div class="task-toolbar"><h2 id="taskListHeading" class="visually-hidden">Your tasks</h2><div class="task-filters" role="group" aria-label="Filter tasks">${[['open','Open',counts.open],['today','Today',counts.today],['all','All',tasks.length],['completed','Completed',counts.completed]].map(([key,label,count]) => `<button class="${key === filter ? 'active' : ''}" data-action="task-filter" data-filter="${key}" aria-pressed="${key === filter}">${label} <span>${count}</span></button>`).join('')}</div><label class="task-search"><span class="visually-hidden">Search tasks</span><input type="search" data-search="tasks" placeholder="Search tasks" value="${esc(query)}"></label></div>
       <p class="task-result-count subtitle" role="status">${visible.length} ${visible.length === 1 ? 'task' : 'tasks'} shown · Due dates first, then priority</p>
       ${visible.length ? taskRows(visible) : `<div class="task-empty"><h3>${query ? 'Try another search' : 'A little breathing room'}</h3><p>${empty}</p></div>`}
-    </section><p class="task-storage-note subtitle">${persistent ? 'Saved automatically for this demo profile in this browser.' : 'Session only: browser storage is unavailable.'} Export progress to keep a copy of your tasks.</p>`;
+    </section><p class="task-storage-note subtitle">${taskStorageNote(persistent)}</p>`;
 }
 
 export function taskEditForm(task) {
