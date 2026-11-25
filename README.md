@@ -34,7 +34,7 @@ A typical session:
 | --- | --- |
 | **For you** | See profile-based job suggestions, potential contacts, company insights, saved-opportunity and meeting counts, and the next three open tasks. |
 | **Jobs & companies** | Search roles, filter by location or saved status, inspect skill overlap and eligibility notes, and save leads. The company tab presents ATLAS.ai assessments with source evidence, counterevidence, forecasts and suggested research steps. |
-| **My network** | Explore priority contacts and LinkedIn links, edit and copy connection/follow-up drafts, browse event snapshots, and use mentorship preparation guidance. Create or edit personal conversation plans. |
+| **My network** | Explore priority contacts and LinkedIn links, edit and copy connection/follow-up drafts, browse event snapshots, and use mentorship preparation guidance. **Social Capital** reads a LinkedIn Connections.csv (or the full export .zip) on-device, maps reach by industry, shows hiring-capable contacts and who you know at companies hiring for you. Data stays in memory only; a sample network is built in. Create or edit personal conversation plans. |
 | **To-do list** | Add, edit, complete, reopen or delete tasks. Set optional due dates and High/Medium/Low priorities; search titles; filter by Open, Today, All or Completed; and see overdue tasks and completion counts. |
 | **My progress** | Organize saved jobs, people, companies and events into Saved, In progress, Waiting and Completed stages. Record next-step notes, self-reported referral status and conversation plans. Export progress as JSON. |
 | **My profile** | Edit the demo student's background, goals, skills and availability. Paste résumé notes or import a plain-text résumé, and reset that profile when needed. |

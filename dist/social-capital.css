@@ -1,0 +1,34 @@
+/* Social Capital tab: uses the Hydra Stack tokens from style.css */
+.cap-sub{font-size:11px;color:#7c8693;line-height:1.6;margin:3px 0 0}
+.cap-section{margin-top:30px}
+.cap-start{max-width:640px}
+.cap-start h2{margin:0 0 6px}
+.cap-start .btn{margin-top:4px;width:auto}
+.cap-toolbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:-4px 0 6px}
+.cap-toolbar .import-file{margin:0;flex:1;min-width:260px}
+.cap-toolbar .btn{margin:0}
+.cap-demo{margin:6px 0 0}
+.cap-error{color:#9b3d32;font-size:12px;margin:10px 0 0}
+.cap-stat-text{font-size:13px!important;line-height:1.3}
+.cap-map{margin-top:24px}
+.cap-bubbles{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center;padding:6px 0 14px}
+.cap-bubble{border-radius:50%;border:1px solid transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:6px;cursor:pointer;text-align:center;font-family:inherit;transition:transform .15s,box-shadow .15s}
+.cap-bubble b{font:800 17px Manrope,sans-serif}
+.cap-bubble span{font-size:10px;font-weight:600;line-height:1.2}
+.cap-bubble:hover{transform:translateY(-2px);box-shadow:0 6px 16px #12243d18}
+.cap-bubble:focus-visible,.cap-company:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.cap-bubble.active{box-shadow:0 0 0 3px #fff,0 0 0 5px var(--teal)}
+.cap-bubble.strong,.cap-tier.strong{background:#dbe6f6;border-color:#b7cded;color:#213e66}
+.cap-bubble.good,.cap-tier.good{background:#e9eef4;border-color:#d4dde9;color:#44566f}
+.cap-bubble.thin,.cap-tier.thin{background:#f9f1e6;border-color:#eadbc2;color:#8a6a35}
+.cap-bubble.cold,.cap-tier.cold{background:#f0f2f4;border-color:#dfe3e8;color:#6e747d}
+.cap-legend{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:11px;color:#7c8693;line-height:1.6;margin:6px 0 0}
+.cap-company{display:flex;align-items:center;gap:12px;width:100%;background:none;border:0;border-bottom:1px solid #e9ecf0;padding:12px 0;text-align:left;font-family:inherit;cursor:pointer;color:inherit}
+.cap-company:last-child{border-bottom:0}
+.cap-company .info{flex:1;min-width:0;display:flex;flex-direction:column}
+.cap-company strong{font-size:12px}
+.cap-avatar{background:#e3e8ee}
+.cap-when{white-space:nowrap}
+.cap-more{margin-top:10px}
+.card h3{margin:2px 0 10px}
+@media(max-width:760px){.cap-map{grid-template-columns:1fr}.cap-toolbar .import-file{min-width:0}}
