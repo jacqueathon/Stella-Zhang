@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {initialState} from '../dist/core.mjs';
 import {profiles} from '../dist/data.mjs';
-import {normalizeTasks,saveTask,toggleTask,deleteTask,selectTasks,taskCounts,localDay,validDueDate} from '../dist/tasks.mjs';
+import {normalizeTasks,saveTask,setTaskCompleted,deleteTask,selectTasks,taskCounts,localDay,validDueDate} from '../dist/tasks.mjs';
 import {taskPage,taskRows,taskWidget,taskEditForm} from '../dist/tasks-view.mjs';
 
 const add = (tasks, id, changes = {}) => saveTask(tasks, {title:id, due:'', priority:'Medium', ...changes}, id, '2026-11-11T18:00:00Z');
@@ -10,7 +10,7 @@ const add = (tasks, id, changes = {}) => saveTask(tasks, {title:id, due:'', prio
 test('tasks survive JSON persistence without leaking into another profile', () => {
   const a = initialState(profiles[0]), b = initialState(profiles[1]);
   a.tasks = add(a.tasks, 'proposal', {due:'2026-11-15', priority:'High'});
-  a.tasks = toggleTask(a.tasks, 'proposal');
+  a.tasks = setTaskCompleted(a.tasks, 'proposal', true);
   assert.deepEqual(b.tasks, []);
   assert.deepEqual(normalizeTasks(JSON.parse(JSON.stringify(a)).tasks), a.tasks);
   assert.deepEqual(initialState(profiles[0]).tasks, []);
@@ -25,14 +25,14 @@ test('legacy and malformed stored tasks recover without creating unusable rows',
 
 test('add, edit, complete, reopen and delete preserve other tasks and completion on edit', () => {
   const original = add(add([], 'a'), 'b');
-  const done = toggleTask(original, 'a');
+  const done = setTaskCompleted(original, 'a', true);
   const edited = saveTask(done, {title:' Revised ',due:'2026-12-01',priority:'High'}, 'a', 'later');
   assert.equal(edited[0].title, 'Revised');
   assert.equal(edited[0].completed, true);
   assert.equal(edited[0].createdAt, original[0].createdAt);
   assert.deepEqual(edited[1], original[1]);
   assert.equal(original[0].completed, false);
-  assert.equal(toggleTask(edited, 'a')[0].completed, false);
+  assert.equal(setTaskCompleted(edited, 'a', false)[0].completed, false);
   assert.deepEqual(deleteTask(edited, 'a'), [original[1]]);
 });
 
@@ -52,7 +52,7 @@ test('due dates use the local calendar, including just before midnight', () => {
 
 test('filters, search and counts distinguish overdue, today and completed', () => {
   let tasks = add(add(add([], 'Proposal', {due:'2026-11-10'}), 'Homework', {due:'2026-11-11'}), 'Interview', {due:'2026-11-11'});
-  tasks = toggleTask(tasks, 'Interview');
+  tasks = setTaskCompleted(tasks, 'Interview', true);
   assert.deepEqual(taskCounts(tasks, '2026-11-11'), {open:2,today:1,overdue:1,completed:1});
   assert.deepEqual(selectTasks(tasks, 'today', '', '2026-11-11').map(t=>t.id), ['Homework']);
   assert.deepEqual(selectTasks(tasks, 'completed').map(t=>t.id), ['Interview']);
@@ -62,7 +62,7 @@ test('filters, search and counts distinguish overdue, today and completed', () =
 test('pending tasks sort by date then priority, with undated and completed tasks last', () => {
   let tasks = [];
   for (const [id, changes] of [['undated',{}],['low',{due:'2026-11-12',priority:'Low'}],['high',{due:'2026-11-12',priority:'High'}],['earlier',{due:'2026-11-10'}],['done',{due:'2026-11-01'}]]) tasks=add(tasks,id,changes);
-  tasks = toggleTask(tasks, 'done');
+  tasks = setTaskCompleted(tasks, 'done', true);
   assert.deepEqual(selectTasks(tasks, 'all').map(t=>t.id), ['earlier','high','low','undated','done']);
 });
 
@@ -80,5 +80,19 @@ test('empty views, completed previews and unavailable-storage notices are explic
   assert.match(taskPage([], 'completed', ''), /completed tasks will appear/);
   assert.match(taskPage([], 'open', '', false), /Session only/);
   assert.doesNotMatch(taskPage([], 'open', '', false), /Saved automatically/);
-  assert.match(taskWidget(toggleTask(add([], 'a'), 'a')), /All caught up/);
+  assert.match(taskWidget(setTaskCompleted(add([], 'a'), 'a', true)), /All caught up/);
+});
+
+test('setting task completion repeats safely and an explicit opposite request still works', () => {
+  const original = add(add([], 'a'), 'b');
+  assert.equal(setTaskCompleted(original, 'missing', true), null);
+  const completed = setTaskCompleted(original, 'a', true);
+  assert.equal(setTaskCompleted(completed, 'a', true), completed);
+  assert.deepEqual(completed, [{...original[0], completed:true}, original[1]]);
+  assert.equal(completed[1], original[1]);
+  const reopened = setTaskCompleted(completed, 'a', false);
+  assert.deepEqual(reopened, original);
+  assert.equal(setTaskCompleted(reopened, 'a', false), reopened);
+  assert.equal(original[0].completed, false);
+  assert.equal(completed[0].completed, true);
 });

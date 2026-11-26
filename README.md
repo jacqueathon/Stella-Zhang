@@ -67,7 +67,7 @@ These datasets are bundled with the app, not refreshed from live job boards. Che
 
 ### Tasks and saved progress
 
-Workspace state contains the profile, saved leads, conversation plans, outreach drafts, tasks and onboarding status. Changes are stored in `localStorage` under a separate key for each persona, such as `hydra-stack-demo-v1:alex`.
+Workspace state contains the profile, saved leads, conversation plans, outreach drafts, tasks and onboarding status. Changes are stored in IndexedDB under a separate key for each persona. The app reads an existing `localStorage` workspace, such as `hydra-stack-demo-v1:alex`, until that profile first saves to IndexedDB. Browser tabs running this version share the latest committed state.
 
 - Tasks are ordered with open items first, then by due date and priority. Undated tasks follow dated ones. Today and overdue labels use the device's local calendar.
 - Existing workspaces without tasks start with an empty task list while keeping their other progress.
