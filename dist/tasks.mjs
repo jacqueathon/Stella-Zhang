@@ -1,4 +1,19 @@
 export const taskPriorities = ['High', 'Medium', 'Low'];
+export const taskTitleLimit = 160;
+
+function shortenTitle(text, limit) {
+  if (text.length <= limit) return text;
+  return text.slice(0, limit - 1).replace(/[\uD800-\uDBFF]$/, '').trimEnd() + '…';
+}
+
+export function leadTaskTitle(identity, note) {
+  const lead = identity.trim().replace(/\s+/g, ' ');
+  const nextStep = typeof note === 'string' ? note.trim().replace(/\s+/g, ' ') : '';
+  if (!nextStep) return shortenTitle(`Follow up on ${lead}`, taskTitleLimit);
+  // Give both the lead identity and the saved next step space in the title.
+  return shortenTitle(`${shortenTitle(lead, 72)} — ${nextStep}`, taskTitleLimit);
+}
+
 
 // Calendar dates are local, so a task does not become overdue at UTC midnight.
 export function localDay(now = new Date()) {
@@ -23,7 +38,7 @@ export function normalizeTasks(value) {
     return true;
   }).map(task => ({
     id: task.id,
-    title: task.title.trim().slice(0, 160),
+    title: task.title.trim().slice(0, taskTitleLimit),
     due: typeof task.due === 'string' && validDueDate(task.due) ? task.due : '',
     priority: taskPriorities.includes(task.priority) ? task.priority : 'Medium',
     completed: task.completed === true,
@@ -34,7 +49,7 @@ export function normalizeTasks(value) {
 export function saveTask(tasks, values, id, now = new Date().toISOString()) {
   const title = String(values.title ?? '').trim();
   const due = values.due || '';
-  if (!title || title.length > 160) throw new Error('Enter a task between 1 and 160 characters.');
+  if (!title || title.length > taskTitleLimit) throw new Error('Enter a task between 1 and 160 characters.');
   if (!validDueDate(due)) throw new Error('Choose a valid due date or leave it empty.');
   if (!taskPriorities.includes(values.priority)) throw new Error('Choose High, Medium or Low priority.');
   const old = tasks.find(task => task.id === id);
@@ -42,7 +57,13 @@ export function saveTask(tasks, values, id, now = new Date().toISOString()) {
   return old ? tasks.map(item => item.id === id ? task : item) : [...tasks, task];
 }
 
-export const toggleTask = (tasks, id) => tasks.map(task => task.id === id ? {...task, completed: !task.completed} : task);
+export function setTaskCompleted(tasks, id, completed) {
+  const index = tasks.findIndex(task => task.id === id);
+  if (index === -1) return null;
+  const task = tasks[index];
+  if (task.completed === completed) return tasks;
+  return tasks.map((item, position) => position === index ? {...task, completed} : item);
+}
 export const deleteTask = (tasks, id) => tasks.filter(task => task.id !== id);
 export const taskCounts = (tasks, today = localDay()) => ({
   open: tasks.filter(task => !task.completed).length,
